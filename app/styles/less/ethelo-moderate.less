@@ -1,0 +1,62 @@
+
+//Don't know why this is needed; fix for UD-638. The usual styles for comments
+//are being overridden but only for the inital comment (not the replies.) Why?
+//Find out and remove this maybe. TODO R&D FIXME
+
+.moderate  {
+    .comment-item {
+        .row-picture {
+            display: inline-block;
+            img  {
+                width: 32px !important; //looks about right
+                border-radius: 100%;
+            }
+
+        }
+        .row-content {
+            display: inline-block;
+        }
+    }
+    .activity-list.comment-list > ul {
+        list-style-type: none;
+    }
+
+    img.uploaded {
+        max-width: 360px;
+    }
+
+
+    .filters {
+        padding: 0 15px;
+        display: flex;
+        max-width: 100%;
+        overflow: hidden;
+        font-size: 9pt;
+        justify-content: space-between;
+        & > * {
+            text-align: middle;
+            i {
+                vertical-align: middle;
+            }
+
+        }
+        .filter-search {
+            display: flex;
+            input {
+                max-height: 20px;
+                margin: 24px 0; //by eyeball
+            }
+
+            button {
+                max-width: 32px;
+            }
+        }
+
+        .material-icons {
+            color: inherit;
+            font-size: 21pt;
+        }
+
+    }
+
+}

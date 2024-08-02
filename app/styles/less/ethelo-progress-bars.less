@@ -1,0 +1,70 @@
+.ethelo-progress-percentage {
+	display: inline-block;
+	vertical-align: middle;
+	.pull-left;
+}
+
+.progress {
+	vertical-align: middle;
+	// margin-top: 20px;
+}
+
+.progress-bar {
+	.progress-bar-animation;
+}
+
+.progress-bar-voting {
+	position: fixed;
+	height: 10px;
+	left: 0;
+	right: 0;
+	top: 70px;
+	background-color: #ffe7c8;
+	margin-top: -20px;
+
+	@media (min-width: (@bigBrowser + 1)) {
+		position: relative;
+		margin: 0 -15px;
+		height: 16px;
+		top: 0;
+	}
+
+	.progress-bar-voting__fill {
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		width: auto;
+		min-width: 42px;
+		background-color: #8dd0ff;
+		border-radius: 0 10px 10px 0;
+		transition: all .5s ease;
+	}
+
+	.progress-bar-voting__circle {
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 36px;
+		height: 36px;
+		margin-top: -12px;
+		background-color: #fff;
+		border: 3px solid #79c7ff;
+		border-radius: 50%;
+		text-align: center;
+		color: #0068ac;
+		line-height: 28px;
+		white-space: nowrap;
+		font-size: 10px;
+		font-weight: bold;
+
+		@media (min-width: (@bigBrowser + 1)) {
+			width: 42px;
+			height: 42px;
+			margin-top: -15px;
+			font-size: 12px;
+			line-height: 38px;
+		}
+	}
+}

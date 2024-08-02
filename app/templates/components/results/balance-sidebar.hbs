@@ -1,0 +1,43 @@
+{{#if balanceConfig.enabled}}
+  {{results/balance-slider
+    calculation=balanceConfig.calculation
+    messageCalculation=balanceConfig.messageCalculation
+    showTitle=balance2Config.enabled
+    translationSuffix=balanceConfig.translationSuffix
+    inputId="slider-target1"
+    min=balanceConfig.min
+    max=balanceConfig.max
+    balanceMin=balanceConfig.balanceMin
+    balanceMax=balanceConfig.balanceMax
+    balancePoint=balanceConfig.balancePoint
+  }}
+{{/if}}
+
+{{#if balance2Config.enabled}}
+  {{results/balance-slider
+    calculation=balance2Config.calculation
+    messageCalculation=balance2Config.messageCalculation
+    inputId="slider-target2"
+    showTitle=balanceConfig.enabled
+    translationSuffix=balance2Config.translationSuffix
+    min=balance2Config.min
+    max=balance2Config.max
+    balanceMin=balance2Config.balanceMin
+    balanceMax=balance2Config.balanceMax
+    balancePoint=balance2Config.balancePoint
+  }}
+{{/if}}
+
+{{#if enableAutoBalanceBtn}}
+<div class="balance-sidebar">
+
+  <button id="balance-button" class="{{if autoBalanceOn 'checked'}} balance-btn navigation-button" type="button" {{action 'toggleAutoBalance'}}>
+    {{t 'sidebars.balance.auto_balance_button'}}
+  </button>
+
+  <button id="balance-link" class="{{if autoBalanceOn 'checked'}} balance-btn-link navigation-button" type="button" data-toggle="modal" data-target="#balance">
+    {{t 'sidebars.balance.popup_button'}}
+  </button>
+
+</div>
+{{/if}}

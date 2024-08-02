@@ -1,0 +1,30 @@
+<div class="card flat result-card" id={{idKey}}>
+  {{results/card-header
+    parentCount=parentCount
+    title=target.resultsLabel
+    statsDisplay=statsDisplay
+    showHeaderStats=showHeaderStats
+    showDetails=showDetails
+    toggleCardBody="showCardBody"
+    result=result
+    headerId=(format-html-id 'header' idKey)
+    collapseId=(format-html-id 'collapse' idKey)
+  }}
+ {{#if showDetails}}
+  {{results/card-body
+    page=page
+    isShowingCardBody=isShowingCardBody
+    withUser=withUser
+    result=result
+    title=target.resultsLabel
+    resultTarget=target
+    namespace=namespace
+    headerId=(format-html-id 'header' idKey)
+    collapseId=(format-html-id 'collapse' idKey)
+    statsDisplay=statsDisplay
+    option=option
+    hasCriteriaSubsection=hasCriteriaSubsection
+    scenarioResults=scenarioResults
+  }}
+ {{/if}}
+</div>

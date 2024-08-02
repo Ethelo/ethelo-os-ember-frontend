@@ -1,0 +1,35 @@
+<div class="panel panel-default untabbed-modal-panel invited-panel">
+  <div class="panel-body">
+    <strong id="auth-modal-label">{{t 'authentication.sign_up'}}</strong>
+    {{t 'authentication.invited_intro_html' decision=decision.title}}
+
+    {{#if errorList.auth}}
+      <div class="alert alert-danger">
+        {{t errorList.auth}}
+      </div>
+    {{/if}}
+
+    {{#if requireInviteCode}}
+      {{partial 'components/auth/_invite_code_form'}}
+    {{else}}
+      {{partial 'components/auth/_user_fields'}}
+      {{partial 'components/auth/_invite_buttons'}}
+    {{/if}}
+
+  </div>
+  <div class="panel-footer text-center">
+    {{t 'authentication.existing_user'}}
+    <a href="#" {{action 'sendToSignIn' target=authService}}>
+      {{t 'authentication.link.sign_in'}}
+    </a>
+
+    {{#if allowsSignup}}
+      <br/>
+      {{t 'authentication.new_user'}}
+      <a href="#" {{action 'sendToSignUp' target=authService}}>
+        {{t 'authentication.link.sign_up'}}
+      </a>
+      {{t 'authentication.fast_easy_free'}}
+    {{/if}}
+  </div>
+</div>

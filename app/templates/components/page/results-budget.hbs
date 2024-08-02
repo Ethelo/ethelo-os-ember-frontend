@@ -1,0 +1,71 @@
+<div
+  class="container-fluid {{rankClass}} results-group-budget"
+  id={{page.componentId}}
+>
+  {{bootstrap/bootstrap-modal-balance}}
+
+  <!-- ROW ONE -->
+  <div class="row special" id="row1">
+    {{layout/left-column page=page}}
+
+    {{#layout/center-column page=page}}
+
+      {{tool/content-panel key="center" page=page}}
+
+      {{#if scenarioResults}}
+
+        {{results/budget-scenario-panel
+          page=page
+          rank=rank
+          isCollapsed=isCollapsed
+          scenario=scenario
+          statsDisplay=statsDisplay
+          scenarioResults=scenarioResults
+        }}
+
+        {{results/budget-attribute-list-panel
+          page=page
+          withUser=withUser
+          scenario=scenario
+          statsDisplay=statsDisplay
+          calculationsData=calculationsData
+          scenarioResults=scenarioResults
+          selectedDetailID=selectedDetailID
+          totalListValues=totalListValues
+          defaultDetailAndCalculation=defaultDetailAndCalculation
+          selectedDetailIdChange=(action "selectedDetailIdChanged")
+        }}
+
+        {{results/budget-attribute-option-category
+          withUser=withUser
+          page=page
+          statsDisplay=statsDisplay
+          scenarioResults=scenarioResults
+          scenario=scenario
+          selectedDetailID=selectedDetailID
+          defaultDetailAndCalculation=defaultDetailAndCalculation
+        }}
+
+      {{else}}
+        {{#if noResultsMessage}}
+          <div class="alert alert-secondary" role="alert">
+            {{{t noResultsMessage}}}
+          </div>
+        {{/if}}
+      {{/if}}
+
+      {{tool/content-panel key="center_two" page=page}}
+
+    {{/layout/center-column}}
+
+    {{layout/right-column
+      page=page
+      decision=decision
+      pageCommentTarget=pageCommentTarget
+      pageCommentScope=pageCommentScope
+      hasSidebarPageComments=hasSidebarPageComments
+    }}
+
+  </div>
+  <!-- END OF ROW ONE -->
+</div>

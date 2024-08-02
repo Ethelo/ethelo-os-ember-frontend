@@ -1,0 +1,69 @@
+<td {{action 'toggleHint' item.id}}>
+  <a href="javascript:void(0)" role="button">
+    <table class="table-details">
+      <tbody>
+        <tr>
+          <td class="name" role="button">
+            <i class="format format-{{item.format}}"></i>
+            <span>{{item.label}}</span>
+          </td>
+
+          <td class="support">
+            {{results/likert-image
+              value=item.rawValue
+              format=item.format
+              type="metric-likert"
+            }}
+          </td>
+          {{#if (is-array item.value)}}
+            {{#each item.value as |subItem|}}
+              <td class="units">
+                {{subItem.value}}
+              </td>
+            {{/each}}
+          {{else}}
+            {{#if percentageValue}}
+              <td class="units">
+                <span>{{percentageValue}}</span>
+              </td>
+            {{/if}}
+          {{/if}}
+
+          {{#if item.hint}}
+            <td class="expand-container">
+              {{#if hintExpanded}}
+                <span
+                  role="button"
+                  data-toggle="collapse"
+                  aria-expanded="false"
+                  aria-controls="collapseExample"
+                  class="toggle-open"
+                >
+                  <i class="material-icons expand_less">expand_less</i>
+                </span>
+              {{else}}
+                <span
+                  role="button"
+                  data-toggle="collapse"
+                  aria-expanded="false"
+                  aria-controls="collapseExample"
+                  class="toggle-open"
+                >
+                  <i class="material-icons expand_more">expand_more</i>
+                </span>
+              {{/if}}
+            </td>
+          {{/if}}
+
+        </tr>
+        {{#if (and item.hint hintExpanded)}}
+          <tr>
+            <td class="hint" colspan="4">
+              {{item.hint}}
+            </td>
+          </tr>
+        {{/if}}
+      </tbody>
+    </table>
+  </a>
+</td>

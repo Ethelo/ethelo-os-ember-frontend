@@ -1,0 +1,199 @@
+{{voting/option-category-description optionCategory=optionCategory}}
+<br />
+
+<div class="range-slider hidden-xs hidden-sm">
+  <div class="slider-labels">
+    <span class="pull-left"></span>
+    <span class="pull-right"></span>
+  </div>
+
+  <input
+    id={{inputId}}
+    type="text"
+    value={{sliderValue}}
+    class="slider-target"
+  />
+  <span id={{labelledBy}} class="hidden">Slider</span>
+
+  {{#if selectedOption}}
+    {{#if canRemoveValue}}
+      <a
+        {{action "clearValue"}}
+        tabindex="0"
+        onkeydown={{action 'clearValuesOnKeyDown'}}
+        class="slider-remove visible-xs visible-sm slider-remove-vote-btn pull-right"
+        role="button"
+      >
+        {{t mobileRemovePrompt}}
+      </a>
+      <a
+        {{action "clearValue"}}
+        tabindex="0"
+        onkeydown={{action 'clearValuesOnKeyDown'}}
+        class="slider-remove visible-md visible-lg slider-remove-vote-btn pull-right"
+        role="button"
+      >
+        {{t removePrompt}}
+      </a>
+    {{/if}}
+    <div class="selected-option">
+      <br />
+      {{voting/option-description option=selectedOption hideDetails=false}}
+    </div>
+  {{/if}}
+</div>
+
+{{! Show condensed voting on mobile(pick one style in terms of UI) }}
+<div class="row col-sm-12 col-xs-12 hidden-md hidden-lg slider-on-mobile-container">
+  <button
+    type="button"
+    role="button"
+    data-target="#{{modalId}}"
+    data-toggle="modal"
+    class="customZIndex btn-lg btn-block btn btn-default btn-raised
+      {{if selectedOptionId 'primary-accent-bg navigation-button'}}"
+      style={{voteButtonStyle}}
+  >
+    {{#if selectedOptionId}}
+      <span><strong>{{currentOptionCategoryVote.title}}</strong></span>
+    {{else}}
+      {{t "voting.prompt.touch"}}
+    {{/if}}
+
+    <div class="ripple-container"></div>
+  </button>
+
+  <div
+    class="modal fade in ethelo-likert-button-modal max-zIndex"
+    id={{modalId}}
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-hidden="true"
+            tabindex="-1"
+          ><i class="material-icons">close</i></button>
+          <div class="h4 modal-title">
+            <div>
+              <span class="pull-left">{{optionCategory.title}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="row slider-on-mobile">
+            {{#each ticks.sliderItems as |item|}}
+              <div class="bootstrap-collapse-heading withripple panel-binary">
+                <button
+                  type="button"
+                  class="expansion-toggle collapsed
+                    {{if
+                      (eq selectedOptionId item.option.id)
+                      'primary-accent-bg'
+                      'voting-panel-button'
+                    }}
+                    navigation-button"
+                >
+                  <div class="panel-heading-color row">
+                    <div class="col-xs-2 col-sm-2 col-md-1 col-lg-1">
+                      <span
+                        class="checkmark"
+                        {{action "saveVotingSliderValue" item}}
+                      >
+                        {{#if (eq selectedOptionId item.option.id)}}
+                          <i class="material-icons check_circle" role="img" aria-label="Selected">check_circle</i>
+                        {{else}}
+                          <i class="material-icons secondary-accent-text circle" role="img" aria-label="Not Selected">circle</i>
+                        {{/if}}
+                      </span>
+                    </div>
+                    <div
+                      class="col-xs-5 col-sm-5 col-md-6 col-lg-6 persist-dividing-line"
+                      {{action "saveVotingSliderValue" item}}
+                    >
+                      <span class="h4 panel-binary-title pull-left wb-b-word">
+                        {{item.option.title}}
+                      </span>
+                    </div>
+                    <div
+                      class="expansion-toggle col-xs-3 col-sm-3 col-md-4 col-lg-4 row-voting
+                        {{if (or beginCollapsed collapseOptions) 'collapsed'}}
+                        {{if
+                          (eq selectedOptionId item.option.id)
+                          'expansion-toggle-aria'
+                        }}"
+                      data-toggle="collapse"
+                      data-target="#{{item.option.id}}-collapse"
+                    >
+                      <div class="text-center">
+                        <div
+                          class="col-sm-12 col-xs-12 col-md-6 col-lg-6
+                            {{if
+                              (eq selectedOptionId item.option.id)
+                              'primary-accent-bg'
+                            }}"
+                        >
+                          {{item.formattedValue}}
+                        </div>
+                      </div>
+                    </div>
+                    {{#if
+                      (or
+                        (gt item.option.visibleDetailValues.length 0)
+                        item.option.info
+                      )
+                    }}
+                      <div
+                        class="expansion-toggle col-xs-2 col-sm-2 col-md-1 col-lg-1
+                          {{if
+                            (eq selectedOptionId item.option.id)
+                            ''
+                            'collapsed'
+                          }}
+                          {{if
+                            (eq selectedOptionId item.option.id)
+                            'expansion-toggle-aria'
+                          }}"
+                        data-toggle="collapse"
+                        data-target="#{{item.option.id}}-collapse"
+                      >
+                        <i class="material-icons expand-less">expand_less</i>
+                        <i class="material-icons expand-more">expand_more</i>
+                      </div>
+                    {{/if}}
+                  </div>
+
+                </button>
+                <div class="ripple-container"></div>
+              </div>
+
+              {{#if
+                (or
+                  (gt item.option.visibleDetailValues.length 0) item.option.info
+                )
+              }}
+                <div
+                  class="collapse
+                    {{if (eq selectedOptionId item.option.id) 'in'}}"
+                  id="{{item.option.id}}-collapse"
+                >
+                  <div class="panel-body panel-body-short">
+                    {{voting/option-description
+                      option=item.option
+                      hideDetails=false
+                      details=item.option.visibleDetailValues
+                      isBinaryLikert=true
+                    }}
+                  </div>
+                </div>
+              {{/if}}
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

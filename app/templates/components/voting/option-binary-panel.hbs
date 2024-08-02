@@ -1,0 +1,36 @@
+{{partial 'partials/edit-link'}}
+
+{{#bootstrap/bootstrap-binary-collapse
+  title=option.title
+  titleDetails=titleDetails
+  beginCollapsed=false
+  panelId=panelId
+  binaryVoteValue=binaryVoteValue
+  collapseOptions=collapseOptions
+  option=option
+  criterion=criterion
+  criteria=criteria
+  binCount=binCount
+  hasSingleVoteOnPickOne=hasSingleVoteOnPickOne
+  isBinaryOne=page.isBinaryOne
+  isCollapsed=isCollapsed
+  isBinaryMany=page.isBinaryMany
+}}
+  {{#voting/binary-option
+    option=option
+    criteria=criteria
+    binaryVoteValue=binaryVoteValue
+    binCount=binCount
+    hasSingleVoteOnPickOne=hasSingleVoteOnPickOne
+    bottomPaneRequired=bottomPaneRequired
+    isBinaryOne=page.isBinaryOne
+    isBinaryMany=page.isBinaryMany
+  }}
+    {{voting/option-description option=option hideDetails=true details=details isBinaryLikert=true}}
+    {{#if bottomPaneRequired}}
+      <div class="panel-bottom">
+        {{yield}}
+      </div>
+    {{/if}}
+  {{/voting/binary-option}}
+{{/bootstrap/bootstrap-binary-collapse}}

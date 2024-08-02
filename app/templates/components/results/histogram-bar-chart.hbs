@@ -1,0 +1,7 @@
+{{#if showChart}}
+  {{#if hasMultipleCriteria}}
+    <div class="chart-caption">{{t 'results.metrics.distribution_criteria_caption'}}</div>
+  {{/if}}
+
+  {{charts/high-charts content=chartData chartOptions=chartOptions chartId=chartId}}
+{{/if}}

@@ -1,0 +1,115 @@
+{{#if (and isCondensedLikert (not singleLikertButton))}}
+  <div class="visible-md visible-lg col-lg-12 col-md-12" style="padding: 0px;">
+    <span class="col-lg-5 col-md-5" style="padding-top: 8px; margin-top: 10px;">
+      <strong class="pull-right">{{if showTitle criterionTitle}}:</strong>
+    </span>
+    <div class="col-lg-7 col-md-7">
+      <button {{action 'openCondensedModal'}}
+        type="button"
+        class="{{currentBinClass}} btn-lg btn-block btn btn-default btn-raised"
+        style={{condensedLikertStyle}}>
+
+        {{#if participantHasVoted}}
+          {{t currentBinKey}}
+        {{else}}
+          {{t 'voting.prompt.standard'}}
+        {{/if}}
+        <div class="ripple-container"></div>
+      </button>
+    </div>
+  </div>
+    <div class="row">
+      <div class="visible-md visible-lg col-lg-12 col-md-12" style="padding: 0px;">
+        {{#if showTitle}}
+            <hr class="fancy">
+        {{/if}}
+      </div>
+    </div>
+{{else}}
+
+  <div class="ethelo-{{singleLikertClass}}likert-group bins-{{binCount}}">
+    {{#if singleLikertButton}}
+      {{#each binList as |bin|}}
+        {{voting/single-likert-button
+          bin=bin option=option criterion=criterion saveVote='saveVote'
+          participantHasVoted=participantHasVoted}}
+      {{/each}}
+    {{else}}
+      {{#each binList as |bin|}}
+        {{voting/likert-button
+          bin=bin option=option criterion=criterion saveVote='saveVote'}}
+      {{/each}}
+    {{/if}}
+  </div>
+
+  {{#if singleLikertButton}}
+    {{#if participantHasVoted}}
+      <div class="likert-instruct visible-md visible-lg">
+        {{t 'voting.prompt.click_remove'}}
+      </div>
+      <div class="likert-instruct visible-xs visible-sm">
+        {{t 'voting.prompt.touch_remove'}}
+      </div>
+    {{/if}}
+  {{else}}
+    <div class="ethelo-likert-label visible-md visible-lg {{currentBinClass}}">
+      {{#if (and showTitle isCondensedLikert)}}
+        <span><strong>{{criterionTitle}}: </strong></span>
+      {{/if}}
+      {{#if participantHasVoted}}
+        {{t currentBinKey}}
+      {{else}}
+        {{t 'voting.prompt.standard'}}
+      {{/if}}
+    </div>
+  {{/if}}
+{{/if}}
+
+<button {{action 'openCondensedModal'}}
+  type="button" role="button"
+  class="ethelo-{{singleLikertClass}}likert-group-mobile {{currentBinBackgroundClass}}
+    btn btn-lg btn-block btn-default btn-raised"
+  style={{condensedLikertStyle}}>
+  {{#if (and showTitle hasMultipleCriteria)}}
+    <span><strong>{{criterionTitle}}: </strong></span>
+  {{/if}}
+  {{#if participantHasVoted}}
+    {{t currentBinKey}}
+  {{else}}
+    {{t 'voting.prompt.touch'}}
+  {{/if}}
+
+  <div class="ripple-container"></div>
+</button>
+
+<div class="modal fade in ethelo-likert-button-modal" id="{{condensedModalId}}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" tabindex="-1">
+          <i class="material-icons">close</i>
+        </button>
+        <div class="h4 modal-title">
+          <div class="{{if isCondensedLikert 'hidden-md hidden-lg'}}">
+            <span>{{option.title}}</span>
+          </div>
+          <div class={{if (not hasMultipleCriteria) "hidden-xs hidden-sm"}}>
+            <strong class="modal-criteria-title">{{if showTitle criterionTitle}}</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        {{#each binList as |bin|}}
+          {{voting/likert-button
+            bin=bin option=option criterion=criterion saveVote='saveVote'
+            isCondensedLikert=isCondensedLikert binCount=binCount}}
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</div>
+
+{{#if error}}
+  <div class="alert alert-danger" role="alert">{{error}}</div>
+{{/if}}

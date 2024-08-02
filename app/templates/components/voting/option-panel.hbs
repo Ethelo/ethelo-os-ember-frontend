@@ -1,0 +1,34 @@
+{{partial "partials/edit-link"}}
+
+<a id={{format-html-id  "a" option.slug}}></a>
+
+{{#bootstrap/bootstrap-collapse
+  title=option.title
+  beginCollapsed=false
+  panelId=panelId
+  collapseOptions=collapseOptions
+  vote=participantHasVoted
+}}
+  {{voting/option-description option=option}}
+
+  {{#if showVotingTools}}
+    <div class="likert-container">
+        {{#each criteria as |criterion|}}
+          {{voting/option-criterion-likert
+            option=option
+            criterion=criterion
+            showTitle=true
+            isCondensedLikert=page.isCondensedLikert
+            demo=registry.decision.demoVoting
+            hasMultipleCriteria=hasMultipleCriteria
+          }}
+        {{/each}}
+    </div>
+  {{/if}}
+
+  {{#if bottomPaneRequired}}
+    <div class="panel-bottom">
+      {{yield}}
+    </div>
+  {{/if}}
+{{/bootstrap/bootstrap-collapse}}

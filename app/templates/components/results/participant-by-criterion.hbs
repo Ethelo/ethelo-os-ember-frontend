@@ -1,0 +1,15 @@
+<div class="{{namespace}}-criterion">
+  {{#each userCriterionBreakdown as |result|}}
+    {{results/participant-criterion-header
+      parentCount=parentCount
+      target=result.criterion
+      showHeaderStats=true
+      result=result
+      page=page
+      statsDisplay=statsDisplay
+      namespace=namespace
+      truncateTitles=truncateTitles
+      enabledLikerts=enabledLikerts
+    }}
+  {{/each}}
+</div>

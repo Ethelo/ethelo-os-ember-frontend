@@ -1,0 +1,77 @@
+.ethelo-side-nav-button {
+  background: none;
+  border-style: none;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-right: 16px;
+
+  i {
+    color: @white;
+  }
+}
+
+.ethelo-navbar-brand-img {
+
+  .pull-right {
+    position: absolute;
+    right: 16px;
+  }
+  .navbar-brand {
+    padding: 8px;
+  }
+}
+.navbar-brand {
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+.navbar > .container-fluid .navbar-brand {
+  @media (max-width: @bigBrowser) {
+    margin-left: 0;
+  }
+}
+
+.navbar-brand.decision-title {
+  margin-right: 40px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.list-group-item{
+  position: relative;
+  &.no-padding{
+    padding-right: 0;
+  }
+  .material-icons-outlined {
+    position: absolute;
+    right: 3px;
+    top: 2px;
+    &.incomplete{
+      color:#6c757d
+    }
+    &.half-complete{
+      color:#ffc107
+    }
+    &.full-complete{
+      color: green;
+    }
+  }
+
+  .icon{
+    position: absolute;
+    right: 5px;
+    top: 2px;
+    font-size: 130%!important;
+    &:before{
+      color:green;
+    }
+    &.icon-halfcheckbox,
+    &.icon-emptycheckbox{
+      &:before{
+        color:#fce6ca
+      }
+    }
+  }
+}

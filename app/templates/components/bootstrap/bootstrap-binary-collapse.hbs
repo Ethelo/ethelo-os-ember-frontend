@@ -1,0 +1,155 @@
+<div
+  class="panel panel-flat {{if isCollapsed "bootstrap-collapse"}}"
+  id="{{divId}}"
+>
+  {{#if isCollapsed}}
+    {{#if showHeader}}
+      <div class="bootstrap-collapse-heading withripple panel-binary">
+        <button
+          id="{{elementId}}-binary-collapse-accessibility"
+          type="button"
+          class="expansion-toggle
+            {{if (or beginCollapsed collapseOptions) "collapsed"}}
+            {{if
+              (eq binaryVoteValue "yes")
+              "primary-accent-bg"
+              "voting-panel-button"
+            }}
+            navigation-button"
+        >
+
+          <div class="panel-heading-color row">
+            <div class="col-xs-2 col-sm-2 col-md-1 col-lg-1">
+              <span class="checkmark" {{action "saveVotes"}}>
+                {{#if (eq binaryVoteValue "yes")}}
+                  {{#if isBinaryOne}}
+                    <i class="material-icons check_circle" role="img" aria-label="Selected">check_circle</i>
+                  {{else}}
+                    <i class="material-icons check_box" role="img" aria-label="Selected">check_box</i>
+                  {{/if}}
+                {{else}}
+                  {{#if isBinaryOne}}
+                    <i class="material-icons secondary-accent-text circle" role="img" aria-label="Not Selected">circle</i>
+                  {{else}}
+                    <i class="material-icons secondary-accent-text check_box_outline_blank" role="img" aria-label="Not Selected">check_box_outline_blank</i>
+                  {{/if}}
+                {{/if}}
+
+              </span>
+            </div>
+
+            <div
+              class="{{if hasDetails 'col-xs-5 col-sm-5 col-md-6 col-lg-6 ' 'col-xs-8 col-sm-8 col-md-10 col-lg-10 ' }}
+                {{if
+                  (eq binaryVoteValue "yes")
+                  "dividing-line-selected"
+                  "dividing-line"
+                }}"
+              {{action "saveVotes"}}
+            >
+              <span class="h4 panel-binary-title pull-left">
+                {{title}}
+              </span>
+            </div>
+            {{#if hasDetails}}
+              <div
+                class="expansion-toggle col-xs-3 col-sm-3 col-md-4 col-lg-4 row-voting
+                {{if (or beginCollapsed collapseOptions) "collapsed"}}
+                  {{if (eq binaryVoteValue "yes") "expansion-toggle-aria"}}"
+                data-toggle="collapse"
+                data-target="#{{elementId}}-collapse"
+              >
+                <div class="text-center">
+                  {{#each formattedDetails as |detail|}}
+                    <div
+                      class="fixed-left col-sm-12 col-xs-12 col-md-6 col-lg-6
+                      {{if (eq binaryVoteValue "yes") "primary-accent-bg"}}"
+                    >
+
+                      {{detail.value}}
+                    </div>
+                  {{/each}}
+                </div>
+              </div>
+            {{/if}}
+            <div
+              class="expansion-toggle col-xs-2 col-sm-2 col-md-1 col-lg-1
+                {{if (or beginCollapsed collapseOptions) "collapsed"}}
+                {{if (eq binaryVoteValue "yes") "expansion-toggle-aria"}}"
+              data-toggle="collapse"
+              data-target="#{{elementId}}-collapse"
+            >
+              <i class="material-icons expand-less">expand_less</i>
+              <i class="material-icons expand-more">expand_more</i>
+            </div>
+          </div>
+
+        </button>
+        <div class="ripple-container"></div>
+      </div>
+    {{/if}}
+
+    <div
+      class="collapse {{unless (or beginCollapsed collapseOptions) "in"}}"
+      id="{{elementId}}-collapse"
+    >
+      <div class="panel-body panel-body-short">
+        {{yield}}
+      </div>
+    </div>
+  {{else}}
+    <div id="{{elementId}}-binary-collapse-accessibility" class="bootstrap-collapse-heading panel-binary">
+      <div
+        class="{{if (eq binaryVoteValue "yes") "primary-accent-bg"}}
+          noncollapsible"
+      >
+
+        <div class="panel-heading-color row">
+          <div class="{{if hasDetails "col-xs-2 col-sm-2" "col-xs-1 col-sm-1"}} col-md-1 col-lg-1">
+            <span class="checkmark" {{action "saveVotes"}}>
+
+              {{#if (eq binaryVoteValue "yes")}}
+                {{#if isBinaryOne}}
+                  <i class="material-icons check_circle" role="img" aria-label="Selected">check_circle</i>
+                {{else}}
+                  <i class="material-icons check_box" role="img" aria-label="Selected">check_box</i>
+                {{/if}}
+              {{else}}
+                {{#if isBinaryOne}}
+                  <i class="material-icons secondary-accent-text circle" role="img" aria-label="Not Selected">circle</i>
+                {{else}}
+                  <i class="material-icons secondary-accent-text check_box_outline_blank" role="img" aria-label="Not Selected">check_box_outline_blank</i>
+                {{/if}}
+              {{/if}}
+
+            </span>
+          </div>
+
+          <div
+            class="{{if
+              hasDetails
+              "col-xs-5 col-md-4 col-lg-5"
+              "col-xs-11 col-sm-11 col-md-11 col-lg-11"
+            }}"
+          >
+            <span class="h4 panel-binary-title">
+              {{title}}
+            </span>
+          </div>
+          {{#if hasDetails}}
+            <div class="col-xs-3 col-md-5">
+              <div class="row">
+                {{#each formattedDetails as |detail|}}
+                  <div class="col-md-6 text-center binary-voting--mobile">
+                    {{detail.value}}
+                  </div>
+                {{/each}}
+              </div>
+            </div>
+          {{/if}}
+        </div>
+      </div>
+      <div class="ripple-container"></div>
+    </div>
+  {{/if}}
+</div>

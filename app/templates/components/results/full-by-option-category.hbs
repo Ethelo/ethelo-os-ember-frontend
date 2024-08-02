@@ -1,0 +1,67 @@
+<div class="results-by-option-category">
+  {{#bootstrap/bootstrap-collapse
+    title=(scopet 'result_breakdown_title' page.translationScope default='empty_default')
+    beginCollapsed=false
+    panelId="breakdown-panel"
+  }}
+
+    <div id="{{namespace}}-option-category">
+      {{#each optionCategoryBreakdown as |result|}}
+        <div class="card flat result-card" id={{format-html-id  "gr-topic" result.optionCategory.id}}>
+        {{#if statsDisplay.showOptionCategoryTitles}}
+            <div class="card-header" id="header-oc{{result.optionCategory.id}}">
+              <a role="button"
+                 data-toggle="collapse"
+                 aria-expanded="true"
+                 class="detail-toggle "
+                 href="#collapse-oc{{result.optionCategory.id}}"
+                 aria-controls="#collapse-oc{{result.optionCategory.id}}">
+                <p class="title title-main">
+                  {{result.optionCategory.resultsLabel}}
+                </p>
+
+                <span class="labels labels-main">
+                {{#if statsDisplay.showOptionCategoryStats}}
+                <div class="tab-pie-icon-container">
+                  <div
+                    class="tab-pie pie-percent-{{percentage result.normalizedAverageWeight true}}"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title="{{t 'results.average_weight'}}: {{percentage result.normalizedAverageWeight false}}"
+                  ></div>
+                  <span class="pie-perentage-text">{{percentage result.normalizedAverageWeight false}} Weight</span>
+                </div>
+                {{/if}}
+
+                  <span class="expand-icon pull-right">
+                    <span class="label toggle-open circle-toggle-open">
+                      <i class="material-icons expand_less">expand_less</i>
+                    </span>
+                    <span class="label toggle-close circle-toggle-close">
+                      <i class="material-icons expand_more">expand_more</i>
+                    </span>
+                  </span>
+                </span>
+              </a>
+            </div>
+          {{/if}}
+          <div class="card-body no-padding">
+            <div id="collapse-oc{{result.optionCategory.id}}" data-parent="header-oc{{result.optionCategory.id}}">
+              {{results/full-by-option
+                withUser=withUser
+                optionCategory=result.optionCategory
+                parentCount=optionParentCount
+                page=page
+                statsDisplay=statsDisplay
+                namespace=namespace
+                scenarioResults=scenarioResults
+              }}
+            </div>
+          </div>
+        </div>
+
+      {{/each}}
+    </div>
+
+  {{/bootstrap/bootstrap-collapse}}
+</div>

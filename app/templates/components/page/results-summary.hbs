@@ -1,0 +1,177 @@
+<div
+  class="container-fluid {{rankClass}} results-summary-page"
+  id={{page.componentId}}
+>
+  {{bootstrap/bootstrap-modal-balance}}
+  <!-- ROW ONE -->
+  <div class="row special" id="row1">
+    {{layout/left-column page=page}}
+
+    {{#layout/center-column page=page}}
+
+      {{tool/content-panel key="center" page=page}}
+
+      {{#if statsDisplay.showOptionCategories}}
+        <div class="results-by-option-category">
+          {{#bootstrap/bootstrap-collapse
+            title=(scopet
+              "result_breakdown_title"
+              page.translationScope
+              default="empty_default"
+            )
+            beginCollapsed=false
+            panelId="breakdown-panel"
+          }}
+
+            <div id="{{namespace}}-option-category">
+              {{#each optionCategoryBreakdown as |result|}}
+                <div class="card flat result-card" id="result-card-oc{{result.optionCategory.id}}">
+                  <div class="card-header" id="header-oc{{result.optionCategory.id}}">
+                    <a role="button" data-toggle="collapse" aria-expanded="true" class="detail-toggle"
+                       href="#collapse-oc{{result.optionCategory.id}}"
+                       aria-controls="#collapse-oc{{result.optionCategory.id}}"
+                    >
+
+                      <p class="title title-main" style="display: flex; align-items: center;">{{result.optionCategory.resultsLabel}}</p>
+                      <span class="labels">
+                        <span class="stats pull-left">
+                          {{#if statsDisplay.showOptionCategoryWeighting}}
+                              <div class="tab-pie-icon-container">
+                                <div class="tab-pie pie-percent-{{percentage result.normalizedAverageWeight true }}" data-toggle="tooltip" data-placement="top" title="{{t "results.average_weight" }}: {{percentage result.normalizedAverageWeight false }}" >
+
+                                </div>
+                                <span class="pie-perentage-text">{{percentage result.normalizedAverageWeight false }} Weight</span>
+                              </div>
+                          {{/if}}
+                          {{#if result.isOptionCategoryQuad}}
+                            <span class="label stat seeds pull-right">{{format-value result.seedsAssigned format="number" nullDisplay='0'}} <span>{{t 'results.metrics.labels.seeds_assigned'}}</span> </span>
+                            <span class="label stat positive-seed-votes pull-right">{{format-value result.positiveSeedVotesSum format="number" nullDisplay='0'}} <span>{{t 'results.metrics.labels.positive_seed_votes_sum'}}</span> </span>
+                            <span class="label stat final-allocation pull-right">{{format-value result.finalAllocation format="big_dollars" nullDisplay='0'}} <span>{{t 'results.metrics.labels.final_allocation'}}</span></span>
+                          {{/if}}
+
+                          <span class="expand-icon pull-right">
+                            <span class="label toggle-open circle-toggle-open"> <i class="material-icons expand_less" >expand_less</i> </span>
+                            <span class="label toggle-close circle-toggle-close"> <i class="material-icons expand_more" >expand_more</i> </span>
+                          </span>
+                        </span>
+                      </span>
+                    </a>
+                  </div>
+                  <div class="card-body no-padding">
+
+                    <div
+                      id="collapse-oc{{result.optionCategory.id}}"
+                      data-parent="header-oc{{result.optionCategory.id}}"
+                      class="collapse in"
+                      aria-expanded="true"
+                    >
+                      {{#if result.optionCategory.topicVoting}}
+
+                        {{results/histogram-bar-chart-slider-voting result=result}}
+
+                        {{results/results-summary-topic-comments optionCategory=result statsDisplay=statsDisplay page=page scenarioResults=scenarioResults }}
+
+                      {{else}}
+                        {{results/results-summary-options
+                          withUser=withUser
+                          optionCategory=result.optionCategory
+                          parentCount=optionParentCount
+                          page=page
+                          statsDisplay=statsDisplay
+                          namespace=namespace
+                          scenarioResults=scenarioResults
+                        }}
+                      {{/if}}
+                    </div>
+                  </div>
+                </div>
+
+              {{/each}}
+            </div>
+
+          {{/bootstrap/bootstrap-collapse}}
+        </div>
+
+      {{else}}
+        <div class="results-by-all-options">
+          {{#bootstrap/bootstrap-collapse
+            title=(scopet
+              "result_breakdown_title"
+              page.translationScope
+              default="empty_default"
+            )
+            beginCollapsed=false
+            panelId="breakdown-panel"
+          }}
+
+            <div id="{{namespace}}-all-options">
+              <div class="card flat result-card">
+                <div class="card-body no-padding">
+
+                  {{results/results-summary-options
+                    withUser=withUser
+                    optionCategory=result.optionCategory
+                    parentCount=optionParentCount
+                    page=page
+                    statsDisplay=statsDisplay
+                    namespace=namespace
+                    scenarioResults=scenarioResults
+                  }}
+                </div>
+              </div>
+            </div>
+
+          {{/bootstrap/bootstrap-collapse}}
+        </div>
+      {{/if}}
+
+      {{#if statsDisplay.showCriteriaPieChart}}
+        {{results/criteria-pie-chart
+          page=page
+          statsDisplay=statsDisplay
+          scenarioResults=combinedScenarioResults
+        }}
+      {{/if}}
+
+      {{#if statsDisplay.showOptionCategoryChart}}
+        {{results/option-categories-pie-chart
+          page=page
+          statsDisplay=statsDisplay
+          scenarioResults=combinedScenarioResults
+        }}
+      {{/if}}
+
+      {{#if hasCenterPageComments}}
+        {{comments/collapse-panel
+          id="page-comments-position-center"
+          page=page
+          titleOverride=page.hasPageCommentTitleOverride
+          target=page
+          targetScope="comments.pages"
+        }}
+      {{/if}}
+
+      {{#if isLoading}}
+        <div class="panel">{{tool/loading-spinner}}</div>
+      {{else}}
+        {{#if noResultsMessage}}
+          <div class="alert alert-secondary" role="alert">
+            {{{t noResultsMessage}}}
+          </div>
+        {{/if}}
+      {{/if}}
+      {{tool/content-panel key="center_two" page=page}}
+
+    {{/layout/center-column}}
+
+    {{layout/right-column
+      page=page
+      decision=decision
+      pageCommentTarget=pageCommentTarget
+      pageCommentScope=pageCommentScope
+      hasSidebarPageComments=hasSidebarPageComments
+    }}
+
+  </div>
+  <!-- END OF ROW ONE -->
+</div>

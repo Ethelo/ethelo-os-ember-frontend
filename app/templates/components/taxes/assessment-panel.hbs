@@ -1,0 +1,70 @@
+{{partial 'partials/edit-link'}}
+
+{{#bootstrap/bootstrap-collapse
+  beginCollapsed=false
+  panelId="assessment-panel"
+  title=(t 'tax_assessment.assessment_panel_title')
+}}
+
+  {{{t 'tax_assessment.assessment_info_html'}}}
+
+  <div class="form-group qtax" id="taxq">
+
+    {{taxes/assessment-question question=question}}
+
+    {{#if hasPropertyTaxType }}
+      {{taxes/property-question question=propertyTypeQuestion}}
+    {{/if}}
+
+    <div class="clearfix"></div>
+
+    <a {{action 'enteredText'}}
+      role="button" title="{{t 'accessibility.submit'}}"
+      class="btn btn-default btn-block btn-raised btn-primary text-uppercase tab-navigation" tabindex="0">
+      {{t 'tax_assessment.submit'}}
+    </a>
+
+  </div>
+
+{{/bootstrap/bootstrap-collapse}}
+
+
+{{#if (or taxAssessment.showTotalTaxChart taxAssessment.showMunicipalTaxChart)}}
+
+  {{#bootstrap/bootstrap-collapse
+    beginCollapsed=false
+    panelId="chart-panel"
+    title=(t 'tax_assessment.tax_charts_panel_title')
+  }}
+
+    {{{t 'tax_assessment.total_tax_charts_info_html'}}}
+    {{#if taxAssessment.showTotalTaxChart}}
+
+      {{taxes/assessment-pie-chart
+        title=(t 'tax_assessment.total_tax_charts_title')
+        assessmentItems=taxAssessment.totalTaxesList
+        legendPosition='left'
+        includeOptionCategories=false
+        reverseColors=false
+        chartId='total_tax'
+      }}
+    {{/if}}
+
+    {{{t 'tax_assessment.municipal_tax_charts_info_html'}}}
+
+    {{#if taxAssessment.showMunicipalTaxChart}}
+
+      {{taxes/assessment-pie-chart
+        title=(t 'tax_assessment.municipal_tax_charts_title')
+        assessmentItems=taxAssessment.municipalTaxesList
+        legendPosition='right'
+        includeOptionCategories=taxAssessment.addCategoriesToMunicipal
+        reverseColors=true
+        chartId='municipalTax'
+      }}
+    {{/if}}
+
+    {{{t 'tax_assessment.extra_charts_info_html'}}}
+
+  {{/bootstrap/bootstrap-collapse}}
+{{/if}}

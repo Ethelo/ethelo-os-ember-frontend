@@ -1,0 +1,9 @@
+{{#if (and registry.isPreview editLink.adminLink)}}
+  <a
+    href="{{editLink.adminLink}}"
+    target="_blank"
+    title="{{editLink.caption}}"
+    class="hidden-sm edit-link cog-wheel-silhouette">
+      <span class="icon icon-cog-wheel-silhouette"><span class="path1"></span><span class="path2"></span></span>
+    </a>
+{{/if}}

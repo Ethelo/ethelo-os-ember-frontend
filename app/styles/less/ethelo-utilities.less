@@ -1,0 +1,55 @@
+
+.hide-icons {
+  visibility: hidden !important;
+}
+
+//svg g:last-of-type { pointer-events: none } // makes it happen to all!
+
+//svg > g { pointer-events: none } // disables them all
+
+//g:last-child { pointer-events: none } // nope
+//svg > g:last-child { pointer-events: none } // does nothing
+// svg > g:last-child > g:last-child > g:last-child { pointer-events: none } //nope
+
+.spinner-wrap{
+  // height: 51px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  padding: 14px 5px 14px 5px;
+
+  span.loading{
+    color: #a1a1a1;
+  }
+}
+
+// used in wysiwig fields, do not remove
+
+.pad5 {
+  padding: 5px;
+}
+
+.pad10 {
+  padding: 10px;
+}
+
+.pad10 {
+  padding: 10px;
+}
+
+.margin5 {
+  margin: 5px;
+}
+
+.margin10 {
+  margin: 10px;
+}
+
+.margin10 {
+  margin: 10px;
+}
+
+.max-width {
+  width: 100%;
+}

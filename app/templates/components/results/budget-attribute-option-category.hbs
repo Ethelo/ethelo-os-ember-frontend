@@ -1,0 +1,117 @@
+<div class="results-by-option-category">
+  {{#bootstrap/bootstrap-collapse
+    title=(scopet
+      "result_breakdown_title" page.translationScope default="empty_default"
+    )
+    beginCollapsed=false
+    panelId="breakdown-panel"
+  }}
+
+    <div id="{{namespace}}-option-category">
+      {{#if defaultDetailAndCalculation}}
+        <div class="card-body no-padding">
+          <div class="collapse in" id="selected-keymetrics-container">
+            <div class="result-breakdown-option">
+              <div class="card flat result-card budget-attribute-card">
+                <div class="card-header">
+                  <p class="detail-toggle">
+                    <div
+                      class="detailName col-lg-offset-1 col-lg-11 col-md-offset-1 col-md-11 col-sm-offset-1 col-sm-9 col-xs-offset-1 col-xs-9"
+                    >
+                      <p class="title">
+                        {{defaultDetailAndCalculation.detailName}}
+                      </p>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                      <span class="labels">
+                        <span class="stats pull-left">
+                          <span class="label stat approval pull-right">
+                            <span
+                            >{{defaultDetailAndCalculation.calculationValue}}</span>
+                          </span>
+                        </span>
+                      </span>
+                    </div>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {{/if}}
+      {{#if statsDisplay.showOptionCategoryTitles}}
+        {{#each optionCategoryBreakdown as |result|}}
+          <div class="card flat result-card" id="result-card-oc{{result.optionCategory.id}}">
+            <div class="card-header" id="header-oc{{result.optionCategory.id}}">
+              <a
+                role="button"
+                data-toggle="collapse"
+                aria-expanded="true"
+                class="detail-toggle"
+                href="#collapse-oc{{result.optionCategory.id}}"
+                aria-controls="#collapse-oc{{result.optionCategory.id}}"
+              >
+                <p class="title title-main">
+                  {{result.optionCategory.resultsLabel}}
+                </p>
+
+                <span class="labels labels-main">
+                  <span class="expand-icon pull-right">
+                    <span class="label toggle-open circle-toggle-open">
+                      <i class="material-icons expand_less">expand_less</i>
+                    </span>
+                    <span class="label toggle-close circle-toggle-close">
+                      <i class="material-icons expand_more">expand_more</i>
+                    </span>
+                  </span>
+                </span>
+              </a>
+            </div>
+
+            <div class="card-body no-padding">
+              <div
+                id="collapse-oc{{result.optionCategory.id}}"
+                data-parent="header-oc{{result.optionCategory.id}}"
+                class="collapse in"
+                aria-expanded="true"
+              >
+                {{results/budget-attribute-option
+                  withUser=withUser
+                  optionCategory=result.optionCategory
+                  parentCount=optionParentCount
+                  page=page
+                  statsDisplay=statsDisplay
+                  namespace=namespace
+                  scenario=scenario
+                  scenarioResults=scenarioResults
+                  selectedDetailID=selectedDetailID
+                }}
+              </div>
+            </div>
+          </div>
+        {{/each}}
+      {{else}}
+        <div class="card-body no-padding">
+          <div
+            id="collapse-all-options"
+            data-parent="header-all-options"
+            class="collapse in"
+            aria-expanded="true"
+          >
+            {{results/budget-attribute-option
+              withUser=withUser
+              parentCount=optionParentCount
+              page=page
+              statsDisplay=statsDisplay
+              namespace=namespace
+              scenario=scenario
+              scenarioResults=scenarioResults
+              selectedDetailID=selectedDetailID
+            }}
+          </div>
+        </div>
+      {{/if}}
+    </div>
+
+  {{/bootstrap/bootstrap-collapse}}
+</div>

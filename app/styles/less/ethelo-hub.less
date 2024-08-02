@@ -1,0 +1,41 @@
+/* configuration specific to Categories page and Topic Hub */
+
+.hub-item {
+    img {
+        max-width: 100%;
+    }
+    > div {
+        width: 100%;
+    }
+    h3 {  margin-top: 0; }
+
+}
+
+.hub-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    > * {
+        margin: 5px;
+        flex-basis: 32%;
+    }
+}
+
+
+@media(max-width: @screen-sm-max){
+    .hub-container {
+        > * {
+            flex-basis: 48%;
+        }
+    }
+}
+@media(max-width: @screen-xs-max){
+    .hub-container {
+        > * {
+            flex-basis: 80%;
+            margin: 0 auto;
+        }
+    }
+}

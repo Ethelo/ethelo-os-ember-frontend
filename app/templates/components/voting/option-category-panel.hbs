@@ -1,0 +1,29 @@
+{{partial 'partials/edit-link'}}
+
+<a id={{format-html-id  "a" optionCategory.slug}}></a>
+
+{{#bootstrap/bootstrap-collapse
+  title=optionCategory.title
+  beginCollapsed=beginCollapsed
+  panelId=panelId
+  vote=currentOptionCategoryRangeVoteLowTick
+}}
+
+  {{#if showVotingTools}}
+    {{voting/option-category-slider-one
+      page=page
+      optionCategory=optionCategory
+      sliderItems=optionCategory.sliderItems
+      value=currentOptionCategoryRangeVoteLowTick
+      collapseId=panelId
+    }}
+  {{else}}
+    {{voting/option-category-description optionCategory=optionCategory}}
+
+  {{/if}}
+  {{#if bottomPaneRequired}}
+    <div class="panel-bottom">
+      {{yield}}
+    </div>
+  {{/if}}
+{{/bootstrap/bootstrap-collapse}}

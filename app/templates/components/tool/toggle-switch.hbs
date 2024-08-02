@@ -1,0 +1,7 @@
+<form>
+<div id="toggle-switch">
+  <span class={{if checked 'selected' 'unselected'}} {{action 'toggleOff'}}>{{onLabel}}</span>
+  <input type="checkbox" id="{{name}}_switch"  value="0" name={{name}} checked={{checked}} title="{{t "toggle.detailedMode"}}">
+  <span class={{unless checked 'selected' 'unselected'}} {{action 'toggleOn'}}>{{offLabel}}</span>
+</div>
+</form>

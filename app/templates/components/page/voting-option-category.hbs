@@ -1,0 +1,102 @@
+<div class="container-fluid voting-option-category-page" id={{page.componentId}}>
+  {{bootstrap/bootstrap-modal-balance}}
+
+  <!-- ROW ONE -->
+  <div class="row special" id="row1">
+    {{layout/left-column page=page}}
+
+    {{#layout/center-column page=page}}
+
+      {{#if page.isBinaryLikert}}
+        {{#tool/content-panel key='center' page=page alwaysHasPanel=true}}
+          {{#if page.isBinaryMany}}
+            <div class="row binary-many-message-block-container">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="alert alert-secondary" role="alert">
+                  <p id="binary-many-message-block">
+                    {{{scopet "voting.pick_many"
+                              page.translationScope
+                              defaultIsUnscoped=true
+                              default='empty_default'
+                    }}}</p>
+                </div>
+              </div>
+            </div>
+          {{/if}}
+          <div class="clearfix">
+            <div class="col-xs-1 col-md-2 col-lg-1 pull-right">
+              <!--placeholder-->
+            </div>
+
+            <div class="col-xs-offset-6 col-sm-offset-6 col-md-offset-7 col-lg-offset-7 title-container">
+              <div class="row">
+                {{#each titleDetails as |title|}}
+                  <div class="col-md-6 text-center binary-voting--mobile">
+                    <p class="details-title">
+                      {{title}}
+                    </p>
+                  </div>
+                {{/each}}
+              </div>
+            </div>
+          </div>
+
+          {{#each sortedOptions as |option index|}}
+
+            {{#voting/option-binary-panel
+              page=page
+              criteria=sortedCriteria
+              option=option
+              bottomPaneRequired=hasitemListComments}}
+
+              {{#if hasitemListComments}}
+                {{comments/list-options option=option registry=registry translationScope=translationScope page=page}}
+              {{/if}}
+
+            {{/voting/option-binary-panel}}
+          {{/each}}
+
+        {{/tool/content-panel}}
+      {{else}}
+
+        {{tool/content-panel key='center' page=page}}
+
+        {{#each sortedOptions as |option index|}}
+          {{#voting/option-panel
+            page=page
+            criteria=sortedCriteria
+            option=option
+            bottomPaneRequired=hasitemListComments
+          }}
+            {{#if hasitemListComments}}
+              {{comments/list-options option=option registry=registry translationScope=translationScope page=page}}
+            {{/if}}
+          {{/voting/option-panel}}
+        {{/each}}
+      {{/if}}
+
+      {{#if hasCenterPageComments}}
+        {{comments/collapse-panel
+          id='page-comments-position-center'
+          page=page
+          titleOverride=page.hasPageCommentTitleOverride
+          target=page.dataSource
+          targetScope='comments.option_categories'
+        }}
+      {{/if}}
+
+      {{tool/content-panel key='center_two' page=page}}
+
+    {{/layout/center-column}}
+
+    {{layout/right-column
+      page=page
+      decision=decision
+      pageCommentTarget=pageCommentTarget
+      pageCommentScope=pageCommentScope
+      hasSidebarPageComments=hasSidebarPageComments
+    }}
+
+  </div>
+  <!-- END OF ROW ONE -->
+</div>

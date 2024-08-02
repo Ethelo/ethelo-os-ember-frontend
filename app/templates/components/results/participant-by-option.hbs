@@ -1,0 +1,19 @@
+<div class="{{namespace}}-option" id="pr-options{{optionCategory.id}}">
+
+  {{#each optionBreakdown as |result|}}
+    {{results/participant-by-option-row
+      result=result
+      enabledLikerts=enabledLikerts
+      criteraEnabled=criteraEnabled
+      statsDisplay=statsDisplay
+      parentCount=parentCount
+      page=page
+      namespace=namespace
+      criterionParentCount=criterionParentCount
+      withUser=withUser
+      scenarioResults=scenarioResults
+      truncateTitles=truncateTitles
+     }}
+  {{/each}}
+
+</div>

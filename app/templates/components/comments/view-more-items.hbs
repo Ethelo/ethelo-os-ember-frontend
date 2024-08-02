@@ -1,0 +1,8 @@
+<a href="#" {{action 'viewMore'}}
+   class="view-more-btn text-black btn-primary btn "
+   title={{t 'accessibility.toggle'}}>
+  {{#if total}}
+    {{number-translate total}} {{term}} -
+  {{/if}}
+  {{t 'comments.view_more' count=(number-translate showNext) term=term}}
+</a>

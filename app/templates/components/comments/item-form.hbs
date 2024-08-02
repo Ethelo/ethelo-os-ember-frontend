@@ -1,0 +1,87 @@
+<div class="instruct">{{{instruct}}}</div>
+<div class="form-comment-container-outer">
+  {{#if registry.user.avatar}}
+    <div class="row-picture">
+      <img src="{{registry.user.avatar}}" title="{{t 'nouns.avatar'}}" class="circle">
+    </div>
+  {{/if}}
+  <div class="form-comment-container-inner">
+    <div {{action 'expandButtonBar'}} class="is-empty form-comment">
+      {{#if commentTitlesRequired}}
+        {{textarea rows=1 value=title placeholder=titlePrompt maxlength=100
+                   title=(t "comments.title_label") class="form-control textarea-title"}}
+        {{#if titleError}}
+          <p class="help-block">{{t titleError}}</p>
+        {{/if}}
+
+      {{/if}}
+      {{#if (or buttonBarExpanded commentTitlesNotRequired) }}
+        {{textarea rows=1 value=content placeholder=contentPrompt maxlength=commentsMaxLength
+                   title=(t "comments.content_label") class="form-control textarea-content"}}
+        {{#if buttonBarExpanded}}
+          <p class="help-block">{{t 'comments.chars_remaining' remaining=(number-translate remainingChars)}}</p>
+          {{#if contentError}}
+            <p class="help-block">{{t contentError}}</p>
+          {{/if}}
+        {{/if}}
+      {{/if}}
+    </div>
+  </div>
+</div>
+
+{{#if buttonBarExpanded}}
+  <div class="row clearfix pull-right mr-5">
+    <div class="dropdown comment-privacy-select">
+      <button
+        aria-disabled=onlyPrivateComments
+        class="{{if onlyPrivateComments 'disabled'}}
+        max-zIndex comment-section-btns dropdown-toggle btn-xs btn btn-raised btn-default"
+        type="button" id="privacyDropdown"
+        data-toggle="dropdown"
+        >
+        {{#if isAdminsOnly}}
+          <i class="material-icons inherit-font lock">lock</i> {{t 'privacy.admins.title'}}
+        {{/if}}
+
+        {{#if isPublic}}
+          <i class="material-icons inherit-font public" aria-hidden="true">public</i> {{t 'privacy.public.title'}}
+        {{/if}}
+
+        {{#unless onlyPrivateComments}}
+          <i class="material-icons inherit-font expand-more">expand_more</i>
+        {{/unless}}
+      </button>
+
+      <ul class="dropdown-menu dropdown-menu-right public-comment">
+        <li role="presentation" class="dropdown-header">{{t 'privacy.comments.prompt'}}</li>
+        <li role="presentation">
+          <a href="#" {{action 'setPrivacy' 'all'}}
+             role="button" title={{t 'accessibility.submit'}}>
+            <div class="privacy-title"><i class="material-icons inherit-font public" aria-hidden="true">public</i> {{t
+              'privacy.public.title'}}</div>
+            <div class="privacy-description">{{t 'privacy.public.info'}}</div>
+          </a>
+        </li>
+        <li role="presentation" class="divider"></li>
+        <li role="presentation">
+          <a href="#" {{action 'setPrivacy' 'admin'}} role="button" title={{t 'accessibility.submit'}}>
+            <div class="privacy-title">
+              <i class="material-icons inherit-font lock">lock</i> {{t 'privacy.admins.title'}}
+            </div>
+            <div class="privacy-description">{{t 'privacy.admins.info'}}</div>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <button {{action 'post'}}
+      class="comment-section-btns max-zIndex pull-right btn-xs btn btn-raised btn-default">
+      {{#if existingComment}}
+        {{t 'comments.update_button'}}
+      {{else}}
+        {{t 'comments.post_button'}}
+      {{/if}}
+    </button>
+
+  </div>
+{{/if}}

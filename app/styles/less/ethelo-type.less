@@ -1,0 +1,231 @@
+/* TYPOGRAPHY */
+/* Very rough for proof of concept! */
+/* Need to investigate better responsive type patterns and processes */
+body {
+  font-weight: 300;
+}
+
+a {
+  color: #0000EE;
+}
+
+a:hover,
+a:focus {
+  color: @etheloPrimaryColor;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4 {
+  font-family: 'Open Sans', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-weight: 300;
+}
+
+h5,
+h6 {
+  font-weight: 600;
+  color: @textColorSecondary;
+}
+
+/* Paragraph and Body Text */
+body, p {
+  font-weight: 400;
+  color: @textColor;
+  font-size: 14px;
+
+  @media (min-width: @bigBrowser) {
+    font-weight: 400;
+    font-size: 16px;
+  }
+}
+
+/* Quick (mobile-first) media queries for headings */
+h1,
+.h1 {
+  font-size: 24px;
+  color: @textColor;
+
+  @media (min-width: @bigBrowser) {
+    font-size: 36px;
+  }
+}
+
+/* H2 NOT ACTUALLY USED IN CURRENT DESIGNS */
+h2,
+.h2 {
+  font-size: 30px;
+  color: @textColor;
+
+  @media (min-width: @bigBrowser) {
+    font-size: 30px;
+  }
+}
+
+/* H3 NOT ACTUALLY USED IN CURRENT DESIGNS */
+h3,
+.h3 {
+  font-size: 24px;
+  color: @textColor;
+
+  @media (min-width: @bigBrowser) {
+    font-size: 24px;
+  }
+}
+
+h4,
+.h4 {
+  font-size: 16px;
+  color: @textColor;
+
+  @media (min-width: @bigBrowser) {
+    font-size: 18px;
+  }
+}
+
+h5,
+.h5 {
+  font-size: 13px;
+  text-transform: uppercase;
+  color: @textColorSecondary;
+
+  @media (min-width: @bigBrowser) {
+    font-size: 14px;
+  }
+}
+
+/* H6 NOT REALLY USED IN CURRENT DESIGNS*/
+h6,
+.h6 {
+  font-size: 13px;
+  color: @textColorSecondary;
+  text-transform: uppercase;
+  @media (min-width: @bigBrowser) {
+    font-size: 14px;
+  }
+}
+
+.ethelo-small-text {
+  font-size: 13px;
+}
+
+.vote-header #page-header, .vote-header .main {
+  margin-left: 10px;
+  /* why is this rule necessary? TODO R&D then FIXME */
+  ul {
+    font-size: 16pt;
+    li {
+      font-size: inherit;
+    }
+  }
+}
+
+
+form {
+  input, textarea {
+    &::placeholder {
+      color: #626262 !important;
+    }
+    &::-webkit-input-placeholder {
+      color: #626262 !important;
+    }
+    &::-moz-placeholder {
+      color: #626262 !important;
+    }
+    &::-ms-input-placeholder {
+      color: #626262 !important;
+    }
+
+  }
+}
+
+//UD-874
+.checkbox-group {
+  span.checkbox-material, span.check {
+    z-index: inherit !important;
+  }
+}
+
+// added to show checkmark icon on iOS devices browsers.
+.checkbox .checkbox-material .check:before, label.checkbox-inline .checkbox-material .check:before {
+	width: 1px !important;
+	height: 1px !important;
+}
+
+hr.fancy {
+  border: 0;
+  margin: 0 !important;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+.p-e-none {
+  pointer-events: none !important;
+}
+.p-0{
+  padding: 0 !important;
+}
+
+// Skip to main content css accessibility
+.skip-to-content-link {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+  transform: translateY(-100%);
+  transition: transform 0.3s;
+}
+
+.skip-to-content-link:focus {
+  background-color: #fff;
+  border-radius: 3px;
+  clip: auto!important;
+  -webkit-clip-path: none;
+  clip-path: none;
+  color: #333;
+  display: block;
+  font-weight: 700;
+  height: auto;
+  left: 5px;
+  line-height: normal;
+  padding: 15px 23px 14px;
+  text-decoration: none;
+  top: 5px;
+  width: auto;
+  z-index: 9999999;
+  transform: translateY(0%);
+}
+
+.tab-navigation:focus {
+  border: 2px solid black;
+}
+
+/* assessment panel spacing */
+#taxq {
+  margin: 0 !important;
+}
+
+/* Slider Delete Vote CSS */
+.slider-remove-vote-btn{
+  text-decoration: none;
+  font-size: 14px;
+  margin-right: 2%;
+  color: #516BA6;
+}
+.slider-remove-vote-btn:hover{
+  text-decoration: none;
+}
+
+p {
+  line-height: 1.5;
+}

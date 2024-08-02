@@ -1,0 +1,106 @@
+<div class="panel panel-default" id="edit-profile">
+  <div class="panel-body">
+    {{#link-to "index" class="navigation-button btn-lg btn-block btn btn-default btn-raised"}}
+      <span> {{t 'navigation.back'}} </span>
+    {{/link-to}}
+
+    {{#if message}}
+      <p>
+        <span class="help-block">{{t message}}</span>
+      </p>
+    {{/if}}
+    <div class="form-group {{if errorList.username 'has-error'}}">
+      <label class="control-label" for="username">{{t 'nouns.name'}}</label>
+      {{input type="text"
+      value=userName
+      id="userName"
+      name='username'
+      class="form-control editProfile"
+      }}
+      {{#if errorList.username}}
+        <span class="help-block">{{t errorList.username}}</span>
+      {{/if}}
+    </div>
+    <div class="form-group {{if errorList.email 'has-error'}}">
+      <label class="control-label" for="email">{{t 'nouns.email'}}</label>
+      {{input type="text"
+      value=user.email
+      name='email'
+      class="form-control editProfile"
+      }}
+      {{#if errorList.email}}
+        <span class="help-block">{{t errorList.email}}</span>
+      {{/if}}
+    </div>
+    <div class="form-group {{if errorList.currentPassword 'has-error'}}">
+      <label class="control-label" for="password">{{t 'nouns.current_password'}}</label>
+      {{input type="password"
+      value=currentPassword
+      name='currentPassword'
+      class="form-control password editProfile"
+      }}
+      {{#if errorList.currentPassword}}
+        <span class="help-block">{{t errorList.currentPassword}}</span>
+      {{/if}}
+    </div>
+
+    <div class="form-group {{if errorList.password 'has-error'}}">
+      <label class="control-label" for="password">{{t 'nouns.new_password'}}</label>
+      {{input type="password"
+      value=password
+      name='password'
+      class="form-control password editProfile"
+      }}
+      {{#if errorList.password}}
+        <span class="help-block">{{t errorList.password}}</span>
+      {{/if}}
+    </div>
+
+    <div class="form-group {{if errorList.confirmation 'has-error'}}">
+      <label class="control-label" for="confirmation">{{t 'nouns.confirmation'}}</label>
+      {{input type="password"
+      value=confirmation
+      name='confirmation'
+      class="form-control password editProfile"
+      }}
+      {{#if errorList.confirmation}}
+        <span class="help-block">{{t errorList.confirmation}}</span>
+      {{/if}}
+
+      <div class="clearfix"></div>
+      <div class="row">
+        {{#if processing}}
+          <div class="signon-spinner">
+            {{tool/loading-spinner loadingText=(t 'authentication.processing.update_profile')}}
+          </div>
+        {{else}}
+          <div class="col-sm-12 col-xs-12 col-md-6 col-md-6">
+            <a {{action 'deleteUserAccount' }}
+              role="button"
+              title="{{t 'accessibility.submit'}}"
+              class="btn-danger btn-block btn btn-raised"
+            >
+              {{t 'authentication.update_profile.delete_button'}}
+            </a>
+          </div>
+          <div class="col-sm-12 col-xs-12 col-md-6 col-md-6">
+            <a {{action 'updateUserInfo' }}
+              role="button"
+              title="{{t 'accessibility.submit'}}"
+              class="btn-block btn-primary btn btn-raised"
+            >
+              {{t 'authentication.update_profile.action'}}
+            </a>
+          </div>
+        {{/if}}
+      </div>
+      {{#if message}}
+        <p>
+          <span class="help-block">{{t message}}</span>
+        </p>
+      {{/if}}
+    </div>
+
+  </div>
+  {{profile/delete-account-modal}}
+</div>

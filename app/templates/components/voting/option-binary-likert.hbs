@@ -1,0 +1,9 @@
+<div class="text-right binary-voting-btns">
+  <button type="button" class="btn-xs btn-outline {{if (eq binaryVoteValue '') 'secondary-accent-bg'}}" {{action 'saveVotes' 0}}>
+    {{t captionKeyNo}}
+  </button>
+
+  <button type="button" class="btn-xs btn-outline {{if (eq binaryVoteValue 'yes') 'secondary-accent-bg'}}" {{action 'saveVotes' binCount}}>
+    {{t captionKeyYes}}
+  </button>
+</div>

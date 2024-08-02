@@ -1,0 +1,14 @@
+<div class="radio-group">
+  <div class="radio radio-primary">
+    {{#radio-button groupValue=currentPropertyType value='residential' changed='selectRadio'}}
+      <span class="circle"></span>
+      <span class="check"></span>
+      {{t 'tax_assessment.residential_tax_title'}}
+    {{/radio-button}}
+    {{#radio-button groupValue=currentPropertyType value='commercial' changed='selectRadio'}}
+      <span class="circle"></span>
+      <span class="check"></span>
+      {{t 'tax_assessment.commercial_tax_title'}}
+    {{/radio-button}}
+  </div>
+</div>

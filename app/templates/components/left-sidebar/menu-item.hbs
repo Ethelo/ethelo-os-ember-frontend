@@ -1,0 +1,36 @@
+{{#if item.childItems}}
+  {{left-sidebar/menu-children
+    item=item
+    namespace=namespace
+    beginCollapsed=collapseChildren
+  }}
+{{else}}
+  <div
+    class="{{divId}} nav-item {{if pageIsDisabled 'disabled'}} {{activeClass}}"
+  >
+    {{#if page.doNotLink}}
+      <span class="nav-item-span {{if pageIsDisabled 'disabled'}}">
+        {{page.titleContent}}
+      </span>
+    {{else}}
+      {{#link-to "page" page
+       (query-params filter0=menu.filter0 filter1=menu.filter1 filter2=menu.filter2 filter3=menu.filter3 filter4=menu.filter4 )
+        class=combineLinkIdAndLinkClass
+        disabled=pageIsDisabled
+        dataToggle="tooltip"
+        title=disabledMenuItemMessage
+      }}
+        {{#if isCurrentPage}}
+          <span class="sr-only">Current Page:</span>
+        {{/if}}
+        {{page.titleContent}}
+        <div class="ripple-container"></div>
+        {{#if (not-eq progressIcon "")}}
+          <span
+            class="material-icons-outlined {{progressIcon.className}}"
+          >{{progressIcon.iconName}}</span>
+        {{/if}}
+      {{/link-to}}
+    {{/if}}
+  </div>
+{{/if}}

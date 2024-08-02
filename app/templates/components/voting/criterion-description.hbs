@@ -1,0 +1,18 @@
+{{#if showContent}}
+  <div class="criterion-description">
+    {{#if criterion.icon}}
+      <div class="criterion-thumb-container">
+        <img class="criterion-thumb" src="{{criterion.icon}}"/>
+      </div>
+    {{/if}}
+
+    {{#if criterion.info}}
+      <div class="criterion-text full-width">
+        {{{criterion.info}}}
+      </div>
+    {{/if}}
+
+  </div>
+  <hr class="fancy">
+
+{{/if}}

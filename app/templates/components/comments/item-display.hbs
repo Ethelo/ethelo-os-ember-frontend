@@ -1,0 +1,161 @@
+<div class="comment-item" id={{comment.commentId}}>
+  {{#if editing}}
+    {{comments/item-form
+      commentsPrivacy=commentsPrivacy
+      existingComment=comment
+      contentPrompt=""
+      titlePrompt=""
+      autoOpen=true
+      complete='editingComplete'
+      titleOverride=titleOverride
+    }}
+  {{else}}
+    {{#if comment.decisionUser.user.avatar}}
+      <div class="row-picture">
+        <img src="{{comment.decisionUser.user.avatar}}" title={{t 'nouns.avatar'}} class="circle circle-sm"/>
+      </div>
+    {{/if}}
+
+    <div class="row-content">
+      <div class="more-actions dropdown">
+        <div type="button" data-toggle="dropdown">
+          <i class="material-icons settings">settings</i>
+        </div>
+
+        <ul class="dropdown-menu dropdown-menu-right">
+          {{#if canUpdate}}
+            {{#unless editing}}
+              <li><a href="#" {{action 'edit'}}
+                     title={{t 'accessibility.switch'}}>
+                {{t 'comments.edit'}}
+              </a></li>
+            {{/unless}}
+          {{/if}}
+          {{#if currentUserHasFlagged}}
+            <li><a href="#" {{action 'unflag'}}
+                   title={{t 'accessibility.remove'}}>
+              {{t 'comments.flag_remove'}}
+            </a></li>
+          {{else}}
+            <li><a href="#" {{action 'flag'}}
+                   title={{t 'accessibility.submit'}}>
+              {{t 'comments.flag'}}
+            </a></li>
+          {{/if}}
+          {{#if canUpdate}}
+            <li><a href="#" {{action 'remove'}}
+                   title={{t 'accessibility.delete'}}>
+              {{t 'comments.delete'}}
+            </a></li>
+            {{#if comment.flagCount}}
+              <li><a href="#" {{action 'clearFlags'}}
+                     title={{t 'accessibility.delete'}}>
+                {{t 'comments.flag_clear_all'}}
+              </a></li>
+            {{/if}}
+          {{/if}}
+        </ul>
+      </div>
+
+      <p class="list-group-item-text">
+        <span class="user-name">{{comment.decisionUser.user.name}}</span>
+
+        {{#if comment.title}}
+          <span class="list-group-item-heading">
+            {{comment.title}}
+          </span>
+          <br/>
+        {{/if}}
+
+        {{comment.content}}
+      </p>
+
+      <small>
+        <span>{{time-since comment.createdAt}}</span>
+
+        {{#if comment.likeCount}}
+          <span class="comment-like-count">
+            <i class="material-icons favorite">favorite</i>
+            {{comment.likeCount}}
+          </span>
+        {{/if}}
+
+        {{#if comment.flagCount}}
+          <span class="flag-count" title="{{t "comments.flag_present"}}">
+            <i class="material-icons flag">flag</i>
+            {{comment.flagCount}}
+          </span>
+        {{/if}}
+      </small>
+
+      {{#if currentUserHasLiked}}
+        <span {{action 'removeLike' on='touchStart'}}>
+          <a href="#" {{action 'removeLike' bubbles=false}}
+             title={{t 'accessibility.delete'}}
+          >
+            <small>{{t 'comments.like_remove'}}</small>
+          </a>
+        </span>
+      {{else}}
+        <span {{action 'like' on='touchStart'}}>
+          <a href="#" {{action 'like' bubbles=false}}
+             title={{t 'accessibility.submit'}}
+          >
+            <small>{{t 'comments.like'}}</small>
+          </a>
+        </span>
+      {{/if}}
+
+      <span {{action 'addReply' on='touchStart'}}>
+          <a href="#" {{action 'addReply'}}
+             title={{t 'accessibility.switch'}}
+          >
+            <small>{{t 'comments.link_to_reply'}}</small>
+          </a>
+        </span>
+
+    </div>
+
+  {{/if}}
+</div>
+
+<div class="replies">
+  <div class="row">
+    {{#if replying}}
+      {{comments/item-form
+        target=target
+        target2=target2
+        contentPrompt=''
+        titlePrompt=''
+        parent=comment
+        autoOpen=true
+        canReply=false
+        complete='replyComplete'
+        titleOverride=false
+      }}
+    {{/if}}
+
+  </div>
+
+
+  {{#if comment.replies}}
+    {{comments/list-replies
+      titleOverride=titleOverride
+      target=target target2=target2
+      replies=comment.replies
+      orderCommentsByLikes=orderCommentsByLikes
+    }}
+
+    {{#if manyReplies}}
+      {{#if allowReplies}}
+        <span {{action 'scrollToReply' on='touchStart'}}>
+        <a href="#" {{action 'scrollToReply'}}
+           title={{t 'accessibility.scroll_content'}}
+        >
+          <small>{{t 'comments.link_to_reply'}}</small>
+        </a>
+        </span>
+      {{/if}}
+    {{/if}}
+  {{/if}}
+</div>

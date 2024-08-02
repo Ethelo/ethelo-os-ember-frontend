@@ -1,0 +1,53 @@
+<div class="container-fluid survey-results-page" id={{page.componentId}}>
+  {{bootstrap/bootstrap-modal-balance}}
+
+  <div class="row special" id="row1">
+    {{layout/left-column page=page}}
+
+    {{#layout/center-column page=page}}
+
+      {{tool/content-panel key='center' page=page}}
+      {{#if isLoading}}
+        <div class="panel">{{tool/loading-spinner}}</div>
+      {{else}}
+
+        {{#each sortedQuestions as | question | }}
+
+          {{#bootstrap/bootstrap-collapse
+            title=(strip-tags question.title)
+            beginCollapsed=false
+            panelId=question.componentId
+          }}
+
+            {{survey/question-total-bar-chart question=question}}
+
+          {{/bootstrap/bootstrap-collapse}}
+
+        {{/each}}
+      {{/if}}
+
+      {{#if hasCenterPageComments}}
+        {{comments/collapse-panel
+          id='page-comments-position-center'
+          page=page
+          titleOverride=page.hasPageCommentTitleOverride
+          target=pageCommentTarget
+          targetScope='comments.pages'
+        }}
+      {{/if}}
+
+      {{tool/content-panel key='center_two' page=page}}
+
+    {{/layout/center-column}}
+
+    {{layout/right-column
+      page=page
+      decision=decision
+      pageCommentTarget=pageCommentTarget
+      pageCommentScope=pageCommentScope
+      hasSidebarPageComments=hasSidebarPageComments
+    }}
+
+  </div>
+
+</div>

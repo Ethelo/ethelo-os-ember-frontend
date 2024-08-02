@@ -1,0 +1,28 @@
+<div
+  id="center-col"
+  role="main"
+  aria-label="main-content-section"
+  class="col-xs-12 {{if showRightColumn 'col-sm-7 col-md-6' 'col-sm-12 col-md-9'}} col-md-offset-3 content-col {{page.templateClass}}"
+>
+  <div id="main-block-center" class="main">
+    {{partial 'partials/edit-link'}}
+    <h1 id="page-header" class="main">
+     {{page.titleContent}}
+    </h1>
+  </div>
+
+  {{tool/demo-modal}}
+  {{auth/auth-modal}}
+  {{auth/sign-out-modal}}
+  {{auth/privacy-consent-modal}}
+  {{#if canClientComment}}
+    {{client-comments/client-comments-modal
+      target=page
+    }}
+  {{/if}}
+  {{yield}}
+
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    {{layout/bottom-nav-buttons}}
+  </div>
+</div>

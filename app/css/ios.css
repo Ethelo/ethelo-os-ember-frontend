@@ -1,0 +1,7 @@
+/* CSS workaround for iOS's non-standard click (non)handling */
+a, .btn, a:before, a:after,
+[data-ember-action],
+.accordion-toggle {
+  cursor: pointer !important;
+}
+

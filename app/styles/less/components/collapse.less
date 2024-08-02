@@ -1,0 +1,54 @@
+.bootstrap-collapse {
+  .expansion-toggle.collapsed {
+    .expand-more {
+      display: inherit;
+    }
+    .expand-less {
+      display: none;
+    }
+  }
+
+  .expansion-toggle:not(.collapsed) {
+    .expand-more {
+      display: none;
+    }
+    .expand-less {
+      display: inherit;
+    }
+  }
+
+  .expansion-toggle {
+    cursor: pointer;
+  }
+
+  .bootstrap-collapse-heading {
+    padding: 0;
+    p {
+      display: inline;
+    }
+    a,
+    button,
+    .noncollapsible {
+      padding: @panel-heading-padding;
+      width: 100%;
+    }
+    .expansion-toggle {
+      display: block;
+
+      color: @textColor;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    .voting-panel-button {
+      background-color: inherit;
+      border: none;
+    }
+
+    .expansion-toggle-aria {
+      color: @white;
+    }
+  }
+}

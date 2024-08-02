@@ -1,0 +1,38 @@
+.slider-labels {
+    font-weight: lighter;
+    color: #666;
+}
+
+.slider.slider-horizontal {
+  width: 100%;
+}
+
+.slider.slider-horizontal .slider-track {
+  height: 15px;
+}
+
+.drag-hint {
+  position: absolute;
+  left: 40%;
+  top: 25%;
+  font-size: 14px;
+  color: #666;
+}
+
+#topicImportance .drag-hint {
+  position: static;
+  margin-left: 43%;
+}
+
+.slider-percentage {
+  right: 15px;
+  position: absolute;
+  font-size: 10pt;
+  margin-top: -14px;
+}
+
+@media all and (max-device-width: 480px) and (orientation: portrait) {
+  .drag-hint {
+    left: 33%;
+  }
+}

@@ -1,0 +1,20 @@
+{{#if itemsToHide}}
+  {{comments/hide-items term=(t 'nouns.reply' count=2) hideAll=(action 'hideAllReplies')}}
+{{/if}}
+<ul class="list-group comment-replies">
+  {{#each visibleReplies as |reply|}}
+    {{comments/item-display
+      comment=reply target=target target2=target2
+      canReply=false titleOverride=titleOverride
+      orderCommentsByLikes=orderCommentsByLikes
+    }}
+  {{/each}}
+</ul>
+{{#if canViewMore}}
+  {{comments/view-more-items
+    term=(t 'nouns.reply' count=2)
+    showNext=""
+    total=""
+    viewMore=(action 'viewMoreReplies')
+  }}
+{{/if}}

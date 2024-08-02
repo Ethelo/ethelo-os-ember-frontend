@@ -1,0 +1,10 @@
+{{#if hasPanel}}
+  {{#bootstrap/bootstrap-collapse
+    title=(scopet 'subtitle' panelScope default='empty_default')
+    beginCollapsed=false
+    panelId=panelId
+  }}
+    {{{content}}}
+    {{yield}}
+  {{/bootstrap/bootstrap-collapse}}
+{{/if}}

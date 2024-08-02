@@ -1,0 +1,39 @@
+<div class="panel-heading bootstrap-collapse-heading withripple">
+    <a class="expansion-toggle collapsed"
+        data-toggle="collapse"
+        data-target="#{{elementId}}-collapse"
+        onkeydown={{action 'toggleCollapseMenu'}}
+        tabindex="0"
+        aria-controls="#{{elementId}}-collapse"
+        aria-expanded="false">
+      <span class="ethelo-dropdown" aria-hidden="true">
+      <span>{{t 'footer.terms_and_conditions'}}</span>
+      <i class="material-icons pull-right expand-more" aria-hidden="true">expand_more</i>
+      <i class="material-icons pull-right expand-less" aria-hidden="true">expand_less</i>
+      </span>
+    </a>
+
+  <div class="ripple-container" aria-hidden="true"></div>
+</div>
+
+<div class="collapse" id="{{elementId}}-collapse">
+  <ul class="panel-body">
+    <li class="list-group-item nav-item-container">
+      <a class="header" target="_blank" href="{{t 'authentication.docs.privacy_url'}}" title={{t 'accessibility.opens_in_new_tab'}}>
+        {{t 'footer.privacy'}}
+      </a>
+    </li>
+
+    <li class="list-group-item nav-item-container">
+      <a class="header" target="_blank" href="{{t 'authentication.docs.usage_url'}}" title={{t 'accessibility.opens_in_new_tab'}}>
+        {{t 'footer.usage'}}
+      </a>
+    </li>
+
+    <li class="list-group-item nav-item-container">
+      <a class="header" target="_blank" href="{{t 'authentication.docs.terms_url'}}" title={{t 'accessibility.opens_in_new_tab'}}>
+        {{t 'footer.terms_and_conditions'}}
+      </a>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,10 @@
+<div class="spinner-wrap" aria-live="polite" aria-busy="true">
+  <i class="material-icons icon-refresh-animate md-48 sync">sync</i>
+  <span class="loading">
+    {{#if loadingText}}
+      {{loadingText}}
+    {{else}}
+      {{t 'navigation.loading'}}
+    {{/if}}
+  </span>
+</div>

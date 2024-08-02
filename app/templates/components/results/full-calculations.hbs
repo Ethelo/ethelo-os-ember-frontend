@@ -1,0 +1,16 @@
+{{#if hasData}}
+  <div class="panel panel-calculation-wrapper panel-default">
+    <div class="panel-body calculation-panel">
+      <div id="full-calculations">
+        {{#each calculationsData as |calculation|}}
+          {{#if calculation.visible}}
+            <p class="calc-{{calculation.slug}} value-{{if (gte calculation.value 0) 'positive' 'negative'}} {{if (eq calculation.value 0) 'zero'}}">
+              {{calculation.label}} {{format-value calculation.value format=calculation.format nullDisplay=''}}
+              <br/>
+            </p>
+          {{/if}}
+        {{/each}}
+      </div>
+    </div>
+  </div>
+{{/if}}

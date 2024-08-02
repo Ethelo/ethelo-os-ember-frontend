@@ -1,0 +1,45 @@
+<div class="modal fade" id="privacy-consent-modal" tabindex="-1" role="dialog" data-backdrop="static"
+    data-keyboard="false" aria-labelledby="privacy-consent-modal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div id="ethelo-logo-container" class="row">
+                        <div id="ethelo-logo-wrapper" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                            <a href="/" id="ethelo_logo_agree_terms"  title="{{t 'accessibility.home'}}">
+                                <img class="custom-logo visible-md-inline visible-lg-inline" alt="ethelo_image"
+                                    src="https://ethelo.net/images/ethelo-evolution-white.png" />
+                            </a>
+                        </div>
+                    </div>
+                    <div id="agree-terms-header-container" class="row text-center"
+                        style="margin-top: 10px; font-weight: bold;">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <span class="h4">{{t 'authentication.consent_panel.consent_header'}}</span>
+                        </div>
+                    </div>
+                    <div id="agree-terms-content-container" class="row" style="margin-top: 10px;">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <span class="h4 text-center">
+                                {{{t 'authentication.consent_panel.content_before_html'}}}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                            <a href="#" {{action 'agreeTerms' }}
+                               id="btn_agree_terms"
+                               title="{{t 'accessibility.close'}}"
+                                class="center-block navigation-button btn-lg btn-block btn btn-default btn-raised"
+                            >
+                                {{t 'authentication.consent_panel.button_text'}}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{!-- <div class="modal-footer"></div> --}}
+        </div>
+    </div>
+</div>

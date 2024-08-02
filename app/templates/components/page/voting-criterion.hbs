@@ -1,0 +1,58 @@
+<div class="container-fluid voting-criterion-page" id={{page.componentId}}>
+  {{bootstrap/bootstrap-modal-balance}}
+
+  <!-- ROW ONE -->
+  <div class="row special" id="row1">
+    {{layout/left-column page=page}}
+
+    {{#layout/center-column page=page}}
+
+      {{tool/content-panel key='center' page=page}}
+
+      {{#each sortedOptions as |option index|}}
+        {{#voting/option-panel
+          page=page criteria=sortedCriteria option=option
+          bottomPaneRequired=hasitemListComments
+          isCondensedLikert=page.isCondensedLikert}}
+
+          {{#if hasitemListComments}}
+            {{comments/list-parents
+              target=option
+              target2=criterion
+              includeCommentForm=true
+              orderCommentsByLikes=page.hasCommentOrderLikes
+              titleOverride=false
+              contentPrompt=(scopet 'content_prompt' 'comments.options' translationScope defaultIsUnscoped=true default='empty_default')
+              titlePrompt=(scopet 'title_prompt' 'comments.options' translationScope defaultIsUnscoped=true default='empty_default')
+              instruct=(scopet 'instruct_html' 'comments.options' translationScope defaultIsUnscoped=true default='empty_default')
+            }}
+          {{/if}}
+
+        {{/voting/option-panel}}
+      {{/each}}
+
+      {{#if hasCenterPageComments}}
+        {{comments/collapse-panel
+          id='page-comments-position-center'
+          titleOverride=page.hasPageCommentTitleOverride
+          page=page
+          target=page.dataSource
+          targetScope='comments.criteria'
+        }}
+      {{/if}}
+
+      {{tool/content-panel key='center_two' page=page}}
+
+    {{/layout/center-column}}
+
+    {{layout/right-column
+      page=page
+      decision=decision
+      pageCommentTarget=pageCommentTarget
+      pageCommentScope=pageCommentScope
+      hasSidebarPageComments=hasSidebarPageComments
+    }}
+
+  </div>
+  <!-- END OF ROW ONE -->
+</div>

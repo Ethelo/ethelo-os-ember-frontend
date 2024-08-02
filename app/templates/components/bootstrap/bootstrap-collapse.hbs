@@ -1,0 +1,32 @@
+<div class="panel panel-default bootstrap-collapse" id="{{divId}}">
+  {{#if showHeader}}
+    <div class="panel-heading bootstrap-collapse-heading withripple panel-slider">
+      <a class="expansion-toggle {{if (or beginCollapsed collapseOptions) 'collapsed' }} {{if hasVote 'primary-accent-bg'}}" data-toggle="collapse"
+         data-target="#{{elementId}}-collapse"
+         tabindex="0"
+         aria-controls="#{{elementId}}-collapse"
+         aria-expanded="true"
+         onkeydown={{action 'toggleCollapse'}}
+         >
+        <div class="h4 panel-slider__title">
+          <i class="material-icons pull-right expand-less" aria-hidden="true">expand_less</i>
+          <i class="material-icons pull-right expand-more" aria-hidden="true">expand_more</i>
+          <span class="float-left">
+            {{#if icon}}
+              <i class="material-icons" aria-hidden="true">{{icon}}</i>
+            {{/if}}
+            {{title}}
+          </span>
+        </div>
+      </a>
+      <div class="ripple-container" aria-hidden="true"></div>
+    </div>
+  {{/if}}
+
+  <div class="collapse {{unless (or beginCollapsed collapseOptions) 'in'}}" id="{{elementId}}-collapse">
+    <div class="panel-body">
+      {{yield}}
+    </div>
+  </div>
+</div>
+

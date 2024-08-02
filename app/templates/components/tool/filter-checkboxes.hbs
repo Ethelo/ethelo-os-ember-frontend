@@ -1,0 +1,23 @@
+<div class="form-group filters qcheckbox" id="{{inputId}}-div">
+
+  <p class="dropdown-link">
+    <a class="expansion-toggle"
+       data-target="#boxes{{inputId}}"
+       data-toggle="collapse"
+       aria-expanded="false">
+      <strong>{{caption}}</strong>
+    </a>
+  </p>
+
+  <div class="collapse in" id="boxes{{inputId}}" aria-expanded="true">
+    <div class="checkbox checkbox-group" role="group" aria-labelledby="{{inputId}}-label">
+      {{#each keywords as |keyword| }}
+        {{survey/checkbox-input
+          group=filterId arrayValue=selected value=keyword label=keyword
+          select=(action "updateFilter" filterId)
+        }}
+      {{/each}}
+    </div>
+    {{tool/material-reinit}}
+  </div>
+</div>

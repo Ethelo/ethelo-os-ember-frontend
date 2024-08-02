@@ -1,0 +1,56 @@
+<div class="panel-body">
+  <strong id="auth-modal-label">{{t 'authentication.web3.force_header'}}</strong>
+
+  {{#if errorList.auth}}
+    <div class="alert alert-danger">
+      {{t errorList.auth}}
+    </div>
+  {{/if}}
+
+  <div id="add-web3-content-container" class="row" style="margin-top: 10px;">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="text-center">
+        {{{t 'authentication.web3.force_intro_html'}}}
+
+        {{#if web3Service.hasTokenGates}}
+          {{{t 'authentication.web3.token_gate.gate_info_html'}}}
+
+          {{#if tokenGateError}}
+            <div class="alert alert-danger">
+              {{tokenGateError}}
+            </div>
+          {{/if}}
+
+
+        {{/if}}
+      </div>
+    </div>
+  </div>
+
+  <div class="clearfix"></div>
+  {{#if web3Service.metamaskMissing}}
+    <strong> {{t 'authentication.web3.no_metamask'}}</strong>
+  {{else if processing}}
+    <div class="signon-spinner">
+      {{tool/loading-spinner loadingText=(t 'authentication.processing.adding_wallet')}}
+    </div>
+  {{else}}
+    <a href="#" {{action 'addWeb3'}}
+       role="button"
+       title="{{t 'accessibility.submit'}}"
+       class="btn-web3 btn-block btn-primary btn btn-raised text-uppercase"
+    >
+      {{t 'authentication.web3.add_button'}}
+    </a>
+  {{/if}}
+
+
+  <a href="#" {{action 'signOut' true target=authService }}
+     class="user-signout"
+     title="{{t 'accessibility.logout'}}"
+     class="btn-web3 btn-block btn-primary btn btn-raised text-uppercase"
+  >
+    {{t "authentication.sign_out_change"}}
+  </a>
+
+</div>

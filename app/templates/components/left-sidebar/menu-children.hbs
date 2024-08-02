@@ -1,0 +1,38 @@
+<div id="{{parentId}}" class="{{page.nestingClass}} {{activeClass}} nav-item">
+  {{#if page.doNotLink}}
+    <div class="navigation-group">
+      <a class="{{if isCollapsed 'collapsed'}}"
+         data-toggle="collapse"
+         data-target="#{{panelId}}"
+         onclick={{action 'toggleCollapsed'}}
+         onkeydown={{action 'toggleCollapsed'}}
+         tabindex="0"
+         aria-controls="{{panelId}}"
+         aria-expanded="{{if isCollapsed 'false' 'true'}}"
+         role="button">
+
+          {{page.titleContent}}
+        <i class="material-icons pull-right expand-more" aria-hidden="true">expand_more</i>
+        <i class="material-icons pull-right expand-less" aria-hidden="true">expand_less</i>
+      </a>
+    </div>
+  {{else}}
+    {{#link-to 'page' item.page
+      (query-params filter0=menu.filter0 filter1=menu.filter1 filter2=menu.filter2 filter3=menu.filter3 filter4=menu.filter4 )
+      id=linkId disabled=pageIsDisabled dataToggle="tooltip"
+      title=disabledMenuItemMessage
+    }}
+      {{page.titleContent}}
+    {{/link-to}}
+  {{/if}}
+</div>
+
+<div id="{{panelId}}" class="collapse {{unless isCollapsed 'in' }}">
+  <ul class="list-group">
+    {{#each item.childItems as |childItem index|}}
+      {{left-sidebar/menu-item
+        collapseChildren=childItem.beginCollapsed
+        item=childItem index=index parentPanelId=panelId namespace=namespace}}
+    {{/each}}
+  </ul>
+</div>

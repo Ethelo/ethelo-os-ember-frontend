@@ -1,0 +1,35 @@
+{{#bootstrap/bootstrap-collapse
+        title=(scopet 'voting.weighting.sliders.subtitle' translationScope defaultIsUnscoped=true)
+        beginCollapsed=false
+        panelId=panelId
+}}
+
+  {{{scopet 'intro_html' sliderScope translationScope defaultIsUnscoped=true}}}
+
+  {{#if showPieChart}}
+    {{charts/high-charts content=chartData chartOptions=chartOptions chartId=chartId}}
+  {{/if}}
+
+  {{#if showVotingTools}}
+
+    {{#each sortedCriteria as |criterion index|}}
+      <div class="slider-container" id="slider-{{criterion.cssId}}">
+        <div class="importance-slider-header">
+          {{{scopet 'prompt_html' sliderScope translationScope
+                    index=(add index 1) title=criterion.title defaultIsUnscoped=true}}}
+        </div>
+        {{#if showDescriptions}}
+          <div class="importance-slider-desc">
+            {{{criterion.info}}}
+          </div>
+        {{/if}}
+        {{voting/criterion-weight-slider
+                criterion=criterion
+                labelMin=(scopet 'unimportant' sliderScope translationScope defaultIsUnscoped=true)
+                labelMax=(scopet 'very_important' sliderScope translationScope defaultIsUnscoped=true)
+        }}
+      </div>
+    {{/each}}
+  {{/if}}
+
+{{/bootstrap/bootstrap-collapse}}

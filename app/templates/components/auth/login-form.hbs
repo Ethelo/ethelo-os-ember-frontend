@@ -1,0 +1,75 @@
+{{#if errorList.auth}}
+  <div class="alert alert-danger">
+    {{t errorList.auth}}
+  </div>
+{{/if}}
+
+{{#if decision.requiresInvite}}
+  {{#if failedInvite}}
+    <div class="alert alert-danger">
+      {{t 'authentication.invite_needed_html'}}
+    </div>
+  {{else}}
+    {{t 'authentication.invite_needed_html'}}
+  {{/if}}
+  {{#if web3Service.allowsWeb3}}
+    {{t 'authentication.invite_check_web3_html'}}
+    {{#if web3Service.metamaskMissing}}
+      {{t 'authentication.no_metamask'}}
+    {{else}}
+      <a href="#" {{action 'sendToWalletInvite' target=web3Service}}
+         class="navigation-button btn-lg btn btn-default btn-raised"
+      >
+        <span> {{t 'authentication.web3.accept_web3_invite'}} </span>
+      </a>
+      <hr/>
+    {{/if}}
+  {{else}}
+    {{t 'authentication.invite_check_email_html'}}
+  {{/if}}
+{{/if}}
+
+{{#if web3Service.hasTokenGates}}
+  {{t 'authentication.web3.token_gate.gate_info_html'}}
+  {{#if tokenGateError}}
+    <div class="alert alert-danger">
+      {{tokenGateError}}
+    </div>
+  {{/if}}
+{{/if}}
+
+{{#if web3Service.showMetamaskMissing}}
+  <strong> {{t 'authentication.web3.no_metamask'}}</strong>
+{{else if web3Service.allowsWeb3}}
+
+  {{#if processing}}
+    <div class="signon-spinner">
+      {{tool/loading-spinner loadingText=(t 'authentication.processing.sign_in')}}
+    </div>
+  {{else}}
+    <a href="#" {{action 'web3Login'}}
+       role="button"
+       title="{{t 'accessibility.submit'}}"
+       class="btn-web3 btn-block btn-primary btn btn-raised text-uppercase"
+    >
+      {{t 'authentication.sign_in_with_web3'}}
+    </a>
+  {{/if}}
+  <div class="clearfix"></div>
+{{/if}}
+
+{{#if showPasswordForm}}
+  {{partial "components/auth/_password_form"}}
+{{else}}
+  <p class="text-center">
+    <strong>{{t 'authentication.web3.or_sign_in'}}</strong>
+  </p>
+
+  <a href="#" {{action 'togglePasswordForm'}}
+     role="button"
+     title="{{t 'accessibility.switch'}}"
+     class="btn-block btn-primary btn btn-raised text-uppercase"
+  >
+    {{t 'authentication.sign_in_with_password'}}
+  </a>
+{{/if}}

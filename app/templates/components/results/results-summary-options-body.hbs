@@ -1,0 +1,234 @@
+<div
+  id="{{collapseId}}"
+  class="collapse"
+  aria-labelledby="{{headerId}}"
+  data-parent="#{{namespace}}"
+>
+
+  {{!-- {{#if isShowingCardBody}} --}}
+  <div class="card-body">
+    <ul id="{{collapseId}}-tab" class="nav nav-pills nav-fill" role="tablist">
+      {{#if displayCriteria}}
+        <li
+          role="presentation"
+          class="{{if (eq defaultActiveTabName "criteria-tab") "active"}}
+            criteria-tab"
+        >
+          <a
+            id="{{collapseId}}-criteria-tab"
+            href="#{{collapseId}}-criteria"
+            aria-controls="{{collapseId}}-criteria"
+            role="tab"
+            data-toggle="tab"
+            aria-selected="{{if
+              (eq defaultActiveTabName "criteria-tab")
+              "true"
+            }}"
+          >
+            {{t "results.criteria"}}
+          </a>
+        </li>
+      {{/if}}
+
+      {{#if showMetricChart}}
+        <li
+          role="presentation"
+          class="{{if (eq defaultActiveTabName "metrics-tab") "active"}}
+            metrics-tab"
+        >
+          <a
+            id="{{collapseId}}-metrics-tab"
+            href="#{{collapseId}}-metrics"
+            aria-controls="{{collapseId}}-metrics"
+            role="tab"
+            data-toggle="tab"
+            aria-selected="{{if
+              (eq defaultActiveTabName "metrics-tab")
+              "true"
+            }}"
+          >
+            {{t "results.metrics.title"}}
+          </a>
+        </li>
+      {{/if}}
+      {{#if showPeopleChart}}
+        <li
+          role="presentation"
+          class="{{if (eq defaultActiveTabName "people-tab") "active"}}
+            people-tab"
+        >
+          <a
+            id="{{collapseId}}-people-tab"
+            href="#{{collapseId}}-people"
+            aria-controls="{{collapseId}}-people"
+            role="tab"
+            data-toggle="tab"
+            aria-selected="{{if (eq defaultActiveTabName "people-tab") "true"}}"
+          >
+            {{t "results.metrics.distribution"}}
+          </a>
+        </li>
+      {{/if}}
+
+      {{#if showHistogramChart}}
+        <li
+          role="presentation"
+          class="{{if (eq defaultActiveTabName "histogram-tab") "active"}}
+            histogram-tab"
+        >
+          <a
+            id="{{collapseId}}-histogram-tab"
+            href="#{{collapseId}}-histogram"
+            aria-controls="{{collapseId}}-histogram"
+            role="tab"
+            data-toggle="tab"
+            aria-selected="{{if
+              (eq defaultActiveTabName "histogram-tab")
+              "true"
+            }}"
+          >
+            {{t "results.metrics.histogram"}}
+          </a>
+        </li>
+      {{/if}}
+      {{#if statsDisplay.showOptionDetails}}
+        <li
+          role="presentation"
+          class="{{if (eq defaultActiveTabName "info-tab") "active"}} info-tab"
+        >
+          <a
+            id="{{collapseId}}-info-tab"
+            href="#{{collapseId}}-info"
+            aria-controls="{{collapseId}}-histogram"
+            role="tab"
+            data-toggle="tab"
+            aria-selected="{{if (eq defaultActiveTabName "info-tab") "true"}}"
+          >
+            {{t "results.metrics.info"}}
+          </a>
+        </li>
+      {{/if}}
+
+    </ul>
+
+    <div class="tab-content" id="{{collapseId}}-tabContent">
+      {{#if displayCriteria}}
+        <div
+          role="tabpanel"
+          class="tab-pane tab-content-criteria
+            {{if (eq defaultActiveTabName "criteria-tab") "active"}}"
+          id="{{collapseId}}-criteria"
+          aria-labelledby="#{{collapseId}}-criteria-tab"
+        >
+
+          {{results/voting-summary-criteria-tab
+            withUser=withUser
+            option=result.option
+            parentCount=criterionParentCount
+            page=page
+            statsDisplay=statsDisplay
+            namespace=namespace
+            scenarioResults=scenarioResults
+          }}
+        </div>
+      {{/if}}
+
+      {{#if showMetricChart}}
+        <div
+          role="tabpanel"
+          class="tab-pane tab-content-metrics
+            {{if (eq defaultActiveTabName "metrics-tab") "active"}}"
+          id="{{collapseId}}-metrics"
+          aria-labelledby="#{{collapseId}}-metrics-tab"
+        >
+          {{tool/metrics-table items=result.metrics}}
+        </div>
+      {{/if}}
+
+      {{#if showPeopleChart}}
+        <div
+          role="tabpanel"
+          class="tab-pane tab-content-people
+            {{if (eq defaultActiveTabName "people-tab") "active"}}"
+          id="{{collapseId}}-people"
+          aria-labelledby="#{{collapseId}}-people-tab"
+        >
+          {{results/histogram-people-chart result=result}}
+        </div>
+      {{/if}}
+
+      {{#if showHistogramChart}}
+        <div
+          role="tabpanel"
+          class="tab-pane tab-content-histogram
+            {{if (eq defaultActiveTabName "histogram-tab") "active"}}"
+          id="{{collapseId}}-histogram"
+          aria-labelledby="#{{collapseId}}-histogram-tab"
+        >
+          {{#if renderHistogramChart}}
+            {{#if showTopicVotingChart}}
+              {{results/histogram-bar-chart-slider-voting result=result}}
+            {{else}}
+              {{results/histogram-bar-chart result=result}}
+            {{/if}}
+          {{/if}}
+        </div>
+      {{/if}}
+
+      {{#if statsDisplay.showOptionDetails}}
+        <div
+          role="tabpanel"
+          class="tab-pane tab-content-histogram
+            {{if (eq defaultActiveTabName "info-tab") "active"}}"
+          id="{{collapseId}}-info"
+          aria-labelledby="#{{collapseId}}-info-tab"
+        >
+          <table class="result-info" {{action "toggleExpand"}}>
+            <tr>
+              <td class="col-md-10">
+                {{{resultTarget.info}}}
+              </td>
+            </tr>
+          </table>
+        </div>
+      {{/if}}
+
+      {{#if
+        (or statsDisplay.showOptionVoterCount statsDisplay.showOptionComments)
+      }}
+        {{comments/list-parents-results
+          target=result.option
+          showVoterCount=statsDisplay.showOptionVoterCount
+          showComments=statsDisplay.showOptionComments
+          peopleCount=peopleCount
+          titleOverride=false
+          target2=result.criterion
+          includeCommentForm=false
+          orderCommentsByLikes=page.hasCommentOrderLikes
+          contentPrompt=(scopet
+            "content_prompt"
+            "comments.options"
+            translationScope
+            defaultIsUnscoped=true
+            default="empty_default"
+          )
+          titlePrompt=(scopet
+            "title_prompt"
+            "comments.options"
+            translationScope
+            defaultIsUnscoped=true
+            default="empty_default"
+          )
+          instruct=(scopet
+            "instruct_html"
+            "comments.options"
+            translationScope
+            defaultIsUnscoped=true
+            default="empty_default"
+          )
+        }}
+      {{/if}}
+    </div>
+  </div>
+  {{!-- {{/if}} --}}
+</div>

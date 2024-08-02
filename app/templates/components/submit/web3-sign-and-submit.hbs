@@ -1,0 +1,31 @@
+<div>
+  <div class="button-group">
+    <div class="clearfix"></div>
+    <div style="text-align: center;">
+      {{#if web3Service.metamaskMissing}}
+        <strong> {{t 'authentication.web3.no_metamask'}}</strong>
+      {{else if processing}}
+        <div class="signon-spinner">
+          {{tool/loading-spinner loadingText=(t 'authentication.processing.sign_in')}}
+        </div>
+      {{else if alreadySigned}}
+        <strong>{{t 'authentication.web3.already_signed'}}</strong>
+      {{else}}
+        <a role="button" title="{{t 'accessibility.submit'}}"
+           class="btn-question tab-navigation btn-primary btn btn-raised"
+           tabindex="0"
+          {{action "signPackage"}}
+        >
+          {{buttonText}}
+        </a>
+        {{#if errorList.web3}}
+          <span class="help-block">{{t errorList.web3}}</span>
+        {{/if}}
+        {{#if errorList.submit}}
+          <span class="help-block">{{t errorList.submit}}</span>
+        {{/if}}
+      {{/if}}
+
+    </div>
+  </div>
+</div>

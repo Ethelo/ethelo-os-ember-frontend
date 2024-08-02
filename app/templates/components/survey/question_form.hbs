@@ -1,0 +1,197 @@
+{{partial 'partials/edit-link'}}
+
+{{#if question.isContentOnly}}
+  <div class="form-group" id="{{formGroupId}}">
+
+    {{#if question.showTitle}}
+      {{question.title}}
+    {{/if}}
+
+    {{{question.content}}}
+
+    {{survey/question-comments page=page question=question translationScope=translationScope}}
+
+  </div>
+{{else}}
+
+  <div class="form-group q{{question.questionType}} row" id="{{formGroupId}}">
+    {{#if question.showTitle}}
+      <label for="{{inputId}}" id="{{inputId}}-label" class="control-label">
+        <p>
+          {{#if numberQuestions}}
+            {{questionNumber}}
+          {{/if}}
+          {{#if question.required}}
+            <span class="required" data-toggle="tooltip" title={{t "survey.required_tooltip"}}>{{t
+              "survey.required"}}</span>{{/if}}
+          {{question.title}}
+        </p>
+      </label>
+    {{/if}}
+    {{#if question.content}}
+      {{#unless question.showTitle}}
+        {{#if question.required}}
+          <span class="required" data-toggle="tooltip" title={{t "survey.required_tooltip"}}>
+            {{t "survey.required"}} </span>
+        {{/if}}
+      {{/unless}}
+      {{{question.content}}}
+    {{/if}}
+
+    {{#if question.isLabeledSlider}}
+      {{survey/labeled-slider-input
+        value=formValue
+        selectedAnswerId=selectedAnswerId
+        question=question
+        inputId=inputId
+        focus-in="promptBeforeSurvey"
+        valueChanged="updateLabeledSlider"
+        class="form-control"}}
+    {{/if}}
+
+    {{#if question.isSlider}}
+      {{survey/slider-input
+        value=formValue
+        question=question
+        inputId=inputId
+        focus-in="promptBeforeSurvey"
+        valueChanged="updateSlider"
+        class="form-control"}}
+    {{/if}}
+
+    {{#if question.isTextArea}}
+      {{textarea
+        value=formValue
+        width=question.settings.width
+        rows=question.settings.lines
+        placeholder=question.placeholder
+        focus-in="promptBeforeSurvey"
+        focus-out="enteredText"
+        id=inputId class="form-control"}}
+    {{/if}}
+
+    {{#if question.isRadios}}
+      <div class="radio-group" role="radiogroup" aria-labelledby="{{inputId}}-label">
+        {{#each question.sortedAnswers as |answer|}}
+          <div class="radio radio-primary">
+            {{#radio-button
+              groupValue=selectedAnswerId
+              value=answer.stringId
+              name=formGroupId
+              changed='selectRadio'}}
+              <span class="circle"></span>
+              <span class="check"></span>
+              {{answer.caption}}
+            {{/radio-button}}
+          </div>
+        {{/each}}
+      </div>
+    {{/if}}
+
+    {{#if question.isButtons}}
+      <div class="button-group" aria-labelledby="{{inputId}}-label">
+        <div class="clearfix"></div>
+        <div style="text-align: center;">
+          {{#each question.sortedAnswers as |answer|}}
+            <a {{action 'saveButton' answer.stringId}}
+              role="button"
+              title="{{t 'accessibility.submit'}}"
+              class="tab-navigation btn-question btn-primary btn btn-raised"
+              tabindex="0"
+              id="answer-{{answer.stringId}}-button">
+              {{answer.caption}}
+            </a>
+          {{/each}}
+        </div>
+      </div>
+
+    {{/if}}
+
+    {{#if question.isSelect}}
+      <div class="dropdown">
+        {{#x-select value=selectedAnswerId action='selectDropdown'}}
+          <option>{{t 'prompts.select_one'}}</option>
+          {{#each question.sortedAnswers as |answer|}}
+            {{#x-option value=answer.stringId}}{{answer.caption}}{{/x-option}}
+          {{/each}}
+        {{/x-select}}
+      </div>
+    {{/if}}
+
+    {{#if question.isCheckboxes}}
+      <div class="checkbox checkbox-group" role="group" aria-labelledby="{{inputId}}-label">
+        {{#each question.sortedAnswers as |answer index|}}
+          {{survey/checkbox-input
+            group=index
+            arrayValue=selectedAnswerIds
+            value=answer.stringId
+            label=answer.caption
+            isPledgeQuestion=isPledgeQuestion
+            select='selectCheckbox'}}
+          <br>
+        {{/each}}
+      </div>
+    {{/if}}
+
+    {{#if question.hasOtherBox}}
+      {{#if question.otherBoxCaption}}
+        <span class="pull-left">{{question.otherBoxCaption}}</span>
+      {{/if}}
+      {{input
+        value=formValue
+        placeholder=question.placeholder
+        width="50%"
+        focus-out="enteredText" focus-in='promptBeforeSurvey'
+        id=inputId class="form-control"
+      }}
+    {{/if}}
+
+    {{#if question.isTextInput}}
+      {{input
+        placeholder=question.placeholder
+        value=formValue
+        width=question.settings.width
+        focus-out="enteredText" focus-in='promptBeforeSurvey'
+        id=inputId class="form-control"}}
+    {{/if}}
+
+    {{#if question.isUpload}}
+      {{#if processing}}
+        <div class="signon-spinner">
+          {{tool/loading-spinner loadingText=(t 'survey.uploads.processing')}}
+        </div>
+      {{else}}
+        <div style="text-align: center;">
+          {{#if currentResponseValue}}
+            {{t 'survey.uploads.your_upload'}} <strong>{{currentResponse.filename}}</strong>
+            <br/>
+          {{/if}}
+
+          <a {{action 'upload'}}
+            role="button" title="{{t 'accessibility.submit'}}"
+            class="tab-navigation btn-question btn-primary btn btn-raised " tabindex="0"
+            id="upload-{{question.componentId}}-button">
+            {{#if currentResponseValue}}
+              {{t 'survey.uploads.replace'}}
+            {{else}}
+              {{t 'survey.uploads.document'}}
+            {{/if}}
+          </a>
+
+          {{#if currentResponseValue}}
+            <a {{action 'deleteUpload'}}
+              role="button" title="{{t 'accessibility.submit'}}"
+              class="tab-navigation btn-question btn-primary btn btn-raised" tabindex="2"
+              id="delete-{{question.componentId}}-button">
+              {{t 'survey.uploads.delete'}}
+            </a>
+          {{/if}}
+
+        </div>
+      {{/if}}
+    {{/if}}
+
+    {{survey/question-comments page=page question=question translationScope=translationScope}}
+
+  </div>
+{{/if}}

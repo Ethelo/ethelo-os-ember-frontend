@@ -1,0 +1,27 @@
+<header>
+  <span>&nbsp;</span>
+  <a
+    href="{{currentURL}}#main-block-center"
+    id="btn-skip-content"
+    class="skip-to-content-link sr-only"
+  >
+    Skip to main content
+  </a>
+
+</header>
+<div class="main-content">
+  {{partial "partials/navbar"}}
+
+  {{#if currentPageIsBlocked}}
+      {{page/blocked-page}}
+  {{else}}
+    {{component
+      pageComponent
+      page=page
+      pageIndex=pageIndex
+      isCollapsed=isCollapsed
+      selectedFilters=selectedFilters
+      updateQuery=(action 'updateQuery')
+    }}
+  {{/if}}
+</div>

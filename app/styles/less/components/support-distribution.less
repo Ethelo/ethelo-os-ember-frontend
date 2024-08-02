@@ -1,0 +1,64 @@
+/* Human Silhouettes font */
+@font-face {
+	font-family: 'HumanSilhouettes';
+	src:  url('/fonts/HumanSilhouettes.eot');
+	src: local('☺'),
+     url('/fonts/HumanSilhouettes.woff') format('woff'),
+     url('/fonts/HumanSilhouettes.ttf') format('truetype'),
+     url('/fonts/HumanSilhouettes.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.support-distribution {
+    background-color: #FFF;
+    border-radius: 6px;
+    margin: 3px 4px;
+    padding: 0 15px;
+    width: 100%
+}
+.support-distribution .points-container {
+    width: 100%;
+    margin-top: 6px;
+    position: relative;
+    top: -8px;
+    height: 75px;
+}
+.support-distribution .person {
+   position: absolute;
+   font-family: 'HumanSilhouettes';
+   font-size: 80px;
+   height: 75px;
+   width: 26px;
+   opacity: 0.8;
+   left: -13px;
+}
+
+.distribution-captions {
+  display: flex;
+  justify-content: space-between;
+  margin:20px 30px;
+  overflow: hidden;
+  .distribution-caption {
+    flex: 0 1 auto;
+    margin: 0 10px;
+    padding: 5px 10px;
+    text-overflow: ellipsis;
+    text-align: center;
+    font-size: 12px;
+    background-color: #4D6584;
+    color: #ffffff;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .distribution-caption {
+    font-size: 9pt;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .distribution-caption {
+    font-size: 6pt;
+  }
+}

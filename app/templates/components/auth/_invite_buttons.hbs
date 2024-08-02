@@ -1,0 +1,25 @@
+{{#if processing}}
+  <div class="signon-spinner">
+    {{tool/loading-spinner loadingText=(t 'authentication.processing.sign_up')}}
+  </div>
+{{else}}
+  {{#unless (eq inviteMode 'web3') }}
+    <a href="#" {{action 'createInvitedUser'}}
+       role="button" title="{{t 'accessibility.submit'}}"
+       class="btn-block btn-primary btn btn-raised text-uppercase"
+    >
+      {{t 'authentication.sign_up'}}
+    </a>
+  {{/unless}}
+
+  {{#if web3Service.showMetamaskMissing}}
+    <strong> {{t 'authentication.web3.no_metamask'}}</strong>
+
+  {{else if web3Service.allowsWeb3}}
+    <a href="#" {{action 'joinWithWeb3Invite'}}
+       title="{{t 'accessibility.submit'}}"
+       class="btn-block btn-primary btn btn-raised text-uppercase ">
+      {{t 'authentication.sign_up_with_web3'}}
+    </a>
+  {{/if}}
+{{/if}}

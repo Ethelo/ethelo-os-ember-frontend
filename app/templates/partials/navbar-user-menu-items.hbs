@@ -1,0 +1,15 @@
+<li>
+  <a href="#" {{action 'sendToMyProfile' target=menu}}>
+    {{t 'navigation.account'}}
+    <div class="ripple-container"></div>
+  </a>
+</li>
+
+<li>
+  <a href="#" {{action 'signOut' true target=authService}}
+    title={{t 'accessibility.logout'}}
+  >
+    {{t 'authentication.sign_out'}}
+    <div class="ripple-container"></div>
+  </a>
+</li>

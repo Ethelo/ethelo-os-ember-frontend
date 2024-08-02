@@ -1,0 +1,60 @@
+// Provisional inheritance for styles:
+// Ethelo Defaults -> Brand Styles -> Production Code
+
+// Setting some more Material spec-friendly
+// opacity on text. We could look to use Less
+// logic more proactively to check safe contrast and
+// provide automatic fallbacks
+
+// Ethelo Defaults
+@etheloTextColor: fade(@black, 87%);
+@etheloTextColorSecondary: fade(@black, 54%);
+@etheloTextColorLight: @white;
+@etheloIconColor: fade(@black, 38%);
+
+@etheloPrimaryColor: @blue-500;
+@etheloPrimaryColorLight: @blue-300;
+@etheloAccentColor: @red-500;
+@etheloAccentColorLight: @red-100;
+
+
+// Brand Overrides
+@brandTextColor: @etheloTextColor;
+@brandTextColorSecondary: @etheloTextColorSecondary;
+@brandTextColorLight: @etheloTextColorLight;
+@brandIconColor: @etheloIconColor;
+
+@brandPrimaryColor: @etheloPrimaryColor;
+@brandPrimaryColorLight: @etheloPrimaryColorLight;
+@brandAccentColor: @etheloAccentColor;
+@brandAccentColorLight: @etheloAccentColorLight;
+
+
+// Compiled Values
+@textColor: @brandTextColor;
+@textColorSecondary: @brandTextColorSecondary;
+@textColorLight: @brandTextColorLight;
+@iconColor: @brandIconColor;
+
+@primaryColor: @brandPrimaryColor;
+@primaryColorLight: @brandPrimaryColorLight;
+@accentColor: @brandAccentColor;
+@accentColorLight: @brandAccentColorLight;
+
+// Likert Colors
+@likertLvl1: @pink-500;
+@likertLvl2: @orange-500;
+@likertLvl3: @yellow-500;
+@likertLvl4: @blue-500;
+@likertLvl5: @light-blue-500;
+@likertLvl6: @light-green-500;
+@likertLvl7: @green-500;
+
+// Responsive Breakpoints
+@bigBrowser: 768px;
+@fullBrowser: 992px;
+
+// Progress Bar Width
+// FOR PATTERN LAB PURPOSES
+@progressBarPercentageBefore: 12%;
+@progressBarPercentage: 37%;

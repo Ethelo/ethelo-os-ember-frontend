@@ -1,0 +1,59 @@
+.tab-pie-icon-container {
+  display: flex;
+  align-items: center;
+  margin-right: 35px;
+
+  .pie-perentage-text {
+    color: #516BA6;
+    font-weight: 600;
+  }
+}
+
+.tab-pie {
+  width: 40px;
+  height: 40px;
+  margin-right: 15px;
+  border-radius: 50%;
+  background: @secondary-pie-chart-color;
+  background-image:linear-gradient(to right, transparent 50%, @main-pie-chart-color 0);
+  overflow: hidden;
+  border-color: @main-pie-chart-color;
+  border-width: 1px;
+  border-style: solid;
+
+  &.small {
+    width: 24px;
+    height: 24px;
+    margin-left: 10px;
+  }
+}
+
+.tab-pie::before {
+  content: '';
+  display: block;
+  margin-left: 50%;
+  height: 100%;
+  border-radius: 0 100% 100% 0 / 50%;
+  transform-origin: left;
+}
+
+.tab-pie-percent-0-50 (@i) when (@i <= 50) {
+  .tab-pie.pie-percent-@{i}::before {
+     background-color: @secondary-pie-chart-color;
+     transform: rotate((@i/100)*360deg);
+  }
+  .tab-pie-percent-0-50(@i + 1);
+}
+
+.tab-pie-percent-50-100 (@i) when (50 + @i <= 100) {
+@class: 50 + @i;
+
+.tab-pie.pie-percent-@{class}::before {
+     background-color: @main-pie-chart-color;
+     transform: rotate((@i/100)*360deg);
+  }
+  .tab-pie-percent-50-100(@i + 1);
+}
+
+.tab-pie-percent-0-50(0);
+.tab-pie-percent-50-100(1);

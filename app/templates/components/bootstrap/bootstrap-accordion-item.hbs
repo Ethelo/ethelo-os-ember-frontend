@@ -1,0 +1,30 @@
+<div class="panel panel-default bootstrap-collapse bootstrap-accordion {{if isOpen 'open'}}" role="complementary" aria-label="left-side-section">
+  <div class="panel-heading bootstrap-collapse-heading withripple">
+    <a class="expansion-toggle {{if (not isOpen) 'collapsed'}}" data-toggle="collapse" data-parent="#{{namespace}}" href="#{{elementId}}-{{namespace}}" onclick={{action 'toggleOpen'}}>
+      <div class="h4">
+        <i class="material-icons pull-right expand-less">expand_less</i>
+        <i class="material-icons pull-right expand-more">expand_more</i>
+        <span class="float-left">
+            {{#if icon}}
+              <i class="material-icons">{{icon}}</i>
+            {{/if}}
+            {{title}}
+        </span>
+      </div>
+    </a>
+
+    <div class="ripple-container"></div>
+  </div>
+
+  <div id="{{elementId}}-{{namespace}}" class="panel-collapse collapse {{if isOpen 'in'}}">
+    {{#if elementAcc}}
+      <div class="panel-body" id="{{elementAcc}}">
+        {{yield}}
+      </div>
+    {{else}}
+      <div class="panel-body">
+        {{yield}}
+      </div>
+    {{/if}}
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="{{if menu.activeSidebarView 'hidden-xs'}}">
+  <a href="#" {{action 'openAuthModal'}}
+     role="button"
+     title="{{t 'accessibility.open_modal'}}"
+     id="join-button"
+     class="center-block navigation-button btn-lg btn-block btn btn-default btn-raised"
+     >
+    <span>
+      {{{scopet 'sidebars.join.title' page.translationScope defaultIsUnscoped=true default='empty_default'}}}
+    </span>
+  </a>
+</div>

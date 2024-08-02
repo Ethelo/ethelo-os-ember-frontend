@@ -1,0 +1,172 @@
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .results-header-title {
+    flex: 0 1 auto;
+  }
+
+  .result-toggle {
+    flex: 0 1 auto;
+    padding: 0;
+  }
+
+  .display-toggle {
+    flex: 0 1 auto;
+  }
+}
+
+.histogram-bar-chart {
+  position: relative;
+}
+
+.histogram-people-container {
+  padding-right: 2px;
+}
+
+.chart-caption {
+  text-align: center;
+  font-size: smaller;
+}
+.scenario-panel-container {
+
+  display: flex;
+  text-align: center;
+
+  .stat {
+    flex: 1 1 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    .toggle {
+      display: block;
+      background-color: #ccc;
+      color: #fff;
+    }
+  }
+
+  .histogram-people-container {
+    flex: 1 1 75%;
+    margin-left: 10px;
+    padding: 10px;
+  }
+
+  a, a:hover, a:focus {
+    text-decoration: none;
+  }
+
+  a.collapsed {
+    .expand-more {
+      display: inherit;
+    }
+    .expand-less {
+      display: none;
+    }
+  }
+
+  a:not(.collapsed) {
+    .expand-more {
+      display: none;
+    }
+    .expand-less {
+      display: inherit;
+    }
+  }
+
+  .expansion-toggle {
+    cursor: pointer;
+  }
+}
+
+//Add align justify-content: space-between for the btns
+
+.scenario-navigator-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+
+//Change flex: 1 1 auto -> flex: 0 1 auto
+
+  .scenario-navigator-item {
+    flex: 0 1 auto;
+    padding: 0;
+  }
+}
+
+#scenario-detail,
+.result-card {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  a, a:hover, a:focus {
+    text-decoration: none;
+  }
+
+  .toggle-plus {
+    display: none;
+  }
+
+  .toggle-minus {
+    display: flex;
+  }
+
+  .collapsed .toggle-minus {
+    display: none;
+  }
+
+  .collapsed .toggle-plus {
+    display: flex;
+  }
+
+  .participant-header,
+  .detail-toggle {
+    display: flex;
+
+    .title {
+      flex: 1 1 75%;
+    }
+
+    .labels {
+      flex: 1 1 25%;
+      display: flex;
+      align-items: center;
+      text-align: right;
+      margin-left: 10px;
+
+      .stat {
+        float: right;
+        margin-right: 1px;
+      }
+
+    }
+  }
+
+  .nav-tabs {
+    font-size: 75%;
+    background: none;
+    > li {
+      > a {
+        padding: 3px 5px;
+        color: #FFFFFF;
+        background-color: #5b5b5b;
+        border: 1px solid transparent;
+        margin: 1px 1px -1px 1px;
+        &:hover {
+          background-color: transparent;
+          border: 1px solid transparent;
+        }
+      }
+      & > a, & > a:hover, & > a:focus {
+        background-color: #5b5b5b;
+        border: 1px solid transparent;
+        color: #FFFFFF !important;
+        font-weight: 500;
+      }
+      &.disabled > a, &.disabled > a:hover {
+        color: rgba(255, 255, 255, 0.5);
+      }
+    }
+  }
+}

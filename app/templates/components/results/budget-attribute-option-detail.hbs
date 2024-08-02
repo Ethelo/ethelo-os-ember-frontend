@@ -1,0 +1,76 @@
+<div class="card flat result-card budget-attribute-card"  id={{format-html-id "result-card" "o" result.option.id}}>
+  <div class="card-header" id="{{format-html-id "header" "o" result.option.id}}">
+    {{#if (gt option.visibleDetailValues.length 0)}}
+      <a
+        role="button"
+        data-toggle="collapse"
+        aria-expanded="false"
+        class="detail-toggle collapsed"
+        href="#{{format-html-id "collapse" "o" result.option.id}}"
+        aria-controls="#{{format-html-id "collapse" "o" result.option.id}}"
+      >
+        <p class="title" style="display: flex; align-items: center;">
+          {{option.resultsLabel}}
+        </p>
+
+        {{#if (or currentDetailValue (gt option.visibleDetailValues.length 0))}}
+          <span class="labels">
+            {{#if currentDetailValue}}
+              <span class="stats pull-left">
+                <span class="label stat approval pull-right">
+                  <span>{{currentDetailValue}}</span>
+                </span>
+              </span>
+            {{/if}}
+            {{#if (gt option.visibleDetailValues.length 0)}}
+              <span class="expand-icon pull-right">
+                <span class="label toggle-open">
+                  <i class="material-icons expand_less">expand_less</i>
+                </span>
+                <span class="label toggle-close">
+                  <i class="material-icons expand_more">expand_more</i>
+                </span>
+              </span>
+            {{/if}}
+          </span>
+        {{/if}}
+      </a>
+      {{! Option Body }}
+      <div
+        id="{{format-html-id "collapse" "o" result.option.id}}"
+        class="collapse"
+        aria-labelledby="{{format-html-id "header" "o" result.option.id}}"
+        data-parent="#{{namespace}}"
+      >
+
+        <div class="card-body">
+          <div
+            class="tab-content"
+            id="{{format-html-id "collapse" "o" result.option.id}}-tabContent"
+          >
+            {{tool/data-table
+              items=option.visibleDetailValues
+              title=(t "nouns.details")
+            }}
+          </div>
+        </div>
+      </div>
+    {{else}}
+      <span class="detail-toggle">
+        <p class="title" style="display: flex; align-items: center;">
+          {{option.resultsLabel}}
+        </p>
+
+        {{#if currentDetailValue}}
+          <span class="labels">
+            <span class="stats pull-left">
+              <span class="label stat approval pull-right">
+                <span>{{currentDetailValue}}</span>
+              </span>
+            </span>
+          </span>
+        {{/if}}
+      </span>
+    {{/if}}
+  </div>
+</div>

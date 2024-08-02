@@ -1,0 +1,123 @@
+<div class="labeled-slider hidden-xs hidden-sm">
+  <div class="slider-labels">
+    <span class="pull-left"></span>
+    <span class="pull-right"></span>
+  </div>
+
+  <input
+    id={{inputId}}
+    type="text"
+    value={{sliderValue}}
+    class="slider-target"
+  />
+  <span id={{labelledBy}} class="hidden">Slider</span>
+
+  {{#if showRemove}}
+    <a
+      {{action "clearValue"}}
+      class="slider-remove visible-xs visible-sm slider-remove-vote-btn pull-right"
+      role="button"
+      tabindex="0"
+      onkeydown={{action 'clearValuesOnKeyDown'}}
+    >
+      {{t mobileRemovePrompt}}
+    </a>
+    <a
+      {{action "clearValue"}}
+      class="slider-remove visible-md visible-lg slider-remove-vote-btn pull-right"
+      role="button"
+      tabindex="0"
+      onkeydown={{action 'clearValuesOnKeyDown'}}
+    >
+      {{t removePrompt}}
+    </a>
+  {{/if}}
+
+
+</div>
+
+{{! Show condensed voting on mobile(pick one style in terms of UI) }}
+<div class="row col-sm-12 col-xs-12 hidden-md hidden-lg slider-on-mobile-container">
+  <button
+    type="button"
+    role="button"
+    data-target="#{{modalId}}"
+    data-toggle="modal"
+    class="customZIndex btn-lg btn-block btn btn-default btn-raised
+      {{if selectedAnswerId 'primary-accent-bg navigation-button'}}"
+      style={{selectedButtonStyle}}
+    >
+      {{#if displayAnswer}}
+        <span><strong>{{displayAnswer.caption}}</strong></span>
+      {{else}}
+        {{t "voting.prompt.touch_answer"}}
+      {{/if}}
+
+      <div class="ripple-container"></div>
+  </button>
+
+  <div
+    class="modal fade in ethelo-survey-button-modal max-zIndex"
+    id={{modalId}}
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-hidden="true"
+            tabindex="-1"
+          ><i class="material-icons">close</i></button>
+        </div>
+        <div class="modal-body">
+          <div class="row slider-on-mobile">
+            {{#each ticks.sliderItems as |item|}}
+              <div class="bootstrap-collapse-heading withripple panel-binary">
+                <button type="button"
+                        class="expansion-toggle collapsed navigation-button {{if (eq selectedAnswerId item.id)
+                                                                                 'primary-accent-bg'
+                                                                                 'voting-panel-button'}}">
+                  <div class="panel-heading-color row">
+                    <div class="col-xs-2 col-sm-2 col-md-1 col-lg-1">
+                       <span class="checkmark" {{action "saveModalAnswer" item}}>
+                         {{#if (eq selectedAnswerId item.formattedValue)}}
+                           <i class="material-icons check_circle"
+                              role="img" aria-label="Selected">check_circle</i>
+                         {{else}}
+                           <i class="material-icons secondary-accent-text circle" role="img"
+                              aria-label="Not Selected">circle</i>
+                         {{/if}}
+
+                       </span>
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2 persist-dividing-line"
+                      {{action "saveModalAnswer" item}}>
+                      <span class="h4 panel-binary__title pull-left wb-b-word">{{item.place}}</span>
+                    </div>
+                    <div class="expansion-toggle col-xs-9 col-sm-9 col-md-10 col-lg-10 row-voting  {{if
+                      (or beginCollapsed collapseOptions) 'collapsed'}} {{if (eq selectedAnswerId item.id)
+                                                                             'expansion-toggle-aria'}}"
+                         data-toggle="collapse" data-target="#{{item.id}}-collapse">
+                      <div class="text-center">
+                        <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 {{if (eq selectedAnswerId item.id)
+                                                                               'primary-accent-bg'}}"
+                          {{action "saveModalAnswer" item}}>
+                          {{item.tooltip}}
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </button>
+                <div class="ripple-container"></div>
+              </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

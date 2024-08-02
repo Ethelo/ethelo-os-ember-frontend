@@ -1,0 +1,96 @@
+// Ethelo Less Files
+// Just lifting the Bootstrap taxonomy for now
+
+// Sucking in the Bootstrap Material Design variables
+// as a quick fix for now. We should of course optimize
+// the style stack better as soon as possible
+@import "_colors";
+
+//Don't know why this is needed; fix for UD-638. The usual styles for comments
+//are being overridden but only for the inital comment (not the replies.) Why?
+//Find out and remove this maybe. TODO R&D FIXME
+
+.moderate .comment-item {
+    .row-picture {
+        display: inline-block;
+        img  {
+            width: 32px !important; //looks about right
+            border-radius: 100%;
+        }
+
+    }
+    .row-content {
+        display: inline-block;
+    }
+}
+
+@import "./ethelo-google-material-icons.less";
+@import "./bootstrap/bootstrap";
+@import "./bootstrap-material-design/bootstrap-material-design";
+@import "./bootstrap-material-design/ripples";
+
+// Import variables first
+@import "ethelo-variables";
+
+@import "ethelo-type";
+// @import "./bootstrap-material-design/ethelo-bmd-_variables.less";
+@import "ethelo-icons";
+@import "ethelo-navbar";
+@import "ethelo-bottom-nav-bar";
+@import "ethelo-media";
+@import "ethelo-hero";
+@import "ethelo-dropdowns";
+@import "ethelo-buttons";
+@import "ethelo-breadcrumbs";
+@import "ethelo-progress-bars";
+@import "ethelo-panels";
+@import "ethelo-expansion-panels";
+@import "ethelo-sliders";
+@import "ethelo-FAB-menu";
+@import "ethelo-animations";
+@import "ethelo-labels";
+@import "ethelo-likerts";
+@import "ethelo-utilities";
+@import "ethelo-hub";
+@import "ethelo-moderate";
+@import "ethelo-proposals";
+@import "ethelo-accessibility";
+
+/* existing component rethemes */
+@import "components/mixins-and-overrides";
+@import "components/collapse";
+@import "components/group-results-icons";
+@import "components/card-redesign";
+@import "components/scoring-details";
+@import "components/navbar";
+@import "components/navigation-buttons";
+@import "components/comments-and-proposals";
+@import "components/vote-panel";
+@import "components/sliders";
+@import "components/results";
+@import "components/results-redesign";
+@import "components/results-budget";
+@import "components/results-summary";
+@import "components/results-quadratic";
+@import "components/tabs-content-redesign";
+@import "components/survey";
+@import "components/survey-results";
+@import "components/support-distribution";
+@import "components/navigation";
+@import "components/login";
+@import "components/side-drawer";
+@import "components/page-title";
+@import "components/tab-pie-chart";
+@import "components/top-choice";
+@import "components/participant";
+@import "components/fixed";
+
+// A couple classes to make the
+// wireframe placeholders “responsive”
+@import "ethelo-responsive-wireframes";
+
+//"I'm glad we're going to the New UX soon" section
+
+@import "ethelo-hacks";
+
+@import "ethelo-options";

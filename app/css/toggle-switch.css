@@ -1,0 +1,27 @@
+.toggle-switch{
+  float: left;
+  font-size: 10pt;
+  cursor: pointer;
+}
+
+.bootstrap-switch-mini {
+  height: 15px;
+}
+
+.toggle-switch .selected {
+  color: #adadad;
+}
+
+.toggle-switch .unselected {
+  color: #FFF;
+}
+
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-default,
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-default {
+  background: #adadad;
+}
+
+.choice-list .toggle-switch {
+  float: none;
+  padding-top: 10px;
+}

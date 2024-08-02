@@ -1,0 +1,144 @@
+<div
+  class="container-fluid {{rankClass}} results-group-quadratic"
+  id={{page.componentId}}
+>
+  {{bootstrap/bootstrap-modal-balance}}
+
+  <!-- ROW ONE -->
+  <div class="row special" id="row1">
+    {{layout/left-column page=page}}
+
+    {{#layout/center-column page=page}}
+
+      {{tool/content-panel key="center" page=page}}
+
+      {{#if scenarioResults}}
+
+        <div
+          id="quadratic-panel-container"
+          class="panel panel-default show-default-view quadratic-results-panel"
+        >
+
+          <div class="panel-body">
+            <div class="row final-allocation-container">
+              <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 final-allocation">
+                <h3 class="">{{t
+                  "results.metrics.labels.final_allocation_global"
+                  amount=(format-value
+                    groupResult.finalAllocation
+                    format="dollars"
+                    nullDisplay="0"
+                  )
+                }}</h3>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="container-fluid header-container">
+                <div class="col-md-4 col-lg-4 col-sm-3 col-xs-3 quad title">
+                  <p class="title title-main" style="display: flex; ">
+                    <a {{action "changePrimaryStat" "optionCategory.title"}}>
+                      {{scopet "nouns.option_category"}}
+                      {{{if (eq this.primaryStat "optionCategory.title") this.sortIcon ''}}}
+                    </a>
+                  </p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3 quad seeds-assigned">
+                  <a {{action "changePrimaryStat" "seedsAssigned"}}>
+                    <span>
+                      {{t "results.metrics.labels.seeds_assigned"}}
+                      {{{if (eq this.primaryStat "seedsAssigned") this.sortIcon ''}}}
+                    </span></a>
+
+
+                </div>
+                <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3 quad positive-seed-votes-sum">
+                  <a {{action "changePrimaryStat" "positiveSeedVotesSum"}}>
+                    <span>
+                      {{t "results.metrics.labels.positive_seed_votes_sum"}}
+                      {{{if (eq this.primaryStat "positiveSeedVotesSum") this.sortIcon ''}}}
+                    </span></a>
+
+                </div>
+                <div class="col-md-2 col-lg-2 col-sm-3 col-xs-3 quad final-allocation">
+                  <a {{action "changePrimaryStat" "finalAllocation"}}>
+                    <span>
+                      {{t "results.metrics.labels.final_allocation"}}
+                      {{{if (eq this.primaryStat "finalAllocation") this.sortIcon ''}}}
+                    </span></a>
+
+                </div>
+              </div>
+            </div>
+            {{#each optionCategoryBreakdown as |result|}}
+              <div class="row">
+                <div class="container-fluid body-container">
+                  <div class="col-md-4 col-lg-4 col-sm-3 col-xs-3 quad title">
+                    <p
+                      class="title title-main"
+                      style="display: flex; "
+                    >{{result.optionCategory.resultsLabel}}</p>
+                  </div>
+                  <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3 quad seeds">
+                    <p class="stat seeds">
+                      {{t
+                        "results.metrics.labels.seeds_amount"
+                        amount=(format-value
+                          result.seedsAssigned format="number" nullDisplay="0"
+                        )
+                      }}
+                    </p>
+                  </div>
+                  <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3 quad positive-seed-votes">
+                    <p class="stat positive-seed-votes">
+                      {{t
+                        "results.metrics.labels.positive_votes_amount"
+                        amount=(format-value
+                          result.positiveSeedVotesSum
+                          format="number"
+                          nullDisplay="0"
+                        )
+                      }}
+                    </p>
+                  </div>
+                  <div class="col-md-2 col-lg-2 col-sm-3 col-xs-3 quad final-allocation">
+                    <p class="stat final-allocation">
+                      {{t
+                        "results.metrics.labels.allocated_amount"
+                        amount=(format-value
+                          result.finalAllocation
+                          format="big_dollars"
+                          nullDisplay="0"
+                        )
+                      }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            {{/each}}
+          </div>
+        </div>
+
+      {{else}}
+        {{#if noResultsMessage}}
+          <div class="alert alert-secondary" role="alert">
+            {{{t noResultsMessage}}}
+          </div>
+        {{/if}}
+      {{/if}}
+
+      {{tool/content-panel key="center_two" page=page}}
+
+    {{/layout/center-column}}
+
+    {{layout/right-column
+      page=page
+      decision=decision
+      pageCommentTarget=pageCommentTarget
+      pageCommentScope=pageCommentScope
+      hasSidebarPageComments=hasSidebarPageComments
+    }}
+
+  </div>
+  <!-- END OF ROW ONE -->
+</div>

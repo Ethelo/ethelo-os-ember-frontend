@@ -1,0 +1,13 @@
+<div class="panel-body signup-form">
+  <div class="col-sm-12">
+    <strong>{{t 'authentication.sign_up'}}</strong>
+    {{auth/register-form}}
+  </div>
+</div>
+<div class="panel-footer text-center">
+  {{t "authentication.existing_user"}}
+  <a href="#" {{action "setAuthTab" "login"}}
+     title="{{t 'accessibility.switch'}}">
+    {{t "authentication.link.sign_in"}}
+  </a>
+</div>

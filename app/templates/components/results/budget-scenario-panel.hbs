@@ -1,0 +1,229 @@
+{{#if showPanel}}
+  <a
+    role="button"
+    href="javascript:void(0)"
+    class="accordion-toggle panel-heading"
+    aria-controls="{{result.id}}-collapse-content"
+  >
+    <div class="col-md-5">
+      <h3 class="">{{scopet
+          "results.budget.scenario_panel.panel_title"
+          page.translationScope
+          defaultIsUnscoped=true
+        }}</h3>
+    </div>
+    <div
+      class="col-md-{{if isMultipleViewsInDropdown "4" "5"}}"
+      style="text-align: center;"
+    >
+      <a
+        class="whats-this-btn"
+        data-toggle="collapse"
+        href="#whatisthis-content"
+        role="button"
+        aria-expanded={{showWhatIsThisPanel}}
+        aria-controls="whatisthis-content"
+        {{action "toggleWhatIsThisPanel"}}
+      >{{scopet
+          "results.budget.scenario_panel.what_is_this_link"
+          page.translationScope
+          defaultIsUnscoped=true
+        }}
+        <span>
+          {{#if showWhatIsThisPanel}}
+            <i class="material-icons expand_less">expand_less</i>
+          {{else}}
+            <i class="material-icons expand_more">expand_more</i>
+          {{/if}}
+        </span>
+      </a>
+    </div>
+
+    <div
+      class="col-md-{{if isMultipleViewsInDropdown "3" "4"}}
+        panel-heading-right"
+      style="padding: 0;text-align: end;"
+    >
+      {{#if statsDisplay.showEtheloStat}}
+        <strong>
+          <span class="ethelo-number">
+            <i class="icon icon-ethelo"></i>
+            {{{tool/rescale-percent value=result.ethelo format="ethelo"}}}
+          </span>
+          <span>{{t "results.metrics.labels.ethelo"}}</span>
+        </strong>
+      {{/if}}
+      {{#if statsDisplay.showSupportStat}}
+        <p>
+          <span class="support-number">
+            <i class="icon icon-support"></i>
+            {{{tool/rescale-percent value=result.support format="support"}}}
+          </span>
+          <span>{{t "results.metrics.labels.support"}}</span>
+        </p>
+      {{/if}}
+
+      {{#if statsDisplay.showVoterPercentStat}}
+        <strong>
+          <span class="voter-percent-number">
+            <i class="icon icon-voter-percent"></i>
+            {{{tool/rescale-percent
+              value=result.voterPercent
+              format="voterPercent"
+            }}}
+          </span>
+          <span>{{t "results.metrics.labels.voter_percent"}}</span>
+        </strong>
+      {{/if}}
+
+      {{#if statsDisplay.showApprovalStat}}
+        <strong>
+          <span class="approval-number">
+            <i class="icon icon-approval"></i>
+            {{{tool/rescale-percent value=result.approval format="approval"}}}
+          </span>
+          <span>{{t "results.metrics.labels.approval"}}</span>
+        </strong>
+      {{/if}}
+      {{#if statsDisplay.showDissonanceStat}}
+        <strong>
+          <span class="dissonance-number">
+            <i class="icon icon-dissonance"></i>
+            {{{tool/rescale-percent
+              value=result.dissonance
+              format="dissonance"
+            }}}
+          </span>
+          <span>{{t "results.metrics.labels.dissonance"}}</span>
+        </strong>
+      {{/if}}
+
+    </div>
+
+    {{! DropDown }}
+    {{#if isMultipleViewsInDropdown}}
+      <div class="col-md-2 panel-body scenario-panel">
+        <div class="scenario-panel scenario-new-dropdown dropdown">
+          <button
+            class="btn-scenario-new-dropdown dropdown-toggle"
+            type="button"
+            {{!-- href="javascript:void(0)" --}}
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <span class="expand-icon">
+              <i
+                class="circle-toggle-close material-icons expand_less"
+              >expand_less</i>
+              <i
+                class="circle-toggle-close material-icons expand_more"
+              >expand_more</i>
+            </span>
+          </button>
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            {{#if statsDisplay.showPeopleChart}}
+              <a
+                href="javascript:void(0)"
+                role="button"
+                class="dropdown-item people-dropdown"
+                title={{t 'accessibility.switch'}}
+                {{action "setCurrentView" "people"}}
+              >{{t "results.metrics.distribution"}}</a>
+            {{/if}}
+            {{#if statsDisplay.showHistogramChart}}
+              <a
+                href="javascript:void(0)"
+                role="button"
+                class="dropdown-item histogram-dropdown"
+                title={{t 'accessibility.switch'}}
+                {{action "setCurrentView" "histogram"}}
+              >{{t "results.metrics.histogram"}}</a>
+            {{/if}}
+            {{#if statsDisplay.showMetricsChart}}
+              <a
+                href="javascript:void(0)"
+                role="button"
+                class="dropdown-item metrics-dropdown"
+                title={{t 'accessibility.switch'}}
+                {{action "setCurrentView" "metrics"}}
+              >{{t "results.metrics.title"}}</a>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    {{/if}}
+  </a>
+
+  <div class="scenario-panel-default">
+    {{#if showWhatIsThisPanel}}
+      <div
+        class="collapse panel panel-default
+          {{if showWhatIsThisPanel "d-block"}}"
+        id="whatisthis-content"
+        aria-expanded={{showWhatIsThisPanel}}
+      >
+        <div class="card card-body panel-body">
+          {{{scopet
+            "results.budget.scenario_panel.what_is_this_content_html"
+            page.translationScope
+            defaultIsUnscoped=true
+          }}}
+        </div>
+      </div>
+    {{/if}}
+    <div id="scenario-detail">
+      <div class="tab-content" id="scenario-detail-tabContent">
+        {{#if showMetrics}}
+          <div
+            role="tabpanel"
+            class="tab-content-metrics"
+            id="scenario-detail-metrics"
+            aria-labelledby="#scenario-detail-metrics-tab"
+          >
+            {{tool/metrics-table items=result.metrics}}
+          </div>
+        {{/if}}
+
+        {{#if showHistogramChart}}
+          <div
+            role="tabpanel"
+            class="tab-content-histogram"
+            id="scenario-detail-histogram"
+            aria-labelledby="#scenario-detail-histogram-tab"
+          >
+            {{results/histogram-bar-chart result=result}}
+          </div>
+        {{/if}}
+
+        {{#if showPeopleChart}}
+          <div
+            role="tabpanel"
+            class="tab-content-people"
+            id="scenario-detail--people"
+            aria-labelledby="#scenario-detail--people-tab"
+          >
+            {{results/histogram-people-chart result=result}}
+          </div>
+        {{/if}}
+      </div>
+    </div>
+
+    {{! ShowVoterCount }}
+    {{#if statsDisplay.showTotalVotesStat}}
+      <div class="votes">
+        <div class="votes-header votes-header-best-results">
+          <div class="text-block">
+            <a>
+              <i class="material-icons person">person</i>
+              <span>{{t "results.metrics.voter_count" count=totalVotes}}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    {{/if}}
+  </div>
+
+{{/if}}

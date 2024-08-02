@@ -1,0 +1,14 @@
+<div
+  class="likert bin-{{binCount}} {{color}} {{size}} {{type}}"
+  data-toggle="tooltip"
+  data-placement="top"
+  title="{{tooltip}}"
+>
+  {{#each activeBinArray as |item|}}
+    <div class="likert-block filled"></div>
+  {{/each}}
+
+  {{#each inactiveBinArray as |item|}}
+    <div class="likert-block"></div>
+  {{/each}}
+</div>

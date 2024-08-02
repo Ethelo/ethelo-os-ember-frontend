@@ -1,0 +1,51 @@
+<div class="container-fluid link-list-page" id={{page.componentId}}>
+  {{bootstrap/bootstrap-modal-balance}}
+
+  <!-- ROW ONE -->
+  <div class="row special" id="row1">
+    {{layout/left-column page=page}}
+
+    {{#layout/center-column page=page}}
+
+      {{tool/content-panel key='center' page=page}}
+
+      <div class="container-fluid">
+        <div class="row inner hub-container">
+          {{#each childPages as |page index|}}
+
+            {{#if page.doNotLink}}
+              {{tool/page-square page=page}}
+            {{else}}
+              {{#link-to 'page' page id=linkId}}
+                {{tool/page-square page=page}}
+              {{/link-to}}
+            {{/if}}
+          {{/each}}
+        </div>
+      </div>
+
+      {{#if hasCenterPageComments}}
+        {{comments/collapse-panel
+          id='page-comments-position-center'
+          page=page
+          titleOverride=page.hasPageCommentTitleOverride
+          target=pageCommentTarget
+          targetScope='comments.pages'
+        }}
+      {{/if}}
+
+      {{tool/content-panel key='center_two' page=page}}
+
+    {{/layout/center-column}}
+
+    {{layout/right-column
+      page=page
+      decision=decision
+      pageCommentTarget=pageCommentTarget
+      pageCommentScope=pageCommentScope
+      hasSidebarPageComments=hasSidebarPageComments
+    }}
+
+  </div>
+  <!-- END OF ROW ONE -->
+</div>

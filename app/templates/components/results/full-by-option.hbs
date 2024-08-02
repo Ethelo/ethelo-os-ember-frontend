@@ -1,0 +1,20 @@
+<div class="{{namespace}}-option">
+  {{#each optionBreakdown as |result|}}
+      {{results/result-card
+        withUser=withUser
+        parentCount=parentCount
+        target=result.option
+        option=result.option
+        idKey=(format-html-id  "gr-option" result.option.id)
+        result=result
+        statsDisplay=statsDisplay
+        showHeaderStats=true
+        page=page
+        showDetails=statsDisplay.showOptionStats
+        namespace=namespace
+        hasCriteriaSubsection=hasCriteriaSubsection
+        scenarioResults=scenarioResults
+       }}
+
+  {{/each}}
+</div>

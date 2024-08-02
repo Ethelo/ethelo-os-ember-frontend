@@ -1,0 +1,16 @@
+{{#if decision.startDate}}
+  {{#if decision.endDate}}
+    {{t 'dates.range'
+        startDate=(format-date decision.startDate 'MMMM Do YYYY, h:mma')
+        endDate=(format-date decision.endDate 'MMMM Do YYYY, h:mma')
+    }}
+ {{else}}
+    {{t 'dates.starting' date=(format-date decision.startDate 'MMMM Do YYYY, h:mma')}}
+  {{/if}}
+{{else}}
+  {{#if decision.endDate}}
+    {{t 'dates.ending' date=(format-date decision.endDate 'dddd, MMMM Do YYYY hA')}}
+  {{else}}
+    {{t 'dates.tbd'}}
+  {{/if}}
+{{/if}}

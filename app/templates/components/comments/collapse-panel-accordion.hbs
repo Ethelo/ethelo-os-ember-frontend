@@ -1,0 +1,19 @@
+{{#bootstrap/bootstrap-accordion-item namespace='accordion'
+  id=panelId
+  title=(scopet 'header' targetScope translationScope defaultIsUnscoped=true default='empty_default')
+  beginCollapsed=false
+  isOpen=isOpen
+  elementAcc='page-comments-position-sidebar'
+}}
+  {{comments/list-parents
+    target=target
+    target2=target2
+    orderCommentsByLikes=page.hasCommentOrderLikes
+    includeCommentForm=true
+    orderCommentsByLikes=page.hasCommentOrderLikes
+    titleOverride=titleOverride
+    contentPrompt=(scopet 'content_prompt' targetScope translationScope defaultIsUnscoped=true default='empty_default')
+    titlePrompt=(scopet 'title_prompt' targetScope translationScope defaultIsUnscoped=true default='empty_default')
+    instruct=(scopet 'instruct_html' targetScope translationScope defaultIsUnscoped=true default='empty_default')
+  }}
+{{/bootstrap/bootstrap-accordion-item}}

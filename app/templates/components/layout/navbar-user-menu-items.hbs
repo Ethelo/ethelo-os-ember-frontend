@@ -1,0 +1,67 @@
+{{#if registry.decisionUser.canSeeAdmin}}
+
+  <li class="withripple">
+    <a href="{{configureLink.adminLink}}"
+       target="_blank" title={{t 'accessibility.opens_in_new_tab'}}>
+      {{configureLink.caption}}
+    </a>
+    <div class="ripple-container"></div>
+  </li>
+  {{#if registry.isPreview}}
+    <li class="withripple hidden-sm hidden-xs">
+      <a href="{{publishedLink.adminLink}}"
+         target="_blank" title={{t 'accessibility.opens_in_new_tab'}}>
+        {{publishedLink.caption}}
+      </a>
+      <div class="ripple-container"></div>
+    </li>
+  {{else}}
+
+    {{#if previewLink}}
+      <li class="withripple hidden-sm hidden-xs">
+        <a href="{{previewLink.adminLink}}"
+           target="_blank" title={{t 'accessibility.opens_in_new_tab'}}>
+          {{previewLink.caption}}
+        </a>
+        <div class="ripple-container"></div>
+      </li>
+    {{/if}}
+  {{/if}}
+{{/if}}
+
+{{#if canSeeProfile}}
+  <li {{action 'sendToMyProfile' target=menu}}
+    class="withripple">
+    <a href="#" {{action 'sendToMyProfile' target=menu}}
+       class="user-profile">
+      {{t "navigation.account"}}
+    </a>
+    <div class="ripple-container"></div>
+  </li>
+  <li {{action 'signOut' true target=authService }}
+    class="withripple">
+    <a href="#" {{action 'signOut' true target=authService }}
+       class="user-signout"
+       title={{t 'accessibility.logout'}}>
+      {{t "authentication.sign_out"}}
+    </a>
+    <div class="ripple-container"></div>
+  </li>
+{{else}}
+  <li {{action 'sendToSignUp' target=authService}} class="withripple">
+    <a href="#" {{action 'sendToSignUp' target=authService}}
+       class="user-secure">
+      {{t "authentication.sign_up"}}
+    </a>
+    <div class="ripple-container"></div>
+  </li>
+
+  <li {{action 'sendToSignIn' target=authService}} class="withripple">
+    <a href="#" {{action 'sendToSignIn' target=authService}}
+       class="user-signin"
+    >
+      {{t "authentication.sign_in"}}
+    </a>
+    <div class="ripple-container"></div>
+  </li>
+{{/if}}

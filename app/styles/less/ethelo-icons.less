@@ -1,0 +1,160 @@
+// Using Google Material Icons
+// Searchable library and classes here:
+// https://design.google.com/icons/
+
+i {
+  color: @iconColor;
+}
+
+// We like to flip some of the icons before we use them
+.icon-flipped {
+  -ms-transform: rotate(180deg); /* IE 9 */
+  -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+  transform: rotate(180deg);
+}
+
+.icon {
+  font-family: 'icomoon' !important;
+  font-size: 77% !important;
+  font-style: normal;
+  color: #516BA6;
+  &.icon-ethelo {
+    &:before {
+      content: "\e905";
+    }
+  }
+  &.icon-approval {
+    &:before {
+      content: "\e903";
+    }
+  }
+  &.icon-voter-percent {
+    &:before {
+      content: "\e900";
+    }
+  }
+  &.icon-dissonance {
+    &:before {
+      content: "\e904";
+    }
+  }
+
+  &.icon-support {
+    &:before {
+      content: "\e906";
+    }
+  }
+  &.icon-emptycheckbox{
+    &:before {
+      content:"\e902"
+    }
+  }
+  &.icon-halfcheckbox{
+    &:before {
+      content:"\e901"
+    }
+  }
+  &.icon-fullcheckbox{
+    &:before {
+      content:"\e900"
+    }
+  }
+  &.icon-nobutton {
+    font-size: 100% !important;
+    position: relative;
+  }
+  &.icon-nobutton .path1:before {
+    content: "\e908";
+  }
+  &.icon-nobutton .path2:before {
+    content: "\e909";
+    margin-left: -1.0205078125em;
+    color: #fff;
+  }
+  &.icon-nobutton .path3:before {
+    content: "\e90a";
+    margin-left: -1.0205078125em;
+    color: #fff;
+  }
+
+  &.icon-cog-wheel-silhouette .path1:before {
+    content: "\e907";
+    color: #60ce56;
+  }
+  &.icon-cog-wheel-silhouette .path2:before {
+    content: "\e90b";
+    color: #fdfdfd;
+    margin-left: -1.0390625em;
+  }
+}
+
+.path {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+//------ social share icons ------//
+/* Mixin */
+.transition (@prop: all, @time: 1s, @ease: linear) {
+  -webkit-transition: @prop @time @ease;
+     -moz-transition: @prop @time @ease;
+      -ms-transition: @prop @time @ease;
+       -o-transition: @prop @time @ease;
+          transition: @prop @time @ease;
+}
+
+.share {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 15px 0px;
+}
+
+.share-icon {
+  .transition(100ms ease-in-out 0s);
+}
+
+.share-icon:hover {
+  transform: scale(1.05);
+}
+
+.share-button {
+  svg {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+.copy_link {
+  position: relative;
+}
+
+.copy_link:after {
+  content: 'Link copied!';
+  position: absolute;
+  bottom: calc(294% + 6px);
+  left: 42%;
+  padding: 5px 10px;
+  white-space: nowrap;
+  background-color: rgba(0,0,0,.72);
+  color: #fff;
+  font-size: 12.6px;
+  border-radius: 4px;
+  box-shadow: 0 0 0 -12px rgba(0, 0, 0, 0);
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transform: translate(-50%, 12px);
+     -moz-transform: translate(-50%, 12px);
+      -ms-transform: translate(-50%, 12px);
+       -o-transform: translate(-50%, 12px);
+          transform: translate(-50%, 12px);
+ }
+
+.copy_link.is-coped:after {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  opacity: 1;
+}
+
+
+

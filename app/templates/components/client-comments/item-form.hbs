@@ -1,0 +1,40 @@
+<div class="instruct">{{{instruct}}}</div>
+<div class="form-comment-container-outer">
+  {{#if registry.user.avatar}}
+    <div class="row-picture">
+      <img src="{{registry.user.avatar}}" title="{{t 'nouns.avatar'}}" class="circle">
+    </div>
+  {{/if}}
+  <div class="form-comment-container-inner">
+    <div {{action 'expandButtonBar'}} class="is-empty form-comment">
+      {{textarea rows=1 value=title placeholder=titlePrompt maxlength=100
+                  title=(t "comments.title_label") class="form-control textarea-title"}}
+      {{#if titleError}}
+        <p class="help-block">{{t titleError}}</p>
+      {{/if}}
+
+      {{textarea rows=1 value=content placeholder=contentPrompt
+                  title=(t "comments.content_label") class="form-control textarea-content"}}
+      {{#if buttonBarExpanded}}
+        {{#if contentError}}
+          <p class="help-block">{{t contentError}}</p>
+        {{/if}}
+      {{/if}}
+    </div>
+  </div>
+</div>
+
+{{#if buttonBarExpanded}}
+  <div class="clearfix pull-right">
+    {{#if showClientCommentForm}}
+        <button {{action 'post'}}
+          class="comment-section-btns btn-post btn-xs pull-right btn btn-raised btn-default">
+          {{#if existingClientComment}}
+            {{t 'comments.update_button'}}
+          {{else}}
+            {{t 'comments.post_button'}}
+          {{/if}}
+        </button>
+    {{/if}}
+  </div>
+{{/if}}

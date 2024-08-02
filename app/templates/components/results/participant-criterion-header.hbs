@@ -1,0 +1,31 @@
+<div id="{{headerId}}" class="participant-header">
+  <div class="criterion">
+    <p
+      class="{{if truncateTitles "truncate-titles"}} pr-title"
+      title="{{if truncateTitles target.title}}"
+    >{{target.title}}</p>
+    <div class="indicators right">
+      <div
+        class="tab-pie pie-percent-{{percentage
+            result.normalizedAverageWeight
+            true
+          }}"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="{{t "results.weighting"}}: {{percentage
+          result.normalizedAverageWeight
+          false
+        }}"
+      ></div>
+      {{#if enabledLikerts}}
+        {{results/likert-image
+          value=result.support
+          format="support"
+          color="light"
+          type="pr-criterion-likert"
+        }}
+      {{/if}}
+
+    </div>
+  </div>
+</div>

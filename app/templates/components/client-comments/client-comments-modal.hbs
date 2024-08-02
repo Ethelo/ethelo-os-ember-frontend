@@ -1,0 +1,42 @@
+<div class="modal fade" id="clientcommentsmodalwrapper" tabindex="-1" role="dialog" aria-labelledBy="client-comments-modal-label">
+
+  <div class="modal-dialog">
+    <div class="modal-content modal-panel">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        {{target.title}}
+        <h2>{{t "client_comment.modal_title"}}</h2>
+      </div>
+      <div class="modal-body">
+        <ul class="list-group comments" id={{clientCommentListId}}>
+          <li class="list-group-item new-comment-container">
+            {{client-comments/item-form
+              contentPrompt=(scopet 'client_comment.content')
+              titlePrompt=(scopet 'client_comment.title')
+              target=target
+            }}
+          </li>
+
+          {{#each visibleItems as |clientComment|}}
+            {{client-comments/item-display
+              clientComment=clientComment target=target
+            }}
+          {{/each}}
+        </ul>
+
+        <span {{action 'scrollToForm' on='touchStart'}}>
+            <a href="#" {{action 'scrollToForm'}}
+               title={{t 'accessibility.scroll_form'}} class="btn-primary btn"
+            >
+              <small>{{t 'comments.link_to_new'}}</small>
+            </a>
+        </span>
+        {{#if isLoading}}
+          {{tool/loading-spinner}}
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</div>

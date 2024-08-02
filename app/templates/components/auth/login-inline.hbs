@@ -1,0 +1,32 @@
+{{#if allowsSignup}}
+  <div class="btn-group btn-group-justified">
+    <a href="#"  {{action 'setAuthTab' 'login'}}
+       title="{{t 'accessibility.switch'}}"
+       class="btn active">
+      {{t 'authentication.sign_in'}}
+    </a>
+    <a href="#" {{action 'setAuthTab' 'register'}}
+       title="{{t 'accessibility.switch'}}"
+       class="btn">
+      {{t 'authentication.sign_up'}}
+    </a>
+  </div>
+{{/if}}
+
+<div class="panel-body signin-form">
+  {{#unless allowsSignup}}
+    <strong>{{t 'authentication.sign_in'}}</strong>
+  {{/unless}}
+  {{auth/login-form}}
+</div>
+{{#if allowsSignup}}
+
+  <div class="panel-footer text-center">
+    {{t 'authentication.new_user'}}
+    <a href="#" {{action 'setAuthTab' 'register'}}
+       title="{{t 'accessibility.switch'}}">
+      {{t 'authentication.link.sign_up'}}</a>
+    {{t 'authentication.fast_easy_free'}}
+
+  </div>
+{{/if}}

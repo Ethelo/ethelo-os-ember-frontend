@@ -1,0 +1,87 @@
+{{#if displayCriteria}}
+  <div id="pr-option{{result.option.id}}">
+    <a
+      role="button"
+      data-toggle="collapse"
+      aria-expanded="true"
+      class="option detail-toggle
+        {{if (eq statsDisplay.showCriterionStats "collapsed") "collapsed"}}
+        {{if displayCriteria "" "p-e-none"}}"
+      href="#collapse-o{{result.option.id}}"
+      aria-controls="#collapse-o{{result.option.id}}"
+    >
+
+      <span
+        class="{{if truncateTitles "truncate-titles"}} pr-title"
+        title="{{if truncateTitles result.option.resultsLabel}}"
+      >
+        {{#link-to "page" result.linkedMenuPage
+          (query-params anchor=result.anchorValue filter0=null filter1=emptyFilter filter2=emptyFilter filter3=emptyFilter filter4=emptyFilter )
+          dataToggle="tooltip"
+        }}
+          {{result.option.resultsLabel}}
+        {{/link-to}}
+      </span>
+
+      <span class="with-criteria">
+        <span class="criterias-weight">{{tool/rescale-percent
+            value=result.support
+            format="support"
+          }}</span>
+
+        <span class="expand-icon">
+          <span class="toggle-open">
+            <i class="material-icons expand_less">expand_less</i>
+          </span>
+          <span class="toggle-close">
+            <i class="material-icons expand_more">expand_more</i>
+          </span>
+        </span>
+      </span>
+    </a>
+  </div>
+  <div
+    class="collapse
+      {{unless (eq statsDisplay.showCriterionStats "collapsed") "in"}}"
+    data-parent="pr-option{{result.option.id}}"
+    id="collapse-o{{result.option.id}}"
+  >
+    {{results/participant-by-criterion
+      option=result.option
+      parentCount=criterionParentCount
+      page=page
+      statsDisplay=statsDisplay
+      namespace=namespace
+      scenarioResults=scenarioResults
+      withUser=withUser
+      truncateTitles=truncateTitles
+      enabledLikerts=enabledLikerts
+    }}
+  </div>
+{{else}}
+  <div id="pr-option{{result.option.id}}" class="d-flex flex-fd-row flex-justify-sb">
+    <span
+      class="option detail-toggle
+        {{if truncateTitles "truncate-titles"}}
+        pr-title"
+      title="{{if truncateTitles result.option.resultsLabel}}"
+    >
+      {{#link-to "page" result.linkedMenuPage
+        (query-params anchor=result.anchorValue filter0=null filter1=emptyFilter filter2=emptyFilter filter3=emptyFilter filter4=emptyFilter)
+        dataToggle="tooltip"
+      }}
+        {{result.option.resultsLabel}}
+      {{/link-to}}
+    </span>
+    {{#if enabledLikerts}}
+      <span class="option with-criteria">
+        {{results/likert-image
+          value=result.support
+          color="light"
+          format="support"
+          type="pr-option-likert"
+        }}
+      </span>
+    {{/if}}
+  </div>
+{{/if}}

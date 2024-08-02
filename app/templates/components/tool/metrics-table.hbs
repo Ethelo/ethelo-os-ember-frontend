@@ -1,0 +1,29 @@
+{{#if title}}
+  <a href="#{{elementId}}-collapse-content" class="accordion-toggle" role="button" data-toggle="collapse"
+     aria-controls="{{elementId}}-collapse-content">
+    {{title}}
+  </a>
+{{/if}}
+
+{{#if hasValues}}
+  <div class="collapse in" id="{{elementId}}-collapse-content">
+    <table class="table">
+      {{#if labels}}
+        <thead>
+        <tr>
+          {{#each labels as |label|}}
+            <th>{{label}}</th>
+          {{/each}}
+        </tr>
+        </thead>
+      {{/if}}
+      <tbody>
+        {{#each preparedItems as |item|}}
+          {{tool/metrics-table-item item=item toggleHint=(action 'toggleHint') hintExpanded=(eq activeItemId item.id)}}
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+{{else}}
+  {{t 'data_table.empty'}}
+{{/if}}

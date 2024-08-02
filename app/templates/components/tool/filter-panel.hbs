@@ -1,0 +1,95 @@
+{{#if showPanel}}
+  {{#bootstrap/bootstrap-collapse
+    title=(t 'style.filters.title')
+    beginCollapsed=collapseFilters
+    panelId=panelId
+  }}
+
+    {{{t 'style.filters.intro_html'}}}
+
+    {{#if filter1Configured}}
+      {{tool/filter-checkboxes
+        inputId='filter1' filterId='filter1'
+        caption=filter1Caption keywords=filter1Keywords selected=selectedFilters.filter1
+        updateFilter=updateFilter
+      }}
+    {{/if}}
+
+    {{#if filter2Configured}}
+      {{tool/filter-checkboxes
+        inputId='filter2' filterId='filter2'
+        caption=filter2Caption keywords=filter2Keywords selected=selectedFilters.filter2
+        updateFilter=updateFilter
+      }}
+    {{/if}}
+
+    {{#if filter3Configured}}
+      {{tool/filter-checkboxes
+        inputId='filter3' filterId='filter3'
+        caption=filter3Caption keywords=filter3Keywords selected=selectedFilters.filter3
+        updateFilter=updateFilter
+      }}
+    {{/if}}
+
+    {{#if filter4Configured}}
+      {{tool/filter-checkboxes
+        inputId='filter4' filterId='filter4'
+        caption=filter4Caption keywords=filter4Keywords selected=selectedFilters.filter4
+        updateFilter=updateFilter
+      }}
+    {{/if}}
+
+    {{#if votingFilterConfigured}}
+
+      <div class="form-group filters qradio" id="votingfilters-div">
+
+        <a class="expansion-toggle"
+           data-target="#boxesfilter0" data-toggle="collapse" aria-expanded="false">
+          <strong>{{t 'style.filters.voting_title'}}</strong>
+        </a>
+
+        <div class="collapse" id="boxesfilter0" aria-expanded="false">
+          <div class="radio-group" role="radiogroup" aria-labelledby="filter0-label">
+            <div class="radio radio-primary">
+              {{#radio-button groupValue=selectedFilters.filter0 name='filter0'
+                              changed=(action "updateFilter" 'filter0')
+                              value=null}}
+                <span class="circle"></span>
+                <span class="check"></span>
+                {{t 'style.filters.show_all'}}
+              {{/radio-button}}
+            </div>
+            <div class="radio radio-primary">
+              {{#radio-button groupValue=selectedFilters.filter0 name='filter0'
+                              changed=(action "updateFilter" 'filter0')
+                              value='voted'}}
+                <span class="circle"></span>
+                <span class="check"></span>
+                {{t 'style.filters.voted'}}
+              {{/radio-button}}
+            </div>
+            <div class="radio radio-primary">
+              {{#radio-button groupValue=selectedFilters.filter0 name='filter0'
+                              changed=(action "updateFilter" 'filter0')
+                              value='unvoted'}}
+                <span class="circle"></span>
+                <span class="check"></span>
+                {{t 'style.filters.unvoted'}}
+              {{/radio-button}}
+            </div>
+
+          </div>
+          {{tool/material-reinit}}
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    {{/if}}
+    {{#if showClearFilters}}
+      <br/>
+      <a href="#" {{action 'clearFilters'}} role="button">
+        {{t 'style.filters.clear_filters'}}
+      </a>
+    {{/if}}
+
+  {{/bootstrap/bootstrap-collapse}}
+{{/if}}

@@ -1,0 +1,45 @@
+<ul class="list-group comments" id={{commentListId}}>
+  {{#if allowNewComments}}
+    <li class="list-group-item new-comment-container">
+      {{comments/item-form
+        instruct=instruct contentPrompt=contentPrompt titlePrompt=titlePrompt
+        titleOverride=titleOverride
+        target=target target2=target2
+      }}
+    </li>
+  {{/if}}
+
+  {{#if itemsToHide}}
+    {{comments/hide-items term=(t 'nouns.comment' count=2) hideAll=(action 'hideAll')}}
+  {{/if}}
+
+  {{#each visibleItems as |comment|}}
+    {{comments/item-display
+      comment=comment target=target target2=target2
+      canReply=allowNewComments titleOverride=titleOverride
+      orderCommentsByLikes=orderCommentsByLikes
+    }}
+  {{/each}}
+</ul>
+
+{{#if hasMany}}
+  {{#if allowNewComments}}
+    <span {{action 'scrollToForm' on='touchStart'}}>
+        <a href="#" {{action 'scrollToForm'}}
+           class="btn-primary btn" title={{t 'accessibility.scroll_form'}}>
+          <small>{{t 'comments.link_to_new'}}</small>
+        </a>
+        </span>
+  {{/if}}
+{{/if}}
+{{#if canViewMore}}
+  {{comments/view-more-items
+    term=(t 'nouns.comment' count=2)
+    showNext=showNext
+    total=totalCount
+    viewMore=(action 'viewMore')
+  }}
+{{/if}}
+{{#if isLoading}}
+  {{tool/loading-spinner}}
+{{/if}}

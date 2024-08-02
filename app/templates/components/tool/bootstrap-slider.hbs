@@ -1,0 +1,31 @@
+<div class="slider-labels">
+  <span class="pull-left">{{labelMin}}</span>
+  <span class="pull-right">{{labelMax}}</span>
+</div>
+
+{{#if showDragHint}}
+  <div class="drag-hint">{{t "voting.prompt.slide"}}</div>
+{{/if}}
+
+<input id={{inputId}} type="text" value={{sliderValue}} class="slider-target">
+<span id={{labelledBy}} class="hidden">Slider</span>
+
+<div class="slider-percentage">
+  {{sliderValue}}
+</div>
+{{#if showRemove}}
+  <a {{action "clearValue"}}
+    class="slider-remove visible-xs visible-sm slider-remove-vote-btn pull-right"
+    tabindex="0"
+    onkeydown={{action 'clearValuesOnKeyDown'}}
+    role="button">
+    {{t mobileRemovePrompt}}
+  </a>
+  <a {{action "clearValue"}}
+    class="slider-remove visible-md visible-lg slider-remove-vote-btn pull-right"
+    tabindex="0"
+    onkeydown={{action 'clearValuesOnKeyDown'}}
+    role="button">
+    {{t removePrompt}}
+  </a>
+{{/if}}

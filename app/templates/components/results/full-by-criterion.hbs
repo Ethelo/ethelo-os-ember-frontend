@@ -1,0 +1,17 @@
+<div id="{{namespace}}-criterion">
+
+  {{#each criterionBreakdown as |result|}}
+    {{results/result-card
+      parentCount=parentCount
+      target=result.criterion
+      idKey=(format-html-id  "gr-criteria" result.criterion.id)
+      statsDisplay=statsDisplay
+      showHeaderStats=true
+      result=result
+      page=page
+      namespace=namespace
+      hasCriteriaSubsection=hasCriteriaSubsection
+      scenarioResults=scenarioResults
+    }}
+  {{/each}}
+</div>

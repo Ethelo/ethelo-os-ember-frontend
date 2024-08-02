@@ -1,0 +1,35 @@
+<div class="topic-comments-container">
+  {{#if (or statsDisplay.showOptionVoterCount statsDisplay.showOptionComments)}}
+    {{comments/list-parents-results
+      target=optionCategory.optionCategory
+      showVoterCount=statsDisplay.showOptionVoterCount
+      showComments=statsDisplay.showOptionComments
+      peopleCount=totalVotesOnTopic
+      titleOverride=false
+      target2=optionCategory.option
+      includeCommentForm=false
+      orderCommentsByLikes=page.hasCommentOrderLikes
+      contentPrompt=(scopet
+        "content_prompt"
+        "comments.options"
+        translationScope
+        defaultIsUnscoped=true
+        default="empty_default"
+      )
+      titlePrompt=(scopet
+        "title_prompt"
+        "comments.options"
+        translationScope
+        defaultIsUnscoped=true
+        default="empty_default"
+      )
+      instruct=(scopet
+        "instruct_html"
+        "comments.options"
+        translationScope
+        defaultIsUnscoped=true
+        default="empty_default"
+      )
+    }}
+  {{/if}}
+</div>

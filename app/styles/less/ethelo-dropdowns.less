@@ -1,0 +1,19 @@
+
+// *********** FAB MENU **************
+// Rough positioning for the FAB dropup menu
+.ethelo-fab-menu {
+	.dropdown-menu {
+		bottom: -5px;
+	}
+}
+
+
+/* fix for UD-598 and other stuff. Basically a flexbox that forces the dropdown arrow to behave. */
+
+.ethelo-dropdown {
+  display: flex;
+  flex-direction: row; 
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}

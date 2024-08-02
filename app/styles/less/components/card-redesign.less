@@ -1,0 +1,244 @@
+.card.result-card {
+  margin-top: 0;
+  margin-bottom: 1px;
+
+  .card-header {
+    .title-main,
+    .labels-main {
+      background-color: #F7F7F8;
+    }
+  }
+
+  .collapsed .toggle-open,
+  .toggle-close  {
+    display: none;
+  }
+
+  .collapsed .toggle-close,
+  .toggle-open {
+    display: block;
+  }
+
+  .detail-toggle {
+    margin-top: 0;
+    margin-bottom: 1px;
+    background-color: #FFFFFF;
+
+    .title,
+    .labels {
+      display: block;
+      flex-basis: 0;
+      width: 50%;
+    }
+
+    @media (max-width: 600px) {
+      flex-wrap: wrap;
+
+      .title,
+      .labels {
+        padding: 10px !important;
+        flex-basis: 100%;
+      }
+    }
+
+    .title {
+      padding: 16px 30px;
+
+      &.title-main {
+        display: flex;
+        align-items: center;
+        font-size: 26px;
+      }
+    }
+
+    .labels {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 16px 0;
+      margin-left: 0;
+
+      .stats {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        width: 80%;
+      }
+
+      .expand-icon {
+        width: 20%;
+
+        span {
+          padding-right: 0;
+
+          &.circle-toggle-open,
+          &.circle-toggle-close {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid #516BA6;
+            line-height: 44px;
+            text-align: center;
+            padding: 0;
+            float: right;
+            margin-right: 12px;
+            i {
+              margin-top: -4px;
+            }
+          }
+        }
+      }
+
+      .label {
+        padding-top: 0;
+        padding-bottom: 0;
+        background-color: transparent;
+        color: @label-stat;
+
+        &.support {
+          font-size: 16px;
+          line-height: 28px;
+        }
+
+        &.ethelo {
+          font-size: 16px;
+          line-height: 28px;
+        }
+
+        &.approval {
+          font-size: 16px;
+          line-height: 28px;
+        }
+
+        &.dissonance {
+          font-size: 16px;
+          line-height: 28px;
+        }
+        &.voter-percent {
+          font-size: 16px;
+          line-height: 28px;
+        }
+        
+        i {
+          font-size: 32px;
+          line-height: 28px;
+          color: @label-stat;
+        }
+      }
+    }
+
+    .title {
+      margin-bottom: 0;
+      font-size: 16px;
+      line-height: 28px;
+      color: #516BA6;
+    }
+
+  }
+
+  .detail-toggle.collapsed {
+    background-color: #EFF8FE;
+
+    .labels .label.support {
+      border-color: transparent;
+    }
+  }
+
+}
+
+.card.flat {
+  .card-body {
+    padding-left: 30px;
+    &.no-padding{
+      padding-left:0px;
+    }
+    @media (max-width: 600px) {
+      padding-left: 0;
+    }
+
+    .nav {
+      border-bottom: 1px solid #92A8BE;
+    }
+
+    .nav-pills > li > a {
+      padding: 15px;
+      font-size: 14px;
+      color: #92A8BE;
+      border-radius: 0;
+
+      @media (max-width: 600px) {
+        padding: 10px 8px;
+      }
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
+
+    .nav-pills > li.active > a {
+      color: #516BA6;
+      border-bottom: 3px solid #516BA6;
+      background-color: transparent;
+    }
+
+    .result-info{
+      width: 100%;
+      margin: 10px 0;
+      color: #516BA6;
+      font-weight: bold;
+      font-size:14px;
+
+      p {
+        color: #516BA6;
+      }
+
+      td:first-child {
+        padding-left: 30px;
+      }
+
+      .expand-trigger{
+        width: 120px;
+        vertical-align: bottom;
+        padding-left: 10px;
+        text-align: center;
+
+        a {
+          cursor: pointer
+        }
+
+      }
+
+    }
+  }
+}
+.accordion-toggle {
+  .circle-toggle-open,
+  .circle-toggle-close {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid #516BA6;
+    line-height: 44px;
+    text-align: center;
+    padding: 0;
+    float: right;
+    margin-right: 12px;
+    background-color:transparent;
+    color:#516BA6;
+    i {
+      margin-top: -4px;
+      color: #516BA6
+    }
+  }
+
+  &:not(.collapsed){
+    .circle-toggle-open{
+      display:none;
+    }
+  }
+  &.collapsed{
+    .circle-toggle-close{
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{{#bootstrap/bootstrap-accordion-item namespace="accordion"
+  title=(t 'sidebars.decision_info.title' default='empty_default')
+  panelId=panelId
+  beginCollapsed=true
+  isOpen=isOpen
+}}
+
+  <p>
+    <strong>{{decision.title}}</strong>
+  </p>
+
+  {{{decision.summary}}}
+
+{{/bootstrap/bootstrap-accordion-item}}

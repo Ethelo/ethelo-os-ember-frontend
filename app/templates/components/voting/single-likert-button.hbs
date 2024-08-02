@@ -1,0 +1,21 @@
+
+  <a class="vote-button-{{bin}} {{voteBackgroundClass}} {{if (not participantHasVoted) "not-selected"}}
+    ethelo-single-likert-button single-likert-button btn-lg btn btn-default btn-raised"
+    role="button"
+    {{action 'saveVote'}}
+    style={{binBackgroundStyle}} href="javascript:void(0)" >
+
+    {{#if (not participantHasVoted)}}
+      <div class="ethelo-singlelikert-indicator visible-xs visible-sm">
+        {{t 'voting.prompt.touch'}}
+      </div>
+      <div class="ethelo-singlelikert-indicator visible-md visible-lg">
+        {{t 'voting.prompt.click'}}
+      </div>
+    {{else}}
+      <div class="ethelo-singlelikert-indicator">
+        {{t captionKey}}
+      </div>
+    {{/if}}
+
+  </a>

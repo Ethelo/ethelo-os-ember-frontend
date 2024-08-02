@@ -1,0 +1,7 @@
+<label>{{t "commentEmail.enterEmail"}}</label>
+{{input placeholder=(t "prompts.email") value=email}}
+<button {{action 'updateMail'}}>{{t "commentEmail.save"}}</button>
+
+{{#if errors.email}}
+  <div class="alert-danger">{{t errors.email}}</div>
+{{/if}}

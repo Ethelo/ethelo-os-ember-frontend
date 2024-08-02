@@ -1,0 +1,10 @@
+<div class="share">
+  {{#each icons as |icon|}}
+    {{right-sidebar/share-icon
+      color=iconColor
+      icon=icon
+      pageSharingInfo=pageSharingInfo
+      overrideIcons=overrideIcons
+      defaultSharing=defaultSharing}}
+  {{/each}}
+</div>

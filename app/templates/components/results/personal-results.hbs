@@ -1,0 +1,43 @@
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-0">
+  <div class="right-sidebar__bottom panel-group">
+    {{#if scenarioResults}}
+
+      <div id="participant-results">
+        {{#if showBalanceSidebar}}
+          {{results/balance-sidebar showAutoBalance=false}}
+        {{/if}}
+        
+        {{#if showCalculations}}
+          {{results/participant-calculations calculations=adjustedCalculations}}
+        {{/if}}
+        {{{t
+          "sidebars.participant_results.intro_html"
+          default="empty_default"
+        }}}
+        {{results/participant-by-option-category
+          withUser=withUser
+          result=result
+          page=page
+          enabledLikerts=enabledLikerts
+          statsDisplay=statsDisplay
+          scenarioResults=scenarioResults
+        }}
+      </div>
+
+    {{else}}
+      {{#if (or isLoading isPending)}}
+        <div class="panel">{{tool/loading-spinner
+            loadingText=(t "sidebars.participant_results.solving_html")
+          }}</div>
+      {{else}}
+        {{#if noResultsMessage}}
+          <div class="alert alert-secondary" role="alert">
+            {{{t noResultsMessage}}}
+          </div>
+        {{/if}}
+      {{/if}}
+    {{/if}}
+
+    {{partial "partials/edit-link"}}
+  </div>
+</div>

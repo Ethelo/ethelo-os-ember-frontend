@@ -1,0 +1,23 @@
+<div class="btn-group btn-group-justified">
+  <a href="#" {{action 'setAuthTab' 'login'}}
+      title="{{t 'accessibility.switch'}}"
+      class="btn">
+      {{t 'authentication.sign_in'}}
+    </a>
+    <a href="#" {{action 'setAuthTab' 'register'}}
+      title="{{t 'accessibility.switch'}}"
+      class="btn active">
+      {{t 'authentication.sign_up'}}
+    </a>
+</div>
+<div class="panel-body signup-form">
+  {{auth/register-form}}
+</div>
+<div class="panel-footer text-center">
+  {{t 'authentication.existing_user'}}
+  <a href="#" {{action 'setAuthTab' 'login'}}
+     title="{{t 'accessibility.switch'}}">
+    {{t 'authentication.link.sign_in'}}
+  </a>
+
+</div>

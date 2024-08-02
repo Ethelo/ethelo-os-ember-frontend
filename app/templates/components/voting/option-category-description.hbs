@@ -1,0 +1,17 @@
+{{#if showContent}}
+  <div class="option-description">
+    {{#if optionCategory.icon}}
+      <div class="option-thumb-container">
+        <img class="option-thumb" src="{{optionCategory.icon}}"/>
+      </div>
+    {{/if}}
+
+    {{#if optionCategory.info}}
+      <div class="option-text full-width">
+        {{{optionCategory.info}}}
+      </div>
+    {{/if}}
+
+  </div>
+
+{{/if}}

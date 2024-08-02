@@ -1,0 +1,23 @@
+<div id="{{namespace}}-option-category">
+
+  {{#each optionCategoryBreakdown as |result|}}
+
+    {{#if statsDisplay.showOptionCategoryTitles}}
+      {{results/participant-by-option-category-header result=result truncateTitles=truncateTitles showPiecharts=showPiecharts}}
+    {{/if}}
+
+    {{results/participant-by-option
+      optionCategory=result.optionCategory
+      parentCount=optionParentCount
+      page=page
+      statsDisplay=statsDisplay
+      namespace=namespace
+      scenarioResults=scenarioResults
+      withUser=withUser
+      truncateTitles=truncateTitles
+      enabledLikerts=enabledLikerts
+    }}
+
+  {{/each}}
+
+</div>

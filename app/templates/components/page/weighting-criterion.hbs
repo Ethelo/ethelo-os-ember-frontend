@@ -1,0 +1,41 @@
+<div class="container-fluid weighting-criterion-page" id={{page.componentId}}>
+  {{bootstrap/bootstrap-modal-balance}}
+
+  <!-- ROW ONE -->
+  <div class="row special" id="row1">
+    {{layout/left-column page=page}}
+
+    {{#layout/center-column page=page}}
+
+      {{tool/content-panel key='center' page=page}}
+
+      {{voting/criterion-weight-slider-list excludedItems=page.excludedItems
+        finalItemOrder=page.finalItemOrder panelId=slidersPanelId
+        showDescriptions=showDescriptions showPieChart=showPieChart
+        translationScope=translationScope}}
+
+      {{#if hasCenterPageComments}}
+        {{comments/collapse-panel
+          id='page-comments-position-center'
+          page=page
+          titleOverride=page.hasPageCommentTitleOverride
+          target=pageCommentTarget
+          targetScope='comments.pages'
+        }}
+      {{/if}}
+
+      {{tool/content-panel key='center_two' page=page}}
+
+    {{/layout/center-column}}
+
+    {{layout/right-column
+      page=page
+      decision=decision
+      pageCommentTarget=pageCommentTarget
+      pageCommentScope=pageCommentScope
+      hasSidebarPageComments=hasSidebarPageComments
+    }}
+
+  </div>
+  <!-- END OF ROW ONE -->
+</div>

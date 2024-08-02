@@ -1,0 +1,11 @@
+{{#if showChart}}
+  <div class="pie-chart-wrapper">
+    <div class="panel-body">
+      <h2 class="title title-main">
+        {{scopet 'results.avg_criteria_weight' page.translationScope defaultIsUnscoped=true default='empty_default'}}
+
+      </h2>
+      {{charts/high-charts content=chartData chartOptions=chartOptions chartId="cpc"}}
+    </div>
+  </div>
+{{/if}}

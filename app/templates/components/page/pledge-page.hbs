@@ -1,0 +1,60 @@
+<div class="container-fluid pledge-page" id={{page.componentId}}>
+  {{bootstrap/bootstrap-modal-balance}}
+
+  <!-- ROW ONE -->
+  <div class="row special" id="row1">
+    {{layout/left-column page=page}}
+
+    {{#layout/center-column page=page}}
+
+      {{tool/content-panel key='center' page=page}}
+
+      {{#bootstrap/bootstrap-collapse
+              beginCollapsed=false
+              panelId="questions-panel"
+              title=(scopet 'authentication.pledge.panel_title' page.translationScope defaultIsUnscoped=true)
+      }}
+        {{#each sortedQuestions as |question|}}
+          {{survey/question-form
+                  question=question id=question.componentId
+                  translationScope=page.translationScope
+                  pledgeQuestionId=pledgeQuestion.id
+                  nextPageOnChange=false alwaysSave=true}}
+        {{/each}}
+
+      {{/bootstrap/bootstrap-collapse}}
+
+      {{#if hasCenterPageComments}}
+        {{comments/collapse-panel
+                id='page-comments-position-center'
+                page=page
+                titleOverride=page.hasPageCommentTitleOverride
+                target=pageCommentTarget
+                targetScope='comments.pages'
+        }}
+      {{/if}}
+
+      {{tool/content-panel key='center_two' page=page}}
+
+      {{#if showLoginPanel}}
+        {{layout/login-panel}}
+      {{/if}}
+      {{#if showLoggedInPanel}}
+        {{layout/logged-in-panel
+                class="hidden-xs"
+        }}
+      {{/if}}
+
+    {{/layout/center-column}}
+
+    {{layout/right-column
+            page=page
+            decision=decision
+            pageCommentTarget=pageCommentTarget
+            pageCommentScope=pageCommentScope
+            hasSidebarPageComments=hasSidebarPageComments
+    }}
+
+  </div>
+  <!-- END OF ROW ONE -->
+</div>

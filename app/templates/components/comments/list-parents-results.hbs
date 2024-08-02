@@ -1,0 +1,87 @@
+<div class="votes">
+  <div class="votes-header">
+
+    <div class="text-block text-block-card">
+      {{#if (and peopleCount showVoterCount)}}
+        <a>
+          <i class="material-icons person">person</i>
+          <span>{{t "comments.people_count" count=peopleCount}}</span>
+        </a>
+      {{/if}}
+    </div>
+    {{#if (and totalCount showComments)}}
+      <a
+        href="javascript:void(0)"
+        class="read-more read-more-card"
+        {{action "toggleVisible"}}
+        role="button"
+      >
+        {{#if isCommentsVisible}}
+          <span>{{t "results.hide"}}</span>
+          <span>
+            <i class="material-icons expand_less">expand_less</i>
+          </span>
+        {{else}}
+          <span>{{t "comments.read_comments" count=totalCount}}</span>
+          <span>
+            <i class="material-icons expand_more">expand_more</i>
+          </span>
+        {{/if}}
+      </a>
+    {{/if}}
+  </div>
+  {{#if isCommentsVisible}}
+    <ul class="list-group comments" id={{commentListId}}>
+      {{#if allowNewComments}}
+
+        <li class="list-group-item new-comment-container">
+          {{comments/item-form
+            instruct=instruct
+            contentPrompt=contentPrompt
+            titlePrompt=titlePrompt
+            titleOverride=titleOverride
+            target=target
+            target2=target2
+          }}
+        </li>
+      {{/if}}
+
+      {{#each visibleItems as |comment|}}
+        {{comments/item-display
+          comment=comment
+          target=target
+          target2=target2
+          canReply=allowNewComments
+          titleOverride=titleOverride
+          orderCommentsByLikes=orderCommentsByLikes
+        }}
+      {{/each}}
+
+    </ul>
+
+    {{#if canViewMore}}
+      {{comments/view-more-items
+        term=(t "nouns.comment" count=2)
+        showNext=showNext
+        total=totalCount
+        viewMore=(action "viewMore")
+      }}
+    {{/if}}
+
+  {{/if}}
+
+  {{#if hasMany}}
+    {{#if allowNewComments}}
+      <span {{action "scrollToForm" on="touchStart"}}>
+        <a href="#" {{action "scrollToForm"}}
+           class="btn-primary btn" title={{t 'accessibility.scroll_form'}}>
+          <small>{{t "comments.link_to_new"}}</small>
+        </a>
+      </span>
+    {{/if}}
+  {{/if}}
+
+  {{#if isLoading}}
+    {{tool/loading-spinner}}
+  {{/if}}
+</div>

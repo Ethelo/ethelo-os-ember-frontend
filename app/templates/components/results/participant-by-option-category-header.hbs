@@ -1,0 +1,23 @@
+<div class="topic" id="pr-topic{{result.optionCategory.id}}">
+  <div class="header" style={{percentWidth}}>
+    {{#link-to "page" result.linkedMenuPage
+        (query-params anchor=result.anchorValue filter0=null filter1=emptyFilter filter2=emptyFilter filter3=emptyFilter filter4=emptyFilter )
+        dataToggle="tooltip"
+    }}
+        <p class="{{if truncateTitles 'truncate-titles'}} pr-title" title="{{if truncateTitles result.optionCategory.resultsLabel}}">
+          {{result.optionCategory.resultsLabel}}
+        </p>
+    {{/link-to}}
+  </div>
+
+  {{#if showPiecharts}}
+    <div class="indicators right">
+      <div
+        class="tab-pie pie-percent-{{percentage result.normalizedAverageWeight true}}"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="{{t 'results.weighting'}}: {{percentage result.normalizedAverageWeight false}}"
+      ></div>
+    </div>
+  {{/if}}
+</div>

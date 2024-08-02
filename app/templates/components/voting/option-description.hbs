@@ -1,0 +1,23 @@
+{{#if showContent}}
+  <div class="option-description">
+    {{#if option.icon}}
+      <div class="option-thumb-container">
+        <img class="option-thumb" src="{{option.icon}}"/>
+      </div>
+    {{/if}}
+
+    {{#if option.info}}
+      <div class="option-text full-width">
+        {{{option.info}}}
+      </div>
+    {{/if}}
+
+    {{#if option.hasVisibleDetails}}
+      {{#if hideDetails}}
+        {{tool/data-table items=details title=(t 'nouns.details')}}
+      {{else}}
+        {{tool/data-table items=option.visibleDetailValues title=(t 'nouns.details')}}
+      {{/if}}
+    {{/if}}
+  </div>
+{{/if}}

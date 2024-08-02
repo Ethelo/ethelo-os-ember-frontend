@@ -1,0 +1,35 @@
+<div class="results-by-all-options">
+  {{#bootstrap/bootstrap-collapse
+    title=(scopet 'result_breakdown_title' page.translationScope default='empty_default')
+    beginCollapsed=false
+    panelId="breakdown-panel"
+  }}
+
+    <div id="{{namespace}}-all-options">
+      <div class="card flat result-card">
+        <div class="card-body no-padding">
+
+          <div class="{{namespace}}-option">
+            {{#each allOptionBreakdown as |result|}}
+              {{results/result-card
+                withUser=withUser
+                parentCount=parentCount
+                target=result.option
+                option=result.option
+                idKey=(format-html-id  "gr-option" result.option.id)
+                result=result
+                statsDisplay=statsDisplay
+                showHeaderStats=true
+                page=page
+                namespace=namespace
+                hasCriteriaSubsection=hasCriteriaSubsection
+                scenarioResults=scenarioResults
+              }}
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+  {{/bootstrap/bootstrap-collapse}}
+</div>

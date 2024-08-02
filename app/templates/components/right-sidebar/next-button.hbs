@@ -1,0 +1,32 @@
+{{#if menu.nextPage}}
+  <div class="{{if menu.activeSidebarView 'hidden-xs'}}">
+    {{#if menu.nextPageDisabled}}
+      <a
+         aria-disabled="true"
+         class="disabled center-block navigation-button btn-lg btn-block btn btn-default btn-raised"
+         role="button">
+        <span>{{t 'navigation.next'}}</span>
+      </a>
+
+      <div class="panel">
+        <div class="panel-body">
+          {{#if (and menu.balanceBlocksNavigation menu.nextPage.requiresBalance menu.currentPageComplete)}}
+            {{t 'sidebars.balance.blocked_message' default='empty_default'}}
+          {{else}}
+            {{scopet 'navigation.next_blocked_html'
+                     menu.currentPage.translationScope
+                     defaultIsUnscoped=true
+                     default='empty_default'}}
+          {{/if}}
+        </div>
+      </div>
+    {{else}}
+      <a href="#" {{action 'goToNextPage' target=menu}}
+         class="center-block navigation-button btn-lg btn-block btn btn-default btn-raised"
+         aria-label={{t 'navigation.next'}}
+      >
+        <span>{{t 'navigation.next'}}</span>
+      </a>
+    {{/if}}
+  </div>
+{{/if}}

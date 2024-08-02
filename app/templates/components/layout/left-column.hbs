@@ -1,0 +1,21 @@
+<!-- left column -->
+<div id="toc-col" class="hidden-xs hidden-sm col-md-3 fixed-left-column">
+  {{left-sidebar/back-button class="top-navigation-btn"}}
+
+  <div class="fixed-left-group panel panel-default panel-body">
+    {{#if showMenu}}
+    {{partial 'partials/edit-link'}}
+    <div class="fixed-left-group__top">
+      {{left-sidebar/menu namespace="desktop"}}
+    </div>
+    <hr>
+    {{/if}}
+    <footer class="fixed-left-group__btm">
+      {{layout/nav-footer-items}}
+      <a class="copyright" href="https://ethelo.com" target="_blank" title={{t 'accessibility.opens_in_new_tab'}}>
+        <span class="sr-only">{{t 'accessibility.powered_by_ethelo'}}</span>
+      </a>
+    </footer>
+  </div>
+
+</div>

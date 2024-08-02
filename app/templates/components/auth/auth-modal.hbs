@@ -1,0 +1,24 @@
+<div
+  class="modal fade"
+  id="auth-modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledBy="auth-modal-label"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content modal-panel">
+      <div class="modal-body">
+
+        {{#if (eq activeTab 'add-web3')}}
+          {{auth/web3-add}}
+        {{else if (eq activeTab 'register')}}
+          <span id="auth-modal-label" class="hidden">{{t 'authentication.sign_in'}}</span>
+          {{auth/register-modal setAuthTab=(action setAuthTab)}}
+        {{else}}
+          <span id="auth-modal-label" class="hidden">{{t 'authentication.sign_up'}}</span>
+          {{auth/login-modal setAuthTab=(action setAuthTab)}}
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</div>

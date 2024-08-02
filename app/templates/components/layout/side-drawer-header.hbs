@@ -1,0 +1,27 @@
+<div class="list-group-item">
+  {{#if registry.user.avatar}}
+    <div class="row-picture">
+      <img src="{{registry.user.avatar}}" alt="{{t 'nouns.avatar'}}" class="circle">
+    </div>
+  {{/if}}
+
+  <div class="row-content">
+    <div class="list-group-item-text">
+      <div class="dropdown">
+        <a href="javascript:void(0)"
+           class="dropdown-toggle"
+           data-toggle="dropdown"
+           id="{{elementId}}-dropdown"
+          aria-haspopup="true"
+           aria-expanded="false">
+          <span class="ethelo-dropdown"  >
+          <span>{{registry.user.name}}</span>
+          <i class="material-icons pull-right">expand_more</i>
+          </span>
+        </a>
+
+        {{layout/navbar-user-menu-items nav=nav aria-labelledBy=(concat elementId "-dropdown")}}
+      </div>
+    </div>
+  </div>
+</div>

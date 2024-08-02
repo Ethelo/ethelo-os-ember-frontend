@@ -1,0 +1,98 @@
+.user-profile,
+.user-secure,
+.user-signout {
+	display: inline-block;
+	padding: 10px;
+}
+
+.navbar.secondary {
+    background-color: #FFF;
+    top: 40px;
+    min-height: 0;
+    border-bottom: 1px solid #999;
+    z-index: 1001
+}
+.navbar.secondary .navbar-header {
+    width: 100%;
+    display: table;
+    text-align: center;
+    table-layout: fixed;
+    margin: 0;
+}
+.navbar.secondary .secondary-buttons {
+    display: table-row;
+}
+.navbar.secondary .secondary-button {
+    display: table-cell;
+    padding: 6px 0 3px 0;
+    cursor: pointer;
+    border-bottom: 3px solid #fff;
+}
+.navbar.secondary .secondary-button.active {
+    border-bottom: 3px solid #333333;
+}
+
+.navbar.secondary {
+    display: none;
+}
+
+.secondary-navbar-top-padding {
+    padding-top: 30px;
+}
+
+/* 2 column view */
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .mobile-navbar {
+    width: 100%;
+  }
+}
+
+/* static navbar for non-mobile */
+@media (max-width: 768px){
+  .navbar-static-top {
+    border-width: 0 0 1px;
+    top: 0;
+    border-radius: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    transform: translate3d(0px, 0px, 0px);
+    z-index: 1030;
+  }
+  .main-content-container {
+      min-height: 70vh;
+      margin-top: 56px;
+  }
+  .navbar.secondary {
+      display: block;
+  }
+}
+
+.hub-container {
+	padding-right: 15px;
+}
+
+/* Boostrap override for mobile bottom navbar; */
+@media (max-width: 767px) {
+  .fixedFooter {
+    position: fixed;
+  }
+
+  .staticFooter {
+    position: static;
+  }
+}
+
+/* category/issue hub grid clearfix */
+@media (min-width: 768px) {
+	.hub-container a:nth-child(4n+1) .col-md-3 {
+		clear: left;
+	}
+}
+
+@media (max-width: 767px) {
+	.hub-container a:nth-child(2n+1) .col-xs-6 {
+		clear: left;
+	}
+}
+

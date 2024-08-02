@@ -1,0 +1,46 @@
+.clickable-nav-item {
+  a {
+    display: inline-block;
+    padding-top: 5px;
+    padding-bottom: 3px;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  a {
+    color: @textColor;
+  }
+
+  .disabled {
+    color: #A0A0A0;
+    i {
+      cursor: default;
+    }
+  }
+
+  a, .active {
+    &:hover {
+      background-color: transparent;
+    }
+  }
+}
+
+.nav-item-container {
+  .clickable-nav-item();
+
+  &:hover a {
+    text-decoration: none;
+  }
+
+  a {
+    word-break: break-word;
+    padding-right: 25px;
+
+    i {
+      position: absolute;
+      right: 0;
+    }
+  }
+}
+
+

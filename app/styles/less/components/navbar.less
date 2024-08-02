@@ -1,0 +1,107 @@
+.drawer-toggle {
+  position: absolute;
+  right: 0;
+  top: 25%;
+  color: inherit;
+
+  @media only screen and (max-device-width: @bigBrowser) {
+    right: 15px;
+  }
+
+  &:hover {
+    color: inherit;
+  }
+
+  .material-icons {
+    color: inherit;
+  }
+}
+
+#user-dropdown {
+  .material-icons {
+    color: inherit;
+  }
+  &:focus {
+    outline-offset: -2px;
+    outline: 5px auto Highlight;
+  }
+}
+
+#user-dropdown, .client-feedback {
+  float: left;
+}
+
+#profile-image {
+  width: 20px;
+  margin-right: 10px;
+  vertical-align: bottom;
+  border-radius: 100%;
+}
+
+.navbar-header-item {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+@media only screen and (max-device-width: @bigBrowser) {
+  body {
+    padding-top: 70px;
+  }
+
+  .navbar.navbar-default {
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    top: 0;
+  }
+}
+
+.nav-item-container {
+  a:hover, a:focus {
+    text-decoration: none; // override bootstrap?
+  }
+}
+
+.nav-item a {
+  padding-left: 5px;
+}
+
+.nav-item-span {
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.navigation-group {
+  .clickable-nav-item();
+
+  a:hover, a:focus {
+    text-decoration: none; // override bootstrap?
+  }
+
+  span {
+    line-height: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  a.collapsed {
+    .expand-more {
+      display: inherit;
+    }
+    .expand-less {
+      display: none;
+    }
+  }
+
+  a:not(.collapsed) {
+    .expand-more {
+      display: none;
+    }
+    .expand-less {
+      display: inherit;
+    }
+  }
+
+  .expansion-toggle {
+    cursor: pointer;
+  }
+}

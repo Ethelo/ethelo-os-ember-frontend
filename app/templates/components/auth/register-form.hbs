@@ -1,0 +1,29 @@
+{{#if errorList.auth}}
+  <div class="alert alert-danger">
+    {{t errorList.auth}}
+  </div>
+{{/if}}
+
+{{#if requireInviteCode}}
+  {{t 'authentication.invite_needed_html'}}
+  {{partial 'components/auth/_invite_code_form'}}
+{{else if requireWeb3Invite}}
+  {{t 'authentication.invite_needed_html'}}
+  {{partial 'components/auth/_user_fields'}}
+  {{partial 'components/auth/_invite_buttons'}}
+{{else}}
+  {{#if web3Service.hasTokenGates}}
+    {{t 'authentication.web3.token_gate.gate_info_html'}}
+    {{#if tokenGateError}}
+      <div class="alert alert-danger">
+        {{tokenGateError}}
+      </div>
+    {{/if}}
+  {{/if}}
+  {{partial 'components/auth/_user_fields'}}
+  {{#if invite}}
+    {{partial 'components/auth/_invite_buttons'}}
+  {{else}}
+    {{partial 'components/auth/_register_buttons'}}
+  {{/if}}
+{{/if}}

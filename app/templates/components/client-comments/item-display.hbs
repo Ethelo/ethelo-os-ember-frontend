@@ -1,0 +1,62 @@
+<div class="comment-item" id={{clientComment.commentId}}>
+  {{#if editing}}
+    {{client-comments/item-form
+      existingClientComment=clientComment
+      contentPrompt=""
+      titlePrompt=""
+      autoOpen=true
+      complete='editingComplete'
+      titleOverride=titleOverride
+    }}
+  {{else}}
+    {{#if clientComment.decisionUser.user.avatar}}
+      <div class="row-picture">
+        <img src="{{clientComment.decisionUser.user.avatar}}" title={{t 'nouns.avatar'}} class="circle circle-sm"/>
+      </div>
+    {{/if}}
+
+    <div class="row-content">
+      {{#if canUpdate}}
+        <div class="more-actions dropdown">
+          <div type="button" data-toggle="dropdown">
+            <i class="material-icons settings">settings</i>
+          </div>
+
+          <ul class="dropdown-menu dropdown-menu-right">
+            {{#unless editing}}
+              <li><a href="#" {{action 'edit'}} title={{t 'accessibility.switch'}}>{{t 'comments.edit'}}</a></li>
+            {{/unless}}
+            <li><a href="#" {{action 'remove'}} title={{t 'accessibility.delete'}}>{{t 'comments.delete'}}</a></li>
+            {{#if canSeeAll}}
+              <li><a href="#" {{action 'complete'}} title={{t 'accessibility.confirm'}}>{{t 'client_comment.mark_as_complete'}}</a></li>
+            {{/if}}
+          </ul>
+        </div>
+      {{/if}}
+
+      <p class="list-group-item-text">
+        <span class="user-name">
+          {{clientComment.decisionUser.user.name}}
+
+          {{#if clientComment.decisionUser.user.staff}}
+            <span class="staff-role">STAFF</span>
+          {{/if}}
+        </span>
+
+        {{#if clientComment.title}}
+          <span class="list-group-item-heading">
+            {{{clientComment.title}}}
+          </span>
+          <br/>
+        {{/if}}
+
+        {{{clientComment.content}}}
+      </p>
+
+      <small>
+        <span>{{time-since clientComment.createdAt}}</span>
+      </small>
+    </div>
+
+  {{/if}}
+</div>

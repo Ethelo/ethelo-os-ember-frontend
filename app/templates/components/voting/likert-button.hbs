@@ -1,0 +1,21 @@
+  <div class="ethelo-likert-subtext {{if (gt binCount 6) 'ethelo-likert-subtext-'}}{{binCount}}bins" aria-hidden="true">
+    {{t captionKey}}
+  </div>
+
+  <a href="javascript:void(0)" {{action 'saveVote'}}
+    class="vote-button-{{bin}} {{voteBackgroundClass}} ethelo-likert-button
+      btn-lg btn btn-default btn-raised"
+     role="button"
+     title="{{t 'accessibility.submit'}}"
+     >
+    <div class="ethelo-likert-text visible-xs visible-sm {{if isCondensedLikert 'visible-md visible-lg'}}">
+      {{t captionKey}}
+    </div>
+    {{#unless isCondensedLikert}}
+      <span class="sr-only visible-md visible-lg">{{t captionKey}}</span>
+      <div class="ethelo-likert-indicator hidden-xs hidden-sm">
+        <span class="sr-only">{{t 'accessibility.selected'}}</span>
+        <span aria-hidden="true">★</span>
+      </div>
+    {{/unless}}
+  </a>

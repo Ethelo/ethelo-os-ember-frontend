@@ -1,0 +1,38 @@
+{{#if web3Service.allowsWeb3}}
+  {{t 'authentication.invite_check_web3_html'}}
+  {{#if web3Service.metamaskMissing}}
+    {{t 'authentication.no_metamask'}}
+  {{else}}
+    <a href="#" {{action 'sendToWalletInvite' target=web3Service}}
+       class="navigation-button btn-lg btn btn-default btn-raised"
+    >
+      <span> {{t 'authentication.web3.accept_web3_invite'}} </span>
+    </a>
+    <hr/>
+  {{/if}}
+  <strong>{{t 'authentication.invite_email'}}</strong>
+{{else}}
+  {{t 'authentication.invite_check_email_html'}}
+{{/if}}
+
+<div class="form-group {{if errorList.code 'has-error'}}">
+  <label class="control-label" for="invite-code">{{t 'authentication.invite_code'}}</label>
+  {{input type="text"
+          value=code
+          name='code'
+          id="invite-code"
+          autocomplete="one-time-code"
+          placeholder=(t 'prompts.invite_code')
+          class="form-control"
+  }}
+  {{#if errorList.code}}
+    <span class="help-block">{{t errorList.code}}</span><br/><br/>
+  {{/if}}
+  <a href="#" {{action 'submitInviteCode'}}
+     role="button"
+     title="{{t 'accessibility.submit'}}"
+     class="btn-block btn-primary btn btn-raised text-uppercase"
+  >
+    {{t 'navigation.next'}}
+  </a>
+</div>

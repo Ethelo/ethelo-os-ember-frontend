@@ -1,0 +1,71 @@
+{{#if showNameField}}
+  <div class="form-group {{if errorList.username 'has-error'}}">
+    <label class="control-label" for="auth_name">{{t 'nouns.name'}}</label>
+    {{input type="text"
+            id="auth_name"
+            value=name
+            name='name'
+            autocomplete='username'
+            placeholder=(t 'prompts.name')
+            class="form-control"
+    }}
+    {{#if errorList.username}}
+      <span class="help-block">{{t errorList.username}}</span>
+    {{/if}}
+  </div>
+{{/if}}
+{{#if showEmailField}}
+  <div class="form-group {{if errorList.email 'has-error'}}">
+    <label class="control-label" for="auth_email">{{t 'nouns.email'}}</label>
+    {{input type="text"
+            value=email
+            id="auth_email"
+            name='email'
+            autocomplete='email'
+            placeholder=(t 'prompts.example_email')
+            class="form-control"
+    }}
+    {{#if errorList.email}}
+      <span class="help-block">{{t errorList.email}}</span>
+    {{/if}}
+  </div>
+  <span class="pull-right margin-bottom info">{{t "authentication.will_send_password"}}</span>
+  <div class="clearfix"></div>
+{{/if}}
+<div class="form-group sign-checkbox">
+  <div class="checkbox bottom-0">
+    <label class="info bottom-0">
+      {{input
+        type="checkbox"
+        change=authService.toggleEtheloMail
+        checked=authService.etheloMail
+      }}
+      {{t 'authentication.ethelo_notifications'}}
+    </label>
+  </div>
+</div>
+<div class="form-group sign-checkbox {{if errorList.terms 'has-error'}}">
+  <div class="checkbox">
+    <label class="info bottom-0">
+      {{input
+        type="checkbox"
+        name="terms"
+        change=authService.toggleAgreeTerms
+        checked=authService.agreeTerms
+      }}
+      {{t 'authentication.terms_signup'}}
+      <a href="{{t 'authentication.docs.terms_url'}}"
+         target="_blank"
+         title="{{t 'accessibility.opens_in_new_tab'}}"
+      >
+         {{t 'authentication.terms_and_conditions'}}
+      </a>
+
+    </label>
+    {{#if errorList.terms}}
+      <span class="help-block">{{t errorList.terms}}</span>
+    {{/if}}
+  </div>
+</div>
+{{tool/material-reinit}}
+<div class="clearfix"></div>

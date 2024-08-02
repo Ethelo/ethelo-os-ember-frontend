@@ -1,0 +1,11 @@
+<nav class="menu-index" aria-label="Main Menu">
+  <ul class="list-group">
+    {{#each menu.pageTree.childItems as |childItem index|}}
+      {{left-sidebar/menu-item item=childItem
+                               index=index
+                               namespace=namespace
+                               collapseChildren=childItem.beginCollapsed
+      }}
+    {{/each}}
+  </ul>
+</nav>

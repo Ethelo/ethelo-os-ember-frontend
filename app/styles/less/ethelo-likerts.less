@@ -1,0 +1,336 @@
+/*
+	For Likerts and Friends of Likerts
+	The original design was designed for 2 breakpoints (mobile and browser)
+	but are adapted to fit a third breakpoint (tablet 2-column view)
+*/
+
+.ethelo-likert-label.no_vote-color-text{
+	color: #000000;
+}
+
+// container of the voting tool
+.ethelo-likert-container {
+	margin-bottom: 10px;
+}
+
+.ethelo-likert-label {
+	padding: 10px;
+	text-align: center;
+
+	color: @white;
+	font-weight: 600;
+}
+
+// INDIVIDUAL LIKERT
+.ethelo-likert-button {
+	// Mobile first: Is a block button when displayed in mobile list
+	.btn-block;
+	min-height: 36px;
+
+	@media (min-width: @fullBrowser) {
+		// On big browser we get smaller buttons
+		border-radius: 12px;
+
+		.ethelo-likert-text {
+			display: none;
+		}
+	}
+}
+
+.ethelo-likert-button:focus, .single-likert-button:focus {
+    border: 2px solid black;
+}
+
+.single-likert-button {
+  .btn-block;
+  border-radius: 12px;
+  min-height: 36px;
+  @media (min-width: @fullBrowser) {
+    min-height: 43px;
+  }
+}
+
+// COLOURS OF THE LIKERT UNIVERSE
+.likert-lvl-1 {
+	background-color: @likertLvl1 !important;
+}
+
+.likert-lvl-2 {
+	background-color: @likertLvl2 !important;
+}
+.likert-lvl-3 {
+	background-color: @likertLvl3 !important;
+}
+.likert-lvl-4 {
+	background-color: @likertLvl4 !important;
+}
+.likert-lvl-5 {
+	background-color: @likertLvl5 !important;
+}
+.likert-lvl-6 {
+	background-color: @likertLvl6 !important;
+}
+.likert-lvl-7 {
+	background-color: @likertLvl7 !important;
+}
+
+// LIKERTS IN GROUPS
+// OMG THEY’RE HUNTING IN PACKS
+
+// bootstrap override
+.btn.btn-raised.ethelo-likert-group-mobile, .btn.btn-raised.not-selected,
+.btn.btn-raised:not(.btn-link):focus.not-selected, .btn.btn-raised:not(.btn-link):hover.not-selected {
+	background-color: @grey-400;
+}
+
+.btn.btn-raised:not(.btn-link):focus.single-likert-button, .btn.btn-raised:not(.btn-link):focus.not-selected {
+  box-shadow: none;
+}
+
+.btn.btn-raised:not(.btn-link):hover.single-likert-button, .btn.btn-raised:not(.btn-link):hover.not-selected {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.18), 0 8px 16px rgba(0, 0, 0, 0.36);
+}
+
+.ethelo-likert-group-mobile {
+	// if the color should eventually reflect the vote result, then this cannot have !important;
+	// background-color: @accentColor !important;
+	color: @white !important;
+	font-weight: 600;
+}
+	.ethelo-likert-text {
+		color: @white !important;
+		font-weight: 600;
+		text-transform: none;
+	}
+
+.ethelo-likert-group, .ethelo-likert-subtext  {
+	display: none;
+}
+.ethelo-likert-group .ethelo-likert-button-container .ethelo-likert-subtext{
+	width: 100%;
+}
+
+.ethelo-likert-button-modal {
+	.ethelo-likert-button-container {
+		list-style: none;
+	}
+  .modal-title {
+     font-size: 16pt;
+  }
+
+}
+
+.ethelo-survey-button-modal {
+  .ethelo-survey-button-container {
+    list-style: none;
+  }
+  .modal-title {
+    font-size: 16pt;
+  }
+
+}
+
+@media (max-width: @fullBrowser) {
+	.ethelo-voted-label-smlScrn {
+		display: none;
+	}
+}
+@media (min-width: @fullBrowser) {
+
+	.ethelo-likert-group, .ethelo-voted-label {
+    display: block;
+		margin-bottom: 20px;
+    // padding-top: 15px;
+
+		.ethelo-likert-subtext {
+			display: inline-block;
+      visibility: hidden;
+		}
+
+		li {
+			list-style: none;
+			display: inline-block;
+			vertical-align: bottom;
+			text-align: center;
+		}
+		li.subtext {
+			.ethelo-likert-subtext {
+				visibility: visible;
+				display: inline-block;
+				font-size: 11px;
+				overflow: hidden;
+				text-transform: uppercase;
+			}
+		}
+	}
+
+	.ethelo-likert-group {
+		display: flex;
+		align-items: flex-end;
+                justify-content: space-between;
+		.ethelo-likert-button-container {
+			flex: 1 1 120px;
+			display: flex;
+			flex-direction: column;
+			margin-left: 7px;
+			margin-right: 7px;
+			align-items: center;
+                        min-width: 30px;
+			.ethelo-likert-subtext {
+				flex: 0 1 auto;
+				margin-bottom: 10px;
+                                overflow:visible;
+                                width: 60px;
+
+			}
+
+			.ethelo-likert-button {
+				margin: 0;
+                                padding: 0 10px;
+      }
+		}
+  }
+
+	.ethelo-likert-group-mobile, .ethelo-likert-group-mobile-voted, .ethelo-voted-label-smlScrn {
+		display: none;
+	}
+}
+
+.ethelo-voted-label {
+	color: @white !important;
+	font-weight: 600;
+	vertical-align: bottom;
+	position: relative;
+
+	i {
+		color: @white;
+		vertical-align: middle;
+		position: absolute;
+		right: 10%;
+	}
+}
+
+.ethelo-likert-indicator {
+    visibility: hidden;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    margin: 7px auto 0 auto; //eyeball
+    width: 100%;
+    height: 100%;
+
+}
+
+.ethelo-singlelikert-indicator {
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  margin: 12px auto 0 auto; //eyeball
+  width: 100%;
+  height: 100%;
+}
+
+.ethelo-likert-button-container.active  .ethelo-likert-indicator {
+    visibility: visible;
+}
+
+.ethelo-likert-group .ethelo-likert-button-container .ethelo-likert-subtext{
+	width: 100%;
+  word-wrap: break-word;
+}
+
+/* styles for likert subtext 7 - 9 bins */
+.ethelo-likert-group .ethelo-likert-button-container .ethelo-likert-subtext-7bins {
+  width: 120%;
+}
+.ethelo-likert-group .ethelo-likert-button-container .ethelo-likert-subtext-8bins {
+  width: 132%;
+}
+.ethelo-likert-group .ethelo-likert-button-container .ethelo-likert-subtext-9bins {
+  width: 160%;
+}
+/* styles for single likert button */
+	.ethelo-singlelikert-group {
+    display: block;
+		margin-bottom: 20px;
+
+		li {
+			list-style: none;
+			display: inline-block;
+			vertical-align: bottom;
+			text-align: center;
+		}
+	}
+
+	.ethelo-singlelikert-group {
+		display: flex;
+		align-items: flex-end;
+                justify-content: space-between;
+		.ethelo-single-likert-button-container {
+			flex: 1 1 120px;
+			display: flex;
+			flex-direction: column;
+			margin-left: 7px;
+			margin-right: 7px;
+			align-items: center;
+                        min-width: 30px;
+
+      .single-likert-button {
+        margin: 0;
+        padding: 0 10px;
+        width: 60%;
+      }
+    }
+  }
+
+	.ethelo-singlelikert-group-mobile {
+		display: none;
+	}
+
+@media (max-width: 991px) {
+
+	.ethelo-singlelikert-group {
+		display: flex;
+		align-items: flex-end;
+                justify-content: space-between;
+		.ethelo-single-likert-button-container {
+			flex: 1 1 120px;
+			display: flex;
+			flex-direction: column;
+			margin-left: 7px;
+			margin-right: 7px;
+			align-items: center;
+                        min-width: 30px;
+
+      .single-likert-button {
+        margin: 0;
+        padding: 0 10px;
+        width: 60%;
+      }
+    }
+
+    .ethelo-singlelikert-indicator {
+      font-weight: 600;
+      color: white;
+      text-align: center;
+      vertical-align: middle;
+      margin: 7px auto 0 auto; //eyeball
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.likert-instruct {
+  text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+	.modal-criteria-title{
+		font-size: 12px;
+	}
+}
+
+.likert-container{
+	margin-top: -20px;
+}

@@ -1,0 +1,37 @@
+<div class="{{namespace}}-option">
+  {{#each summaryOptionResults as |result|}}
+    <div class="card flat result-card"  id="result-card-o{{result.option.id}}">
+      {{results/results-summary-options-header
+        parentCount=parentCount
+        title=result.option.resultsLabel
+        statsDisplay=statsDisplay
+        showHeaderStats=true
+        showDetails=true
+        toggleCardBody="showCardBody"
+        result=result
+        headerId=(format-html-id "header" 'o' result.option.id)
+        collapseId=(format-html-id "collapse" 'o' result.option.id)
+      }}
+
+      {{! Card Body }}
+      {{results/results-summary-options-body
+        page=page
+        isShowingCardBody=true
+        withUser=withUser
+        result=result
+        title=result.option.resultsLabel
+        resultTarget=result.option
+        namespace=namespace
+        headerId=(format-html-id "header" "o" result.option.id)
+        collapseId=(format-html-id "collapse" "o" result.option.id)
+        statsDisplay=statsDisplay
+        option=result.option
+        hasCriteriaSubsection=true
+        scenarioResults=scenarioResults
+      }}
+
+      {{! Card body end }}
+    </div>
+
+  {{/each}}
+</div>

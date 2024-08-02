@@ -1,0 +1,7 @@
+{{#if isPageFirst}}
+  {{currentScenario}}
+{{else if isPageLast }}
+  {{currentScenario}}
+{{else}}
+  {{{t "results.rank_count_html" currentScenario=currentScenario total=total}}}
+{{/if}}

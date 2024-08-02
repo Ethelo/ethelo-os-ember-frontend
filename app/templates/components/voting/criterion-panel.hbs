@@ -1,0 +1,30 @@
+{{partial 'partials/edit-link'}}
+
+<a id={{format-html-id  "a" criterion.slug}}></a>
+{{#bootstrap/bootstrap-collapse
+  title=criterion.title
+  beginCollapsed=false
+  panelId=panelId
+  vote=participantHasVoted
+}}
+
+  {{voting/criterion-description criterion=criterion}}
+
+
+  {{#if showVotingTools}}
+    {{voting/option-criterion-likert
+      option=option
+      criterion=criterion
+      showTitle=true
+      demo=registry.decision.demoVoting
+      isCondensedLikert=page.isCondensedLikert
+    }}
+  {{/if}}
+
+  {{#if bottomPaneRequired}}
+    <div class="panel-bottom">
+      {{yield}}
+    </div>
+  {{/if}}
+
+{{/bootstrap/bootstrap-collapse}}

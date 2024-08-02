@@ -1,0 +1,48 @@
+<div class="container-fluid info-page" id={{page.componentId}}>
+  {{bootstrap/bootstrap-modal-balance}}
+  <!-- ROW ONE -->
+  <div class="row special" id="row1">
+    {{layout/left-column page=page}}
+
+    {{#layout/center-column page=page}}
+
+      {{tool/content-panel key='center' page=page}}
+
+      {{#if showLoginPanel}}
+        {{layout/login-panel}}
+      {{/if}}
+      {{#if showLoggedInPanel}}
+        {{layout/logged-in-panel
+          class="hidden-xs"
+        }}
+      {{/if}}
+
+      {{#if showTaxAssessmentPanel}}
+        {{taxes/assessment-panel}}
+      {{/if}}
+
+      {{#if hasCenterPageComments}}
+        {{comments/collapse-panel
+          id='page-comments-position-center'
+          page=page
+          titleOverride=page.hasPageCommentTitleOverride
+          target=pageCommentTarget
+          targetScope='comments.pages'
+        }}
+      {{/if}}
+
+      {{tool/content-panel key='center_two' page=page}}
+
+    {{/layout/center-column}}
+
+    {{layout/right-column
+      page=page
+      decision=decision
+      pageCommentTarget=pageCommentTarget
+      pageCommentScope=pageCommentScope
+      hasSidebarPageComments=hasSidebarPageComments
+    }}
+
+  </div>
+  <!-- END OF ROW ONE -->
+</div>

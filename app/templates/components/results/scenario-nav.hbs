@@ -1,0 +1,66 @@
+<div class="scenario-navigator-container">
+  <div class="scenario-navigator-container-left">
+    {{#if hasPrevScenario}}
+      {{#link-to 'page'
+                (query-params slug=page.slug rank=1 isCollapsed=true)
+                class="scenario-navigator-item btn"
+                tagName="button"}}
+        <i class="material-icons fast_rewind">fast_rewind</i>
+      {{/link-to}}
+    {{else}}
+      <button class="scenario-navigator-item btn disabled">
+        <i class="material-icons fast_rewind">fast_rewind</i>
+      </button>
+    {{/if}}
+
+    {{#if hasPrevScenario}}
+      {{#link-to 'page'
+                (query-params slug=page.slug rank=prevRank isCollapsed=true)
+                class="scenario-navigator-item btn"
+                tagName="button"}}
+        <i class="material-icons chevron_left">chevron_left</i>
+      {{/link-to}}
+    {{else}}
+      <button class="scenario-navigator-item btn disabled">
+        <i class="material-icons chevron_left">chevron_left</i>
+      </button>
+    {{/if}}
+  </div>
+
+  <span class="scenario-navigator-item-center">
+    <span><strong>
+      {{{results/rank-count
+          current=(number-translate currentRank)
+          total=(number-translate scenarioCount)}}}
+    </strong></span>
+    {{yield}}
+  </span>
+
+  <div class="scenario-navigator-container-right">
+    {{#if hasNextScenario}}
+      {{#link-to 'page'
+                (query-params slug=page.slug rank=nextRank isCollapsed=true)
+                class="scenario-navigator-item btn"
+                tagName="button"}}
+        <i class="material-icons chevron_right">chevron_right</i>
+      {{/link-to}}
+    {{else}}
+      <button class="scenario-navigator-item btn disabled">
+        <i class="material-icons chevron_right">chevron_right</i>
+      </button>
+    {{/if}}
+
+    {{#if hasNextScenario}}
+      {{#link-to 'page'
+                (query-params slug=page.slug rank=totalScenarioCount isCollapsed=true)
+                class="scenario-navigator-item btn"
+                tagName="button"}}
+        <i class="material-icons fast_forward">fast_forward</i>
+      {{/link-to}}
+    {{else}}
+      <button class="scenario-navigator-item btn disabled">
+        <i class="material-icons fast_forward">fast_forward</i>
+      </button>
+    {{/if}}
+  </div>
+</div>

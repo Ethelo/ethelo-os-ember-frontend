@@ -1,0 +1,13 @@
+<div id="participant-calculations">
+  {{#if title}}
+    <span class="h4">{{title}}</span>
+  {{/if}}
+  {{#each calculations as |calculation|}}
+    <p class="calc-{{calculation.slug}} value-{{if (gte calculation.value 0) 'positive' 'negative'}} {{if (eq calculation.value 0) 'zero'}}">
+      {{calculation.prLabel}} :
+      {{format-value calculation.value format=calculation.format nullDisplay=''}}
+      <br/>
+    </p>
+  {{/each}}
+</div>
+

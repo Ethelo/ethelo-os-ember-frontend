@@ -1,0 +1,37 @@
+// Styles to handle hero blocks at the top of Topic Pages
+
+.ethelo-hero-block {
+	position: relative;
+
+	.ethelo-hero-img {
+		// Would like to mix in Bootrstrap mixin here,
+		// but it won’t compile right now. Perhaps because
+		// I’m using precompiled BS and so it can’t actually
+		// see the variables and mixins?
+		// .img-responsive;
+	} 
+
+	// Fallback to the brand colour if no image is provided
+	.ethelo-hero-solid-color { 
+		background-color: @primaryColorLight;
+		min-height: 200px; // arbitraryish height for now
+		// Would like to mix in Bootrstrap mixin here,
+		// but it won’t compile right now. Perhaps because
+		// I’m using precompiled BS and so it can’t actually
+		// see the variables and mixins?
+		// .img-responsive;
+	} 
+
+	.ethelo-hero-heading {
+		position: absolute;
+		bottom: 8px;
+		left: 8px;
+		max-width: 90%; // This is a bit of a hack for right padding
+
+		// We should use a nice contrast checking mixin
+		// and not this blunt force method :)
+		color: @textColorLight; 
+		background-color: fade(@black, 38%);
+		padding: 10px 8px 10px 8px;
+	}
+}

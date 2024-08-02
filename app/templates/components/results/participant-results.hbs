@@ -1,0 +1,48 @@
+{{#if scenarioResults}}
+
+  {{#bootstrap/bootstrap-accordion-item
+    namespace="accordion"
+    title=(scopet 'sidebars.participant_results.header')
+    beginCollapsed=false
+    isOpen=isOpen
+    panelId="breakdown-panel"
+    elementAcc='participant-results'
+   }}
+
+    {{#if showBalanceSidebar}}
+      {{results/balance-sidebar}}
+    {{/if}}
+
+    {{#if showCalculations}}
+      {{results/participant-calculations
+        calculations=adjustedCalculations}}
+    {{/if}}
+
+    {{{t 'sidebars.participant_results.intro_html' default='empty_default'}}}
+    {{results/participant-by-option-category
+      withUser=withUser
+      result=result
+      page=page
+      enabledLikerts=enabledLikerts
+      statsDisplay=statsDisplay
+      scenarioResults=scenarioResults}}
+
+    {{#if (or isLoading pendingIsNewer)}}
+      <div class="panel">{{tool/loading-spinner loadingText=(t "sidebars.participant_results.solving_html")}}</div>
+    {{/if}}
+
+  {{/bootstrap/bootstrap-accordion-item}}
+
+{{else}}
+  {{#if (or isLoading isPending)}}
+    <div class="panel">{{tool/loading-spinner loadingText=(t "sidebars.participant_results.solving_html")}}</div>
+  {{else}}
+    {{#if noResultsMessage}}
+      <div class="alert alert-secondary" role="alert">
+        {{{t noResultsMessage}}}
+      </div>
+    {{/if}}
+  {{/if}}
+{{/if}}
+
+

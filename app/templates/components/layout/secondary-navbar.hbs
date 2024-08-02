@@ -1,0 +1,41 @@
+{{#if visible}}
+  <div class="visible-xs visible-sm" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <div class="secondary-buttons">
+          {{#if voteButtonVisible}}
+            <button {{action 'showVote' target='view'}} class="secondary-button {{if voteButtonActive 'active'}}">
+              <i class="material-icons pull-right check-circle-outline">check_circle_outline</i>
+              {{t 'terminology.header.secondaryVote'}}
+            </button>
+          {{/if}}
+
+          {{#if reviewVoteButtonVisible}}
+            <button {{action 'showReviewVote' target='view'}}
+              class="secondary-button {{if reviewVoteButtonActive 'active'}}">
+              <i class="material-icons pull-right check-circle-outline">check_circle_outline</i>
+              {{t 'terminology.header.secondaryReview'}}
+            </button>
+          {{/if}}
+
+          {{#if topChoiceButtonVisible}}
+            <button {{action 'showTopChoice' target='view'}}
+              class="secondary-button {{if topChoiceButtonActive 'active'}}">
+              <i class="material-icons pull-right check-circle-outline">check_circle_outline</i>
+              {{t 'terminology.myTopChoice'}}
+            </button>
+          {{/if}}
+
+          {{#if issueCommentsButtonVisible}}
+            <button {{action 'showIssueComments' target='view'}}
+              class="secondary-button {{if issueCommentsButtonActive 'active'}}">
+              <i class="material-icons pull-right check-circle-outline">check_circle_outline</i>
+              {{t 'terminology.header.comments'}}
+            </button>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="secondary-navbar-top-padding"></div>
+{{/if}}

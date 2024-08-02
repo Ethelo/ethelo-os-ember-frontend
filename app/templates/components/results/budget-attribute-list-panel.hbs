@@ -1,0 +1,73 @@
+{{#if (gt totalListValues.length 1)}}
+  <div
+    id="attributes-panel-container"
+    class="panel panel-default show-default-view attribute-totals-panel"
+  >
+    <a
+      role="button"
+      data-toggle="collapse"
+      href="#option-attributes-accordion"
+      class="accordion-toggle panel-heading scenario-panel collapsed"
+      aria-controls="option-attributes-accordion"
+      aria-expanded="true"
+    >
+
+      <div class="row totals-row">
+        <div class="col-md-9 col-lg-9 col-xs-9 col-sm-9">
+          <h3 class="panel-heading-left">
+            {{{scopet
+              "results.budget.totals_panel.panel_title"
+              page.translationScope
+              defaultIsUnscoped=true
+            }}}
+          </h3>
+        </div>
+
+        <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3 expand-icon-total">
+          <span class="labels labels-main">
+            <span class="expand-icon pull-right">
+              <span class="label toggle-close circle-toggle-close">
+                <i class="material-icons expand_more">expand_more</i>
+              </span>
+              <span class="label toggle-open circle-toggle-open">
+                <i class="material-icons expand_less">expand_less</i>
+              </span>
+            </span>
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <div
+      class="panel-body collapse in"
+      aria-expanded="true"
+      id="option-attributes-accordion"
+      data-parent="attributes-panel-container"
+    >
+      {{#each totalListValues as |listItem|}}
+        <div class="row">
+          <div class="container-fluid">
+            <div class="col-md-8 col-lg-8 col-sm-8 col-xs-8">
+              {{#radio-button
+                groupValue=selectedDetailID
+                value=listItem.detailId
+                name="option-attributes-radios"
+                changed="optionDetailValuesRadios"
+              }}
+                <span class="circle"></span>
+                <span class="check"></span>
+                {{listItem.detailName}}
+              {{/radio-button}}
+            </div>
+            <div
+              class="col-md-3 col-lg-3 col-sm-3 col-xs-3"
+              style="left: 2%;"
+            >
+              <span class="pull-right">{{listItem.calculationValue}}</span>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+{{/if}}

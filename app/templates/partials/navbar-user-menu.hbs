@@ -1,0 +1,85 @@
+{{#if registry.decisionUser.canClientComment}}
+  <li>
+    <a
+      {{action "openClientCommentModal" target=menu}}
+      role="button"
+      class="withripple client-feedback"
+    >
+      {{t "client_comment.feedback"}}
+    </a>
+  </li>
+{{/if}}
+<li class="dropdown navbar-user-dropdown">
+  {{#if registry.user.guest}}
+    <a href="#"
+      id="user-dropdown"
+      class="dropdown-toggle"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false"
+    >
+      {{#if registry.user.avatar}}
+        <img
+          src={{registry.user.avatar}}
+          title="{{t "nouns.avatar"}}"
+          id="profile-image"
+          aria-hidden="true"
+        />
+      {{/if}}
+
+      <span aria-label="User Menu">{{t "nouns.guest"}}</span>
+      <i
+        class="material-icons pull-right arrow-drop-down"
+        aria-label="Expand"
+      ></i>
+      <div class="ripple-container"></div>
+    </a>
+
+    <ul class="dropdown-menu">
+      <li>
+        <a href="#" {{action "sendToSignIn" target=authService}}
+           id="user-secure"
+        >
+          {{t "authentication.sign_in"}}
+          <div class="ripple-container"></div>
+        </a>
+      </li>
+
+      <li>
+        <a href="#" {{action "sendToSignUp" target=authService}}
+          class="user-signin"
+        >
+          {{t "authentication.sign_up"}}
+          <div class="ripple-container"></div>
+        </a>
+      </li>
+    </ul>
+  {{else}}
+    <a href="#"
+      id="user-dropdown"
+      class="dropdown-toggle"
+      data-toggle="dropdown"
+      aris-haspopup="true"
+      aria-expanded="false"
+    >
+      {{#if registry.user.avatar}}
+        <img
+          src="{{registry.user.avatar}}"
+          title="{{t "nouns.avatar"}}"
+          id="profile-image"
+          aria-hidden="true"
+        />
+      {{/if}}
+
+      <span aria-label="User Menu">{{registry.user.name}}</span>
+      <i
+        class="material-icons pull-right arrow-drop-down"
+        aria-label={{t 'accessibility.toggle'}}
+      ></i>
+      <div class="ripple-container"></div>
+    </a>
+
+    {{layout/navbar-user-menu-items}}
+
+  {{/if}}
+</li>

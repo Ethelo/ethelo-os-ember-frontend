@@ -1,0 +1,9 @@
+<div class="binary-voting">
+  {{#if (gte option.visibleDetailValues.length 2)}}
+    <div class="binary-voting-dynamic">
+      {{yield}}
+    </div>
+  {{else}}
+    {{yield}}
+  {{/if}}
+</div>

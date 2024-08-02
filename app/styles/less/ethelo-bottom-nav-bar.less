@@ -1,0 +1,37 @@
+.bottom-nav-bar {
+	width: 100%;
+	max-width: 360px;
+
+	@media (min-width: @bigBrowser) {
+		max-width: 360px;
+  }
+
+	.your-results-btn {
+		display: default;
+
+		// We hide the button on big browser views
+		@media (min-width: @bigBrowser) {
+			display: none;
+		}
+	}
+	.bottom-nav-button {
+		padding-left: 15px;
+		padding-right: 15px;
+		padding-top: 6px;
+
+		p {
+			font-size: 10px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			margin-bottom: 0;
+			margin-top: 2px;
+		}
+		.forward-nav-button i {
+			right: 100%;
+		}
+		.back-nav-button i {
+			float: left;
+		}
+	}
+}

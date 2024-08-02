@@ -1,0 +1,61 @@
+<div class="navbar navbar-default header-fixed primary-accent-bg" role="navigation">
+  {{#if registry.isPreview}}
+    <div class="edit-mode">
+      {{t 'navigation.in_edit_mode'}}
+    </div>
+  {{/if}}
+  <div class="container-fluid">
+    <div class="navbar-header withripple">
+      <div class="ripple-container"></div>
+      <a {{action 'toggleDrawer'}} class="drawer-toggle hidden-md hidden-lg">
+        <span class="sr-only">{{t 'navigation.toggle'}}</span>
+
+        <i class="material-icons">menu</i>
+      </a>
+
+      {{#if registry.decision.theme.logo}}
+        <a href="/" class="navbar-brand" title={{t 'accessibility.home'}}>
+          <img
+            class="custom-logo visible-md-inline visible-lg-inline"
+            alt={{registry.decision.theme.logoAltText}}
+            src={{registry.decision.theme.logo}}
+          />
+          <img class="custom-logo visible-xs-inline visible-sm-inline"
+               alt={{registry.decision.theme.logoAltText}}
+               src={{registry.decision.theme.logo}}
+          />
+        </a>
+      {{/if}}
+
+      <ul class="nav navbar-nav visible-md visible-lg">
+        <li class="decision-title">
+            <span>{{t 'navigation.header_title' title=registry.decision.title}}</span>
+        </li>
+      </ul>
+
+      <span class="visible-xs visible-sm navbar-brand decision-title">
+        {{t 'navigation.header_title' title=registry.decision.title}}
+      </span>
+    </div>
+
+    {{#if registry.user}}
+      <nav id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right visible-md visible-lg">
+          {{partial 'partials/navbar-user-menu'}}
+        </ul>
+      </nav>
+    {{/if}}
+    {{#if showProgressBar}}
+      <div class="progress-bar-voting">
+        <div class="progress-bar-voting__fill" style={{percentWidth}}>
+          <div class="progress-bar-voting__circle">
+            <span>{{progressPercent}}</span>
+          </div>
+        </div>
+      </div>
+    {{/if}}
+
+  </div>
+
+  {{layout/side-drawer}}
+</div>

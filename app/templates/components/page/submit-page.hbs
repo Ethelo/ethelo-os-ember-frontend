@@ -1,0 +1,117 @@
+<div class="container-fluid submit-page" id={{page.componentId}}>
+  {{bootstrap/bootstrap-modal-balance}}
+
+  <!-- ROW ONE -->
+  <div class="row special" id="row1">
+    {{layout/left-column page=page}}
+
+    {{#layout/center-column page=page}}
+
+      {{tool/content-panel key="center" page=page}}
+
+      {{#if showInCompletePagesPanel}}
+        {{#bootstrap/bootstrap-collapse
+          beginCollapsed=false
+          panelId="incompleted-pages-panel"
+          title=(scopet
+            "authentication.submit.incomplete_pages_title"
+            page.translationScope
+            defaultIsUnscoped=true
+          )
+        }}
+          {{{scopet
+            "authentication.submit.incomplete_pages_html"
+            page.translationScope
+            defaultIsUnscoped=true
+          }}}
+          <ul class="list-group">
+            {{#each incompletePagesList as |pageItem index|}}
+              {{left-sidebar/menu-item
+                item=pageItem
+                index=index
+                namespace=namespace
+                collapseChildren=true
+              }}
+            {{/each}}
+          </ul>
+        {{/bootstrap/bootstrap-collapse}}
+      {{/if}}
+
+      {{#if showSubmitButtonPanel}}
+        {{#bootstrap/bootstrap-collapse
+          beginCollapsed=false
+          panelId="questions-panel"
+          title=(scopet
+            "authentication.submit.panel_title"
+            page.translationScope
+            defaultIsUnscoped=true
+          )
+        }}
+
+          {{#if showPersonalResultsPanel}}
+            <div class="clearfix personal-results-center-column">
+              {{results/personal-results
+                page=page
+                decision=decision
+                pageCommentTarget=pageCommentTarget
+                pageCommentScope=pageCommentScope
+                hasSidebarPageComments=hasSidebarPageComments
+              }}
+            </div>
+          {{/if}}
+
+          {{{scopet
+            "authentication.submit.content_before_html"
+            page.translationScope
+            defaultIsUnscoped=true
+          }}}
+
+          {{#if showWeb3SubmitButton}}
+            {{submit/web3-sign-and-submit
+              buttonText=submitQuestionCaption
+            }}
+          {{else}}
+            {{#each sortedQuestions as |question|}}
+              {{survey/question-form
+                question=question
+                id=question.componentId
+                translationScope=page.translationScope
+                nextPageOnChange=true
+                alwaysSave=true
+              }}
+            {{/each}}
+          {{/if}}
+
+          {{{scopet
+            "authentication.submit.content_after_html"
+            page.translationScope
+            defaultIsUnscoped=true
+          }}}
+
+        {{/bootstrap/bootstrap-collapse}}
+
+        {{#if hasCenterPageComments}}
+          {{comments/collapse-panel
+            id="page-comments-position-center"
+            page=page
+            titleOverride=page.hasPageCommentTitleOverride
+            target=pageCommentTarget
+            targetScope="comments.pages"
+          }}
+        {{/if}}
+      {{/if}}
+      {{tool/content-panel key="center_two" page=page}}
+
+    {{/layout/center-column}}
+
+    {{layout/right-column
+      page=page
+      decision=decision
+      pageCommentTarget=pageCommentTarget
+      pageCommentScope=pageCommentScope
+      hasSidebarPageComments=hasSidebarPageComments
+    }}
+
+  </div>
+  <!-- END OF ROW ONE -->
+</div>

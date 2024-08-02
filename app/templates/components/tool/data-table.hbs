@@ -1,0 +1,42 @@
+{{#if hasValues}}
+
+  {{!-- <hr class="fancy"> --}}
+  <div class="collapse in" id="{{elementId}}-collapse-content">
+    {{#each formatPrepareItems as |item|}}
+    <div class="option-description-group row {{if (gt formatPrepareItems.length 0) 'mb-10'}}" >
+      {{#if labels}}
+        <div class="option-description__label">
+          {{#each labels as |label|}}
+          <div class="option-description__label-text">{{label}}</div>
+          {{/each}}
+        </div>
+      {{/if}}
+      
+      {{#each item.preparedItems as |attributeItem|}}
+        <div class="option-description-line col-xs-{{item.countOfRowsToRender}} col-sm-{{item.countOfRowsToRender}} col-md-{{item.countOfRowsToRender}} col-lg-{{item.countOfRowsToRender}} text-center">
+          <div class="option-description-line__title details-title">
+            <span class="{{attributeItem.className}}">{{attributeItem.label}}</span>
+          </div>
+
+          {{#if (is-array attributeItem.value) }}
+            {{#each attributeItem.value as |subItem|}}
+            <div class="option-description-line__subitem">{{{subItem.value}}}</div>
+            {{/each}}
+          {{else}}
+            {{#if attributeItem.value}}
+            <div class="option-description-line__value details-value">{{{attributeItem.value}}}</div>
+            {{/if}}
+          {{/if}}
+
+          {{#if attributeItem.hint}}
+            {{tool/hint-modal id=attributeItem.id label=attributeItem.label content=attributeItem.hint}}
+          {{/if}}
+        </div>
+      {{/each}}
+
+    </div>
+    {{/each}}
+  </div>
+{{else}}
+  {{t 'data_table.empty'}}
+{{/if}}

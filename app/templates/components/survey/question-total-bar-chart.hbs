@@ -1,0 +1,8 @@
+{{#if maxValue}}
+
+  {{charts/high-charts content=chartData chartOptions=chartOptions chartId=chartId}}
+
+{{else}}
+  <strong>{{t 'survey.no_responses'}}</strong>
+
+{{/if}}

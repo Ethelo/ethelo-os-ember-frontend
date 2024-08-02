@@ -1,0 +1,33 @@
+{{#if processing}}
+  <div class="signon-spinner">
+    {{tool/loading-spinner loadingText=(t 'authentication.processing.sign_up')}}
+  </div>
+{{else}}
+
+  {{#if web3Service.showMetamaskMissing}}
+    <strong> {{t 'authentication.web3.no_metamask'}}</strong>
+
+  {{else if web3Service.allowsWeb3}}
+    <a href="#" {{action 'web3Signup'}}
+       role="button"
+       title={{t 'accessibility.submit'}}
+       class="btn-web3 btn-block btn-primary btn btn-raised"
+    >
+      {{t 'authentication.sign_up_with_web3'}}
+    </a>
+  {{/if}}
+
+  {{#if showPasswordButton}}
+    <a href="#" {{action 'signUpNewUser'}}
+       role="button"
+       title="{{t 'accessibility.submit'}}"
+       class="btn-block btn-primary btn btn-raised"
+    >
+      {{#if web3Service.allowsWeb3}}
+        {{t 'authentication.sign_up_with_password'}}
+      {{else}}
+        {{t 'authentication.sign_up'}}
+      {{/if}}
+    </a>
+  {{/if}}
+{{/if}}

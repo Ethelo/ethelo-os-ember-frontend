@@ -1,0 +1,41 @@
+{{#bootstrap/bootstrap-collapse
+  title=(t 'authentication.login_panel.header' default='empty_default')
+  beginCollapsed=false
+  panelId=panelId
+}}
+  <div>
+    <p>
+      {{{t 'authentication.login_panel.content' default='empty_default'}}}
+    </p>
+    <p>
+      {{{t 'authentication.login_panel.join_instruction_html' default='empty_default'}}}
+    </p>
+    <div class="row">
+      <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
+        <a href="#" {{action 'openAuthModal'}}
+           class="center-block navigation-button btn-lg btn-block btn btn-default btn-raised"
+           role="button"
+           title={{t 'accessibility.open_modal'}}>
+          <span>{{{t 'authentication.login_panel.join_button_text' default='empty_default'}}}</span>
+        </a>
+      </div>
+    </div>
+    <p id="guest_instructions">
+      {{{t 'authentication.login_panel.guest_instruction_html' default='empty_default'}}}
+    </p>
+    <div class="row guest-prompt">
+      <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
+        <a href="#" {{action 'goToNextPage' target=menu}}
+           class="btn btn-lg center-block navigation-hover-bg"
+           role="button"
+           title={{t 'accessibility.submit'}}
+        >
+          <span>{{{t 'authentication.login_panel.guest_button_text' default='empty_default'}}}</span>
+        </a>
+      </div>
+    </div>
+    <p>
+      {{{t 'authentication.login_panel.end_content' default='empty_default'}}}
+    </p>
+  </div>
+{{/bootstrap/bootstrap-collapse}}

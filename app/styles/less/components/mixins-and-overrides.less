@@ -1,0 +1,43 @@
+// reduce bootstrap-material's huge avatar image size
+.small-circle-image {
+  .row-picture {
+    vertical-align: top;
+    padding-right: 0;
+
+    img.circle {
+      height: auto;
+    }
+  }
+}
+
+// remove bootstrap side padding on mobile
+@media only screen and (max-width: @bigBrowser) {
+  .container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+    overflow: hidden;
+  }
+}
+
+
+// post actions (ex. flag, delete) dropdown on hover
+
+.post-actions-dropdown {
+  .more-actions {
+    display: none;
+  }
+
+  &:hover {
+    > .row-content .more-actions {
+      cursor: pointer;
+      display: block;
+      position: absolute;
+      top: 5px;
+      right: 8%;
+    }
+  }
+}
+
+.rotate-backwards {
+  transform: translateY(5%) rotate(180deg);
+}

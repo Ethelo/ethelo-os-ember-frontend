@@ -1,0 +1,16 @@
+<div class="{{namespace}}-option">
+  {{#each sortedOptionsBreakdown as |result|}}
+    {{results/budget-attribute-option-detail
+      withUser=withUser
+      option=result.option
+      page=page
+      statsDisplay=statsDisplay
+      namespace=namespace
+      scenario=scenario
+      result=result
+      scenarioResults=scenarioResults
+      selectedDetailID=selectedDetailID
+    }}
+
+  {{/each}}
+</div>

@@ -1,0 +1,35 @@
+<div id="{{namespace}}-criterion">
+
+  {{#each criterionBreakdown as |result|}}
+    <div class="card flat result-card" id="result-card-c{{result.criterion.id}}">
+      {{results/results-summary-options-header
+        parentCount=parentCount
+        title=result.criterion.resultsLabel
+        statsDisplay=statsDisplay
+        showHeaderStats=true
+        showDetails=showDetails
+        toggleCardBody="showCardBody"
+        result=result
+        headerId=(format-html-id "header" "c" result.criterion.id)
+        collapseId=(format-html-id "collapse" "c" result.criterion.id)
+      }}
+      {{#if showDetails}}
+        {{results/results-summary-options-body
+          page=page
+          isShowingCardBody=isShowingCardBody
+          withUser=withUser
+          result=result
+          title=result.criterion.resultsLabel
+          resultTarget=result.criterion
+          namespace=namespace
+          headerId=(format-html-id "header" "c" result.criterion.id)
+          collapseId=(format-html-id "collapse" "c" result.criterion.id)
+          statsDisplay=statsDisplay
+          option=option
+          hasCriteriaSubsection=hasCriteriaSubsection
+          scenarioResults=scenarioResults
+        }}
+      {{/if}}
+    </div>
+  {{/each}}
+</div>

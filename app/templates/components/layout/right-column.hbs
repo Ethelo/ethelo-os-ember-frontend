@@ -1,0 +1,72 @@
+<!-- RIGHT SIDEBAR -->
+{{#if showRightColumn}}
+  <div class="col-xs-12 col-sm-5 col-md-3 right-sidebar fixed-right-column">
+    {{#if showNext}}
+      <div class="right-sidebar__top">
+        {{right-sidebar/next-button class="hidden-xs"}}
+      </div>
+    {{/if}}
+    {{#if showJoinButton}}
+      <div class="right-sidebar__top">
+        {{right-sidebar/join-button
+          class="hidden-xs"
+          page=page
+        }}
+      </div>
+    {{/if}}
+
+    <div class="right-sidebar__bottom panel-group">
+      {{#if showTopSidebar}}
+        {{right-sidebar/content-sidebar
+          key="sidebar_top"
+          page=page
+          isOpen=(eq openSidebar "sidebar_top")
+        }}
+      {{/if}}
+
+      {{#if page.hasParticipantResultsSidebar}}
+        {{results/participant-results page=page
+          isOpen=(eq openSidebar "participant_result")
+          }}
+        {{partial 'partials/edit-link'}}
+      {{/if}}
+
+
+      {{#if hasSidebarPageComments}}
+        {{comments/collapse-panel-accordion
+          id='page-comments-position-sidebar'
+          page=page
+          isOpen=(eq openSidebar "comments")
+          titleOverride=page.hasPageCommentTitleOverride
+          target=pageCommentTarget
+          targetScope=pageCommentScope
+        }}
+      {{/if}}
+
+      {{#if showDecisionInfo}}
+        {{right-sidebar/decision-info
+          decision=decision
+          page=page
+          isOpen=(eq openSidebar "decision_info")
+        }}
+      {{/if}}
+
+      {{#if showBottomSidebar}}
+        {{right-sidebar/content-sidebar key="sidebar_bottom" page=page
+          isOpen=(eq openSidebar "sidebar_bottom")
+        }}
+      {{/if}}
+    </div>
+      {{!-- social sharing --}}
+    {{#if showSocialSharingIcons}}
+      <div>
+        {{right-sidebar/social-sharing
+          pageSharingInfo=pageSharingInfo
+          icons=icons
+          overrideIcons=overrideIcons
+          defaultSharing=defaultSharingInfo
+        }}
+      </div>
+    {{/if}}
+  </div>
+{{/if}}

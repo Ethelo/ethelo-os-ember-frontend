@@ -1,0 +1,9 @@
+<div class="panel panel-default modal-panel">
+  {{#if (eq activeTab 'add-web3')}}
+    {{auth/web3-add}}
+  {{else if (eq activeTab 'register')}}
+    {{auth/register-inline setAuthTab=(action setAuthTab)}}
+  {{else}}
+    {{auth/login-inline setAuthTab=(action setAuthTab)}}
+  {{/if}}
+</div>

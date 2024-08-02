@@ -1,0 +1,68 @@
+<div class="container-fluid voting-option-category-page" id={{page.componentId}}>
+  {{bootstrap/bootstrap-modal-balance}}
+
+  <!-- ROW ONE -->
+  <div class="row special" id="row1">
+    {{layout/left-column page=page}}
+
+    {{#layout/center-column page=page}}
+
+      {{tool/filter-panel selectedFilters=selectedFilters updateFilter=(action 'updateQuery')}}
+
+      {{tool/content-panel key='center' page=page}}
+
+      {{#if (eq sortedOptionCategories.length 0)}}
+        <div class="panel panel-default">
+          <div class="panel-body">
+
+            <p> {{t 'style.filters.no_match'}} </p>
+          </div>
+        </div>
+      {{else}}
+        {{#each sortedOptionCategories as |optionCategory index|}}
+          {{#voting/option-category-panel
+            page=page
+            optionCategory=optionCategory
+            bottomPaneRequired=hasitemListComments
+            beginCollapsed=beginCollapsed
+          }}
+            {{#if hasitemListComments}}
+              {{comments/list-parents
+                target=optionCategory
+                includeCommentForm=true
+                orderCommentsByLikes=page.hasCommentOrderLikes
+                titleOverride=false
+                contentPrompt=(scopet 'content_prompt' 'comments.option_categories' translationScope defaultIsUnscoped=true default='empty_default')
+                titlePrompt=(scopet 'title_prompt' 'comments.option_categories' translationScope defaultIsUnscoped=true default='empty_default')
+                instruct=(scopet 'instruct_html' 'comments.option_categories' translationScope defaultIsUnscoped=true default='empty_default')
+              }}
+            {{/if}}
+          {{/voting/option-category-panel}}
+
+        {{/each}}
+      {{/if}}
+      {{#if hasCenterPageComments}}
+        {{comments/collapse-panel
+          id='page-comments-position-center'
+          page=page
+          titleOverride=page.hasPageCommentTitleOverride
+          target=page
+          targetScope='comments.pages'
+        }}
+      {{/if}}
+
+      {{tool/content-panel key='center_two' page=page}}
+
+    {{/layout/center-column}}
+
+    {{layout/right-column
+      page=page
+      decision=decision
+      pageCommentTarget=pageCommentTarget
+      pageCommentScope=pageCommentScope
+      hasSidebarPageComments=hasSidebarPageComments
+    }}
+
+  </div>
+  <!-- END OF ROW ONE -->
+</div>

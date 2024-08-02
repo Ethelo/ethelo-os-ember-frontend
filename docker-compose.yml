@@ -1,0 +1,24 @@
+version: '2'
+
+networks:
+  frontend:
+
+services:
+  frontend:
+    networks:
+      - frontend
+    build: .
+    ports:
+      - 4200:4200
+      - 49152:49152
+    volumes:
+      - './app:/app/app'
+      - './bin:/app/bin'
+      - './config:/app/config'
+      - './dist:/app/dist'
+      - './hooks:/app/hooks'
+      - './public:/app/public'
+      - './root:/app/root'
+      - './tests:/app/tests'
+      - './vendor:/app/vendor'   
+    command: npm start 

@@ -1,0 +1,12 @@
+{{#if question.hasComments}}
+  {{comments/list-parents
+    target=question
+    target2=null
+    includeCommentForm=true
+    orderCommentsByLikes=page.hasCommentOrderLikes
+    titleOverride=false
+    contentPrompt=(scopet 'content_prompt' 'comments.questions' translationScope defaultIsUnscoped=true default='empty_default')
+    titlePrompt=(scopet 'title_prompt' 'comments.questions' translationScope defaultIsUnscoped=true default='empty_default')
+    instruct=(scopet 'instruct_html' 'comments.questions' translationScope defaultIsUnscoped=true default='empty_default')
+  }}
+{{/if}}

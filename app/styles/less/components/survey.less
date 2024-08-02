@@ -1,0 +1,96 @@
+/* Styling for the survey page */
+
+.survey-page {
+  /* set box-shadow to none for comments textarea */
+  #page-comments-position-sidebar textarea.ember-text-area.form-control,
+  #page-comments-position-center textarea.ember-text-area.form-control {
+    box-shadow: none;
+    padding: 7px;
+  }
+	textarea.ember-text-area.form-control {
+		box-shadow: 0px 0px 5px @grey-400;
+                padding: 7px;
+  }
+
+  textarea::placeholder {
+    opacity: 0.5;
+  }
+
+  .form-group{
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .qslider.form-group{
+    // margin-bottom: 30px;
+    &.is-focused .form-control {
+      background-image: none;
+      .slider-handle {
+        outline: 5px auto -webkit-focus-ring-color;
+        outline: 5px auto Highlight;
+        outline-offset: 2px;
+      }
+    }
+  }
+
+}
+
+.required{
+  font-style: italic;
+  text-decoration: underline;
+  color: #b65151;
+  float: left !important;
+  margin-right: 2px;
+}
+
+.comment-title {
+    font-style: italic;
+    padding-bottom: 1em;
+}
+
+.survey-comments {
+    padding-left: 20px;
+
+}
+
+.survey-submit {
+   text-align: center;
+   a {
+     display: inline-block;
+     width: 300px;
+   }
+
+}
+
+/**
+ *Changed default checkbox, radiobuttons and label text colors to black for better readability
+ */
+
+.form-group .checkbox label, .form-group .radio label, .form-group label,
+.checkbox input[type=checkbox]:checked+.checkbox-material .check, label.checkbox-inline input[type=checkbox]:checked+.checkbox-material .check,
+.checkbox input[type=checkbox]:checked+.checkbox-material .check:before, label.checkbox-inline input[type=checkbox]:checked+.checkbox-material .check:before
+{
+  color: black !important;
+}
+
+.checkbox input[type=checkbox]:checked+.checkbox-material .check, label.checkbox-inline input[type=checkbox]:checked+.checkbox-material .check,
+.radio input[type=radio]:checked ~ .circle, label.radio-inline input[type=radio]:checked ~ .circle
+{
+  border-color: black !important;
+}
+
+.radio input[type=radio]:checked ~ .check, label.radio-inline input[type=radio]:checked ~ .check{
+  background-color: black;
+}
+
+.mr-5{
+  margin-right: 5%;
+}
+
+.max-zIndex{
+  z-index: 99999;
+}
+
+.customZIndex{
+  z-index: 99990;
+}

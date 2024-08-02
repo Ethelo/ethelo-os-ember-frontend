@@ -1,0 +1,93 @@
+<div class="card-header" id="{{headerId}}">
+
+  <a
+    role="button"
+    data-toggle="collapse"
+    aria-expanded="false"
+    class="detail-toggle collapsed"
+    href="#{{collapseId}}"
+    {{action "toggleCardBody"}}
+    aria-controls="#{{collapseId}}"
+  >
+
+    <p class="title" style="display: flex; align-items: center;">
+      {{title}}
+
+      {{#if result.averageWeight}}
+        <div
+          class="tab-pie small pie-percent-{{percentage
+              result.normalizedAverageWeight
+              true
+            }}"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="{{t "results.average_weight"}}: {{percentage
+            result.normalizedAverageWeight
+            false
+          }}"
+        ></div>
+      {{/if}}
+    </p>
+
+    {{#if showHeaderStats}}
+
+      <span class="labels">
+        <span class="stats pull-left">
+          {{#if statsDisplay.showSupportStat}}
+            <span class="label stat support {{supportClass}} pull-right">
+              <i class="icon icon-support"></i>
+              {{{tool/rescale-percent value=result.support format="support"}}}
+              <span>{{metricTitle}}</span>
+            </span>
+          {{/if}}
+          {{#if statsDisplay.showEtheloStat}}
+            <span class="label stat ethelo {{etheloClass}} pull-right">
+              <i class="icon icon-ethelo"></i>
+              {{{tool/rescale-percent value=result.ethelo format="ethelo"}}}
+              <span>{{metricTitle}}</span>
+            </span>
+          {{/if}}
+          {{#if statsDisplay.showVoterPercentStat}}
+            <span
+              class="label stat voter-percent {{voterPercentClass}} pull-right"
+            >
+              <i class="icon icon-voter-percent"></i>
+              {{{tool/rescale-percent
+                value=result.voterPercent
+                format="voterPercent"
+              }}}
+              <span>{{metricTitle}}</span>
+            </span>
+          {{/if}}
+          {{#if statsDisplay.showApprovalStat}}
+            <span class="label stat approval {{approvalClass}} pull-right">
+              <i class="icon icon-approval"></i>
+              {{{tool/rescale-percent value=result.approval format="approval"}}}
+              <span>{{metricTitle}}</span>
+            </span>
+          {{/if}}
+          {{#if statsDisplay.showDissonanceStat}}
+            <span class="label stat dissonance {{dissonanceClass}} pull-right">
+              <i class="icon icon-dissonance"></i>
+              {{{tool/rescale-percent
+                value=result.dissonance
+                format="dissonance"
+              }}}
+              <span>{{metricTitle}}</span>
+            </span>
+          {{/if}}
+        </span>
+        {{#if showDetails}}
+          <span class="expand-icon pull-right">
+            <span class="label toggle-open">
+              <i class="material-icons expand_less">expand_less</i>
+            </span>
+            <span class="label toggle-close">
+              <i class="material-icons expand_more">expand_more</i>
+            </span>
+          </span>
+        {{/if}}
+      </span>
+    {{/if}}
+  </a>
+</div>

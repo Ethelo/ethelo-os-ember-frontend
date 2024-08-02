@@ -1,0 +1,90 @@
+<div class="container-fluid {{rankClass}} results-group-page" id={{page.componentId}}>
+  {{bootstrap/bootstrap-modal-balance}}
+
+  <!-- ROW ONE -->
+  <div class="row special" id="row1">
+    {{layout/left-column page=page}}
+
+    {{#layout/center-column page=page}}
+
+      {{tool/content-panel key='center' page=page}}
+
+      {{#if scenarioResults}}
+        {{#if statsDisplay.showScenarioStats}}
+          {{results/scenario-panel
+            page=page
+            rank=rank
+            isCollapsed=isCollapsed
+            scenario=scenario
+            statsDisplay=statsDisplay
+            scenarioResults=scenarioResults
+          }}
+        {{/if}}
+
+        {{#if showCalculations}}
+          {{results/full-calculations
+            title=(scopet 'results.calculations')
+            calculationsData=calculationsData}}
+        {{/if}}
+
+        {{#if statsDisplay.showOptionCategoryTitles}}
+          {{results/full-by-option-category
+            withUser=withUser
+            page=page
+            statsDisplay=statsDisplay
+            scenarioResults=scenarioResults}}
+        {{else}}
+          {{results/full-by-all-options
+            withUser=withUser
+            page=page
+            statsDisplay=statsDisplay
+            scenarioResults=scenarioResults}}
+        {{/if}}
+
+        {{results/criteria-pie-chart
+          page=page
+          statsDisplay=statsDisplay
+          scenarioResults=combinedScenarioResults}}
+
+        {{results/option-categories-pie-chart
+          page=page
+          statsDisplay=statsDisplay
+          scenarioResults=combinedScenarioResults}}
+
+        {{#if hasCenterPageComments}}
+          {{comments/collapse-panel
+            id='page-comments-position-center'
+            page=page
+            titleOverride=page.hasPageCommentTitleOverride
+            target=page
+            targetScope='comments.pages'
+          }}
+        {{/if}}
+
+      {{else}}
+        {{#if isLoading}}
+          <div class="panel">{{tool/loading-spinner}}</div>
+        {{else}}
+          {{#if noResultsMessage}}
+            <div class="alert alert-secondary" role="alert">
+              {{{t noResultsMessage}}}
+            </div>
+          {{/if}}
+        {{/if}}
+      {{/if}}
+
+      {{tool/content-panel key='center_two' page=page}}
+
+    {{/layout/center-column}}
+
+    {{layout/right-column
+      page=page
+      decision=decision
+      pageCommentTarget=pageCommentTarget
+      pageCommentScope=pageCommentScope
+      hasSidebarPageComments=hasSidebarPageComments
+    }}
+
+  </div>
+  <!-- END OF ROW ONE -->
+</div>
